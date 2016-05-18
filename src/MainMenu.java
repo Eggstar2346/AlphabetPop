@@ -6,7 +6,7 @@ import javax.imageio.*;
 import java.awt.image.*;
 
 
-public class MainMenu extends JPanel implements MouseListener
+public class MainMenu extends JPanel
 {
   private BufferedImage menu;
   
@@ -21,7 +21,16 @@ public class MainMenu extends JPanel implements MouseListener
       System.out.println("NOOOOO");
     } 
     repaint();
-    System.out.println("YOLO");
+    
+    addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+      System.out.println("1");
+      int xCoord = e.getX();
+      int yCoord = e.getY();
+      System.out.println(xCoord+ "      "+yCoord);
+    }
+});
   }
   
    public void paintComponent (Graphics g)
@@ -31,31 +40,31 @@ public class MainMenu extends JPanel implements MouseListener
     g.drawImage(menu, 0, 0, null);
   }
   
-  public void mouseClicked (MouseEvent e)
-  {
-    System.out.println("1");
-    int xCoord = e.getX();
-    int yCoord = e.getY();
-    System.out.println(xCoord+ "      "+yCoord);
-  }
-  
-  public void mouseExited (MouseEvent e)
-  {
-    System.out.println("2");
-  }
-  
-  public void mouseEntered (MouseEvent e)
-  {
-    System.out.println("3");
-  }
-  
-  public void mouseReleased (MouseEvent e)
-  {
-    System.out.println("4");
-  }
-  
-  public void mousePressed (MouseEvent e)
-  {
-    System.out.println("5");
-  }
+//  public void mouseClicked (MouseEvent e)
+//  {
+//    System.out.println("1");
+//    int xCoord = e.getX();
+//    int yCoord = e.getY();
+//    System.out.println(xCoord+ "      "+yCoord);
+//  }
+//  
+//  public void mouseExited (MouseEvent e)
+//  {
+//    System.out.println("2");
+//  }
+//  
+//  public void mouseEntered (MouseEvent e)
+//  {
+//    System.out.println("3");
+//  }
+//  
+//  public void mouseReleased (MouseEvent e)
+//  {
+//    System.out.println("4");
+//  }
+//  
+//  public void mousePressed (MouseEvent e)
+//  {
+//    System.out.println("5");
+//  }
 }
