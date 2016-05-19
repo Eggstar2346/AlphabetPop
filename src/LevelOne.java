@@ -6,15 +6,23 @@ import javax.imageio.*;
 import java.awt.image.*;
 
 
-public class MainMenu extends JPanel
-{
-  private BufferedImage menu;
+
+public class LevelOne extends JPanel {
+
+  private BufferedImage background;
+  private Bubble[] bubbles;
   
-  public MainMenu ()
+  public LevelOne()
   {
+    bubbles = new Bubble[26];
+    for (int x = 0 ; x < 26 ; x ++)
+    {
+      bubbles[x] = new Bubble (""+ ((char)NUM+x), int startX RANDNUM, int startY RANDNUM, false);
+    }
+    
     try 
     {
-      menu = ImageIO.read(new File("MainMenu.jpg"));
+      background = ImageIO.read(new File("LevelOneBackground.jpg"));
     } 
     catch (IOException e) 
     {
@@ -53,39 +61,14 @@ public class MainMenu extends JPanel
     }
 });
   }
+
   
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
     g.setColor(Color.WHITE);
-    g.drawImage(menu, 0, 0, null);
-  }
+    g.drawImage(background, 0, 0, null);
+  }  
   
-//  public void mouseClicked (MouseEvent e)
-//  {
-//    System.out.println("1");
-//    int xCoord = e.getX();
-//    int yCoord = e.getY();
-//    System.out.println(xCoord+ "      "+yCoord);
-//  }
-//  
-//  public void mouseExited (MouseEvent e)
-//  {
-//    System.out.println("2");
-//  }
-//  
-//  public void mouseEntered (MouseEvent e)
-//  {
-//    System.out.println("3");
-//  }
-//  
-//  public void mouseReleased (MouseEvent e)
-//  {
-//    System.out.println("4");
-//  }
-//  
-//  public void mousePressed (MouseEvent e)
-//  {
-//    System.out.println("5");
-//  }
+  
 }

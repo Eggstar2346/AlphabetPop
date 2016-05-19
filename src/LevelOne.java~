@@ -1,0 +1,52 @@
+
+public class LevelOne {
+  
+  public LevelOne()
+  {
+    try 
+    {
+      menu = ImageIO.read(new File("LevelOneBackground.jpg"));
+    } 
+    catch (IOException e) 
+    {
+      System.out.println("NOOOOO");
+    } 
+    repaint();
+    
+    addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+      int xCoord = e.getX();
+      int yCoord = e.getY();
+      System.out.println(xCoord+ "      "+yCoord);
+      if (xCoord>=217&&xCoord<=1016)
+      {
+        if (yCoord>=162&&yCoord<=211)
+        {
+          System.out.println("Instructions");
+        }
+        else if (yCoord>=260&&yCoord<=309)
+        {
+          System.out.println("Play");
+        } 
+        else if (yCoord>=363&&yCoord<=412)
+        {
+          System.out.println("High Scores");
+        }
+        else 
+        {
+          if (yCoord>=462&&yCoord<=511)
+          {
+            System.out.println("Exit");
+          }
+        }
+      }
+    }
+});
+  }
+
+  
+  
+  
+  
+}
