@@ -2,6 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/* The Splashscreen class displays the splashscreen to the user.
+ * 
+ * @author Samantha Unger, Esther Yoo
+ * @version 1 05.16.16
+ */
 public class Splashscreen extends JPanel
 {
   Bubble b = new Bubble ("A",0,0, false);
@@ -10,6 +15,9 @@ public class Splashscreen extends JPanel
   Timer myTimer;
   final int TRAVEL_DISTANCE = 500;
   
+          /**
+* This is the constructor that displays the Splashscreen.
+*/ 
   public Splashscreen ()
   {
     //b.setBounds(0,0, 10,10);
@@ -62,6 +70,11 @@ public class Splashscreen extends JPanel
 //    }
 //  }
   
+          /**
+* This is the method that paints components on the frame.
+* 
+* @param g Graphics passed in to allow painting on the frame.
+*/ 
   public void paintComponent (Graphics g)
   {
 //    for (int y = 0; y <= 80; y++)
@@ -95,6 +108,11 @@ public class Splashscreen extends JPanel
 //    }
   }
   
+          /**
+* This is the method that sees when an action is performed.
+* 
+* @param ae ActionEvent passed in to indicate an action that has been performed.
+*/ 
   public void ActionPerformed (ActionEvent ae)
   {
     
@@ -108,8 +126,4 @@ public class Splashscreen extends JPanel
 //  g2d.drawOval(ovalX, ovalY, ovalWidth, ovalHeight);
 // }
   
-  public static void main (String [] args)
-  {
-    new Splashscreen();
-  }
 }

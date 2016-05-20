@@ -5,19 +5,27 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-
+/* The LevelOne class allows the user to play level one of the game.
+ * 
+ * @author Samantha Unger, Esther Yoo
+ * @version 1 05.19.16
+ */
 
 public class LevelOne extends JPanel {
 
   private BufferedImage background;
   private Bubble[] bubbles;
   
+  
+        /**
+ * This is the constructor that constructs the Bubble objects that are required for the level.
+ */ 
   public LevelOne()
   {
     bubbles = new Bubble[26];
     for (int x = 0 ; x < 26 ; x ++)
     {
-      bubbles[x] = new Bubble (""+ ((char)NUM+x), int startX RANDNUM, int startY RANDNUM, false);
+      //bubbles[x] = new Bubble (""+ ((char)NUM+x), int startX RANDNUM, int startY RANDNUM, false);
     }
     
     try 
@@ -62,7 +70,12 @@ public class LevelOne extends JPanel {
 });
   }
 
-  
+
+        /**
+* This is the method that paints components on the frame.
+* 
+* @param g Graphics passed in to allow painting on the frame.
+*/ 
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);

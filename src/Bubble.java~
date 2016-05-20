@@ -54,7 +54,7 @@ public class Bubble extends Component
   }
   
   /* This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
-   * each time it is called.
+   * each time it is called. It also loads the image (this is a temporary arrangement).
    * @param newLetter This parameter pass is used to assign a new value to instance variable, letter.
    * @param startX This parameter pass is used to assign a new value to instance variable, currentX.
    * @param startY This parameter pass is used to assign a new value to instance variable, currentY.
@@ -62,7 +62,7 @@ public class Bubble extends Component
    */
   public Bubble(String newLetter, int startX, int startY, boolean newMoves)
   {
-    //loadImage(); //this does not belong here in the constructor. it belongs with the class that constructs bubbles
+    loadImage(); //this does not belong here in the constructor. it belongs with the class that constructs bubbles
     letter=newLetter;
     currentX=startX;
     currentY=startY;

@@ -1,7 +1,7 @@
 public class AlphabetPopDriver
 {
-  public static void (String [] args)
+  public static void main (String [] args)
   {
-    
+    new FrameAlphabetPop();
   }
 }

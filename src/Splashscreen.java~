@@ -83,7 +83,7 @@ public class Splashscreen extends JPanel
 //  ActionListener taskPerformer = new ActionListener() {
 //      public void actionPerformed(ActionEvent evt) {
           g.setColor(Color.WHITE);
-      g.fillOval(-2+x,(int)(39+y),100,100);
+      //g.fillOval(-2+x,(int)(39+y),100,100);
       g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
 //      repaint();
 //      if (x == 40)

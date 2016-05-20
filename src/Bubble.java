@@ -12,8 +12,6 @@ import javax.swing.*;
  * - Its starting Y-coordinate
  * - Whether or not the Bubble will move (Bubble does not move in Level 1)
  * 
- * @author Samantha Unger, Esther Yoo, and graphics code by Oracle and/or its affiliates.
- * @version 1 05.13.16
  * <p>
  * <b>Instance variables: </b>
  * <p>
@@ -26,6 +24,8 @@ import javax.swing.*;
  * <b>newMoves</b> Contains whether the Bubble moves or not.
  * <p>
  * <b>bubblePic</b> A static BufferedImage variable that refers to the picture of the Bubble.
+ * @author Samantha Unger, Esther Yoo, and graphics code by Oracle and/or its affiliates.
+ * @version 1 05.13.16
  */
 public class Bubble extends Component
 {
@@ -35,7 +35,7 @@ public class Bubble extends Component
   private boolean moves;
   static BufferedImage bubblePic;
   
-  /* This method loads the Bubble image. It reads in the file "Bubble2.png" and assigns it to the static instance
+  /** This method loads the Bubble image. It reads in the file "Bubble2.png" and assigns it to the static instance
    * variable, bubblePic.
    * 
    * First, the method enters a try-catch statement. It tries to assign the picture to the static instance variable,

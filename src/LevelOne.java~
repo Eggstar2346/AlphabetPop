@@ -1,11 +1,28 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.image.*;
 
-public class LevelOne {
+
+
+public class LevelOne extends JPanel {
+
+  private BufferedImage background;
+  private Bubble[] bubbles;
   
   public LevelOne()
   {
+    bubbles = new Bubble[26];
+    for (int x = 0 ; x < 26 ; x ++)
+    {
+      bubbles[x] = new Bubble (""+ ((char)NUM+x), int startX RANDNUM, int startY RANDNUM, false);
+    }
+    
     try 
     {
-      menu = ImageIO.read(new File("LevelOneBackground.jpg"));
+      background = ImageIO.read(new File("LevelOneBackground.jpg"));
     } 
     catch (IOException e) 
     {
@@ -46,7 +63,12 @@ public class LevelOne {
   }
 
   
-  
+   public void paintComponent (Graphics g)
+  {
+    super.paintComponent(g);
+    g.setColor(Color.WHITE);
+    g.drawImage(background, 0, 0, null);
+  }  
   
   
 }
