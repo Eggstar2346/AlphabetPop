@@ -26,7 +26,7 @@ public class FrameAlphabetPop extends JFrame
     //add(new MainMenu()); //this displays the main menu.  I commented it out to see the splashscreen.
     setSize (1200, 700);
     setVisible (true);
-    setResizable(false);
+    setResizable(true);
     setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE); 
   }
 }

@@ -122,27 +122,27 @@ public class Bubble extends Component
    * 
    * @param args []  String array that allows command line parameters to be used when executing the program.
    */ 
-  public static void main (String[]args)
-  {
-    Bubble b = new Bubble ("A",100,100, true);
-    //b.moveBubble(100,100);
-    JPanel j = new JPanel();
-    
-    //b.repaint();
-    JFrame f = new JFrame("Load Image Sample");
-    
-    
-    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
-    
-    f.addWindowListener(new WindowAdapter(){
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });
-    
-    f.add(b);
-    f.pack();
-    f.setVisible(true);
-    
-  }
+//  public static void main (String[]args)
+//  {
+//    Bubble b = new Bubble ("A",100,100, true);
+//    //b.moveBubble(100,100);
+//    JPanel j = new JPanel();
+//    
+//    //b.repaint();
+//    JFrame f = new JFrame("Load Image Sample");
+//    
+//    
+//    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
+//    
+//    f.addWindowListener(new WindowAdapter(){
+//      public void windowClosing(WindowEvent e) {
+//        System.exit(0);
+//      }
+//    });
+//    
+//    f.add(b);
+//    f.pack();
+//    f.setVisible(true);
+//    
+//  }
 }

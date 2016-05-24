@@ -22,11 +22,11 @@ public class LevelOne extends JPanel {
  */ 
   public LevelOne()
   {
-    Bubble.loadImage();
+    //Bubble.loadImage();
     bubbles = new Bubble[26];
     for (int x = 0 ; x < 26 ; x ++)
     {
-      bubbles[x] = new Bubble (""+ ((char)65+x), 10, 10, false);
+      bubbles[x] = new Bubble (""+ (char)(65+x), 10, 10, false);
       add(bubbles[x]);
     }
     
@@ -38,7 +38,7 @@ public class LevelOne extends JPanel {
 //    {
 //      System.out.println("NOOOOO");
 //    } 
-    repaint();
+    //repaint();
     
     addMouseListener(new MouseAdapter() {
     @Override
@@ -81,11 +81,11 @@ public class LevelOne extends JPanel {
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
-    g.setColor(Color.WHITE);
-    for (int x = 0 ; x < 26 ; x ++)
-    {
-      bubbles[x].moveBubble(10,10);
-    }
+    //g.setColor(Color.WHITE);
+//    for (int x = 0 ; x < 26 ; x ++)
+//    {
+      repaint();
+    //}
     //g.drawImage(background, 0, 0, null);
   }  
   

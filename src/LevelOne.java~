@@ -22,20 +22,22 @@ public class LevelOne extends JPanel {
  */ 
   public LevelOne()
   {
+    Bubble.loadImage();
     bubbles = new Bubble[26];
     for (int x = 0 ; x < 26 ; x ++)
     {
-      //bubbles[x] = new Bubble (""+ ((char)NUM+x), int startX RANDNUM, int startY RANDNUM, false);
+      bubbles[x] = new Bubble (""+ ((char)65+x), 10, 10, false);
+      add(bubbles[x]);
     }
     
-    try 
-    {
-      background = ImageIO.read(new File("LevelOneBackground.jpg"));
-    } 
-    catch (IOException e) 
-    {
-      System.out.println("NOOOOO");
-    } 
+//    try 
+//    {
+//      background = ImageIO.read(new File("LevelOneBackground.jpg"));
+//    } 
+//    catch (IOException e) 
+//    {
+//      System.out.println("NOOOOO");
+//    } 
     repaint();
     
     addMouseListener(new MouseAdapter() {
@@ -80,7 +82,11 @@ public class LevelOne extends JPanel {
   {
     super.paintComponent(g);
     g.setColor(Color.WHITE);
-    g.drawImage(background, 0, 0, null);
+    for (int x = 0 ; x < 26 ; x ++)
+    {
+      bubbles[x].moveBubble(10,10);
+    }
+    //g.drawImage(background, 0, 0, null);
   }  
   
   

@@ -73,6 +73,7 @@ public class Bubble extends Component
    */
   public void moveBubble(int x, int y)
   {
+    System.out.println("At moveBubble");
     currentX = currentX + x;
     currentY = currentY + y;
     repaint();
@@ -124,11 +125,12 @@ public class Bubble extends Component
   public static void main (String[]args)
   {
     Bubble b = new Bubble ("A",100,100, true);
+    //b.moveBubble(100,100);
     JPanel j = new JPanel();
     
     //b.repaint();
     JFrame f = new JFrame("Load Image Sample");
-    b.moveBubble(100,100);
+    
     
     //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
     
