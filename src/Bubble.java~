@@ -88,13 +88,14 @@ public class Bubble extends Component
    * <b>g </b> This local variable is used to access the Graphics class.
    * <p>
    */
+  //@Override
   public void paint(Graphics g) 
   {
     System.out.println("Got here");
     g.drawImage(bubblePic, currentX, currentY, null);
     g.setColor(Colors.letters);
-    g.setFont(new Font("Comic Sans MS", Font.PLAIN, 90));
-    g.drawString(letter, currentX+15, currentY+80);
+    g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
+    g.drawString(letter, currentX+18, currentY+70);
     //repaint();
   }
   
@@ -107,8 +108,8 @@ public class Bubble extends Component
     if (bubblePic == null) {
       return new Dimension(100,100);
     } else {
-      //return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
-      return new Dimension(1200, 600);
+      return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
+      //return new Dimension(1200, 600);
     }
   }
   

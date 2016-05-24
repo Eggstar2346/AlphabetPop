@@ -69,11 +69,21 @@ public class Bubble extends Component
     moves=newMoves;
   }
   
+  //comment these two methods :)
+  public int returnVerticalCenter()
+  {
+    return currentY+50;
+  }
+  public int returnHorizontalCenter()
+  {
+    return currentX+50;
+  }
+  
   /* This method is currently empty, but will later be used to move Bubbles.
    */
   public void moveBubble(int x, int y)
   {
-    System.out.println("At moveBubble");
+   // System.out.println("At moveBubble");
     currentX = currentX + x;
     currentY = currentY + y;
     repaint();
@@ -91,7 +101,7 @@ public class Bubble extends Component
   //@Override
   public void paint(Graphics g) 
   {
-    System.out.println("Got here");
+    //System.out.println("Got here");
     g.drawImage(bubblePic, currentX, currentY, null);
     g.setColor(Colors.letters);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
