@@ -1,0 +1,6 @@
+import java.awt.Color;
+
+public static class Colors
+{
+  Color letter = new Color (0, 76, 153);
+}

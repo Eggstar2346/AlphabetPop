@@ -30,8 +30,8 @@ import javax.swing.*;
 public class Bubble extends Component
 {
   private String letter;
-  private int currentX;
-  private int currentY;
+  static int currentX;
+  static int currentY;
   private boolean moves;
   static BufferedImage bubblePic;
   
@@ -71,8 +71,11 @@ public class Bubble extends Component
   
   /* This method is currently empty, but will later be used to move Bubbles.
    */
-  public void move()
+  public void moveBubble(int x, int y)
   {
+    currentX = currentX + x;
+    currentY = currentY + y;
+    repaint();
   }
   
   /* This method draws the Bubble image.
@@ -86,7 +89,12 @@ public class Bubble extends Component
    */
   public void paint(Graphics g) 
   {
-    g.drawImage(bubblePic, 0, 0, null);
+    System.out.println("Got here");
+    g.drawImage(bubblePic, currentX, currentY, null);
+    g.setColor(Colors.letters);
+    g.setFont(new Font("Comic Sans MS", Font.PLAIN, 90));
+    g.drawString(letter, currentX+15, currentY+80);
+    //repaint();
   }
   
   /* This method sets the preferred Dimensions of the window.
@@ -98,8 +106,14 @@ public class Bubble extends Component
     if (bubblePic == null) {
       return new Dimension(100,100);
     } else {
-      return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
+      //return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
+      return new Dimension(1200, 600);
     }
+  }
+  
+  public String getLetter()
+  {
+    return letter;
   }
   
   /* Description of main(String [] args)
@@ -109,10 +123,14 @@ public class Bubble extends Component
    */ 
   public static void main (String[]args)
   {
-    Bubble b = new Bubble ("A",0,0, false);
+    Bubble b = new Bubble ("A",100,100, true);
     JPanel j = new JPanel();
     
+    //b.repaint();
     JFrame f = new JFrame("Load Image Sample");
+    b.moveBubble(100,100);
+    
+    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
     
     f.addWindowListener(new WindowAdapter(){
       public void windowClosing(WindowEvent e) {

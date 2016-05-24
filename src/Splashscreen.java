@@ -2,6 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+
 /* The Splashscreen class displays the splashscreen to the user.
  * 
  * @author Samantha Unger, Esther Yoo
@@ -14,12 +21,22 @@ public class Splashscreen extends JPanel
   double y = 0;
   Timer myTimer;
   final int TRAVEL_DISTANCE = 500;
+  private BufferedImage underwater;
   
           /**
 * This is the constructor that displays the Splashscreen.
 */ 
   public Splashscreen ()
   {
+    Bubble.loadImage();
+    try 
+    {
+      underwater = ImageIO.read(new File("underwater.jpg"));
+    } 
+    catch (IOException e) 
+    {
+      System.out.println("NOOOOO");
+    }
     //b.setBounds(0,0, 10,10);
 //    add(b);
 //    repaint();
@@ -30,7 +47,7 @@ public class Splashscreen extends JPanel
             if (x <= TRAVEL_DISTANCE) {
                x = x + 5;
                y = 25 * Math.sin(Math.toDegrees(x/5));
-               repaint();
+               //repaint();
             } else {
                ((Timer)actEvt.getSource()).stop();
             }
@@ -77,6 +94,7 @@ public class Splashscreen extends JPanel
 */ 
   public void paintComponent (Graphics g)
   {
+    System.out.println("Hi");
 //    for (int y = 0; y <= 80; y++)
 //    {
 //      x++;
@@ -89,15 +107,22 @@ public class Splashscreen extends JPanel
 //    myTimer = new Timer(1, taskPerformer);
 //    myTimer.start();
 //    }
-    super.paintComponent(g);
+    //super.paintComponent(g);
+    //load underwater image
+    
+    //g.drawImage(underwater, 0, 0, null);
+    
+    
 //    for (int y = 0; y <= 40; y++)
 //    {
 //      x++;
 //  ActionListener taskPerformer = new ActionListener() {
 //      public void actionPerformed(ActionEvent evt) {
-          g.setColor(Color.WHITE);
+          //g.setColor(Color.WHITE);
       //g.fillOval(-2+x,(int)(39+y),100,100);
-      g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
+          b.moveBubble(x, (int)y);
+      //g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
+      //repaint();
 //      repaint();
 //      if (x == 40)
 //        myTimer.stop();
