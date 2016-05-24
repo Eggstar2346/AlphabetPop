@@ -26,9 +26,12 @@ public class LevelOne extends JPanel {
     bubbles = new Bubble[26];
     for (int x = 0 ; x < 26 ; x ++)
     {
-      bubbles[x] = new Bubble (""+ (char)(65+x), 10, 10, false);
+      bubbles[x] = new Bubble (""+ (char)(65+x), 0, 0, false);
       add(bubbles[x]);
     }
+    //add(bubbles[0]);
+    //add(bubbles[1]);
+    //add(bubbles[2]);
     
 //    try 
 //    {
