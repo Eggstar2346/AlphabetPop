@@ -14,7 +14,7 @@ import javax.swing.*;
  * @author Samantha Unger, Esther Yoo
  * @version 1 05.16.16
  */
-public class Splashscreen extends JPanel
+public class Splashscreen 
 {
   Bubble b = new Bubble ("A",0,0, false);
   int x = 0;
@@ -28,8 +28,7 @@ public class Splashscreen extends JPanel
 */ 
   public Splashscreen ()
   {
-    Bubble.loadImage();
-    add(b);
+    
     try 
     {
       underwater = ImageIO.read(new File("underwater.jpg"));
@@ -38,6 +37,8 @@ public class Splashscreen extends JPanel
     {
       System.out.println("NOOOOO");
     }
+    Bubble.loadImage();
+    //add(b);
     //b.setBounds(0,0, 10,10);
 //    add(b);
 //    repaint();
@@ -115,6 +116,7 @@ public class Splashscreen extends JPanel
     g.drawImage(underwater, 0, 0, null);
     
     b.moveBubble(x, (int)y);
+    
 //    for (int y = 0; y <= 40; y++)
 //    {
 //      x++;
@@ -123,7 +125,7 @@ public class Splashscreen extends JPanel
           //g.setColor(Color.WHITE);
       //g.fillOval(-2+x,(int)(39+y),100,100);
           
-      g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
+    //  g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
       //repaint();
 //      repaint();
 //      if (x == 40)

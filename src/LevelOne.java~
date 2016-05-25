@@ -49,26 +49,13 @@ public class LevelOne extends JPanel {
       int xCoord = e.getX();
       int yCoord = e.getY();
       System.out.println(xCoord+ "      "+yCoord);
-      if (xCoord>=217&&xCoord<=1016)
+      for (int x = 0;x<26;x++)
       {
-        if (yCoord>=162&&yCoord<=211)
+        System.out.println(Math.sqrt(Math.pow(xCoord-bubbles[x].returnHorizontalCenter(),2)+Math.pow(yCoord-bubbles[x].returnVerticalCenter(),2)));
+        System.out.println(bubbles[x].returnHorizontalCenter());
+        if (Math.sqrt(Math.pow(xCoord-bubbles[x].returnHorizontalCenter(),2)+Math.pow(yCoord-bubbles[x].returnVerticalCenter(),2))<=50)
         {
-          System.out.println("Instructions");
-        }
-        else if (yCoord>=260&&yCoord<=309)
-        {
-          System.out.println("Play");
-        } 
-        else if (yCoord>=363&&yCoord<=412)
-        {
-          System.out.println("High Scores");
-        }
-        else 
-        {
-          if (yCoord>=462&&yCoord<=511)
-          {
-            System.out.println("Exit");
-          }
+          System.out.println(x);
         }
       }
     }

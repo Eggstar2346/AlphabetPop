@@ -51,6 +51,7 @@ public class Bubble extends Component
     {
       System.out.println("NOOOOO");
     }
+    //repaint();
   }
   
   /* This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
@@ -83,7 +84,7 @@ public class Bubble extends Component
    */
   public void moveBubble(int x, int y)
   {
-   // System.out.println("At moveBubble");
+    System.out.println("At moveBubble");
     currentX = currentX + x;
     currentY = currentY + y;
     repaint();
@@ -101,7 +102,7 @@ public class Bubble extends Component
   //@Override
   public void paint(Graphics g) 
   {
-    //System.out.println("Got here");
+    System.out.println("Got here");
     g.drawImage(bubblePic, currentX, currentY, null);
     g.setColor(Colors.letters);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
@@ -118,8 +119,8 @@ public class Bubble extends Component
     if (bubblePic == null) {
       return new Dimension(100,100);
     } else {
-      return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
-      //return new Dimension(1200, 600);
+      //return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
+      return new Dimension(1200, 600);
     }
   }
   
@@ -133,27 +134,27 @@ public class Bubble extends Component
    * 
    * @param args []  String array that allows command line parameters to be used when executing the program.
    */ 
-  public static void main (String[]args)
-  {
-    Bubble b = new Bubble ("A",100,100, true);
-    //b.moveBubble(100,100);
-    JPanel j = new JPanel();
-    
-    //b.repaint();
-    JFrame f = new JFrame("Load Image Sample");
-    
-    
-    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
-    
-    f.addWindowListener(new WindowAdapter(){
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });
-    
-    f.add(b);
-    f.pack();
-    f.setVisible(true);
-    
-  }
+//  public static void main (String[]args)
+//  {
+//    Bubble b = new Bubble ("A",100,100, true);
+//    b.moveBubble(100,100);
+//    JPanel j = new JPanel();
+//    
+//    //b.repaint();
+//    JFrame f = new JFrame("Load Image Sample");
+//    
+//    
+//    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
+//    
+//    f.addWindowListener(new WindowAdapter(){
+//      public void windowClosing(WindowEvent e) {
+//        System.exit(0);
+//      }
+//    });
+//    
+//    f.add(b);
+//    f.pack();
+//    f.setVisible(true);
+//    
+//  }
 }

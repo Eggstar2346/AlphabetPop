@@ -29,6 +29,7 @@ public class Splashscreen extends JPanel
   public Splashscreen ()
   {
     Bubble.loadImage();
+    add(b);
     try 
     {
       underwater = ImageIO.read(new File("underwater.jpg"));
@@ -47,6 +48,7 @@ public class Splashscreen extends JPanel
             if (x <= TRAVEL_DISTANCE) {
                x = x + 5;
                y = 25 * Math.sin(Math.toDegrees(x/5));
+               
                //repaint();
             } else {
                ((Timer)actEvt.getSource()).stop();
@@ -110,9 +112,9 @@ public class Splashscreen extends JPanel
     //super.paintComponent(g);
     //load underwater image
     
-    //g.drawImage(underwater, 0, 0, null);
+    g.drawImage(underwater, 0, 0, null);
     
-    
+    b.moveBubble(x, (int)y);
 //    for (int y = 0; y <= 40; y++)
 //    {
 //      x++;
@@ -120,8 +122,8 @@ public class Splashscreen extends JPanel
 //      public void actionPerformed(ActionEvent evt) {
           //g.setColor(Color.WHITE);
       //g.fillOval(-2+x,(int)(39+y),100,100);
-          b.moveBubble(x, (int)y);
-      //g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
+          
+      g.drawImage(Bubble.bubblePic, 0+x, (int)(40+y), null);
       //repaint();
 //      repaint();
 //      if (x == 40)
