@@ -73,10 +73,6 @@ public class BouncingBallSimple extends JPanel {
       g.setColor(Color.BLUE);
       g.fillOval((int) (ballX - ballRadius), (int) (ballY - ballRadius),
             (int)(2 * ballRadius), (int)(2 * ballRadius));
-      
-      g.setColor(Color.CYAN);
-      g.fillOval((int) (ballX - ballRadius), (int) (ballY - ballRadius),
-            (int)(0.5 * ballRadius), (int)(0.5 * ballRadius));
   
       // Display the ball's information
       g.setColor(Color.WHITE);

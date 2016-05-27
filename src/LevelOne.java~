@@ -14,7 +14,7 @@ import java.awt.image.*;
 public class LevelOne extends JPanel {
 
   private BufferedImage background;
-  private Bubble[] bubbles;
+  private NewBubble[] bubbles;
   
   
         /**
@@ -23,11 +23,11 @@ public class LevelOne extends JPanel {
   public LevelOne()
   {
     //Bubble.loadImage();
-    bubbles = new Bubble[26];
+    bubbles = new NewBubble[26];
     for (int x = 0 ; x < 26 ; x ++)
     {
-      bubbles[x] = new Bubble (""+ (char)(65+x), 0, 0, false);
-      add(bubbles[x]);
+      bubbles[x] = new NewBubble (""+ (char)(65+x), 0, 0, false);
+      //add(bubbles[x]);
     }
     //add(bubbles[0]);
     //add(bubbles[1]);

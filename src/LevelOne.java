@@ -29,7 +29,7 @@ public class LevelOne extends JPanel {
       bubbles[x] = new NewBubble (""+ (char)(65+x), 0, 0, false);
       //add(bubbles[x]);
     }
-    //add(bubbles[0]);
+    add(bubbles[0]);
     //add(bubbles[1]);
     //add(bubbles[2]);
     
@@ -70,11 +70,11 @@ public class LevelOne extends JPanel {
 */ 
    public void paintComponent (Graphics g)
   {
-    super.paintComponent(g);
+    //super.paintComponent(g);
     //g.setColor(Color.WHITE);
 //    for (int x = 0 ; x < 26 ; x ++)
 //    {
-      repaint();
+      //repaint();
     //}
     //g.drawImage(background, 0, 0, null);
   }  
