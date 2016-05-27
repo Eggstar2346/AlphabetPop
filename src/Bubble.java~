@@ -5,7 +5,7 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-/* The Bubble class creates a Bubble object.
+/** The Bubble class creates a Bubble object.
  * Each Bubble object has the following characteristics:
  * - The letter it contains (ex. A, B, C)
  * - Its starting X-coordinate
@@ -24,10 +24,11 @@ import javax.swing.*;
  * <b>newMoves</b> Contains whether the Bubble moves or not.
  * <p>
  * <b>bubblePic</b> A static BufferedImage variable that refers to the picture of the Bubble.
+ * 
  * @author Samantha Unger, Esther Yoo, and graphics code by Oracle and/or its affiliates.
  * @version 1 05.13.16
  */
-public class Bubble extends Component
+public class Bubble
 {
   private String letter;
   static int currentX;
@@ -51,9 +52,10 @@ public class Bubble extends Component
     {
       System.out.println("NOOOOO");
     }
+    //repaint();
   }
   
-  /* This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
+  /** This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
    * each time it is called. It also loads the image (this is a temporary arrangement).
    * @param newLetter This parameter pass is used to assign a new value to instance variable, letter.
    * @param startX This parameter pass is used to assign a new value to instance variable, currentX.
@@ -79,17 +81,17 @@ public class Bubble extends Component
     return currentX+50;
   }
   
-  /* This method is currently empty, but will later be used to move Bubbles.
+  /** This method is used to move Bubbles.
    */
   public void moveBubble(int x, int y)
   {
-   // System.out.println("At moveBubble");
+    System.out.println("At moveBubble");
     currentX = currentX + x;
     currentY = currentY + y;
-    repaint();
+    //repaint();
   }
   
-  /* This method draws the Bubble image.
+  /** This method draws the Bubble image.
    * <p>
    * @param g This parameter pass is used to access the Graphics class.
    * <p>
@@ -101,7 +103,7 @@ public class Bubble extends Component
   //@Override
   public void paint(Graphics g) 
   {
-    //System.out.println("Got here");
+    System.out.println("Got here");
     g.drawImage(bubblePic, currentX, currentY, null);
     g.setColor(Colors.letters);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
@@ -109,7 +111,7 @@ public class Bubble extends Component
     //repaint();
   }
   
-  /* This method sets the preferred Dimensions of the window.
+  /** This method sets the preferred Dimensions of the window.
    * @return new Dimension it returns the preferred Dimensions of the window.
    * The if structure checks if bubblepic has been assigned yet. If it has not (null), the method returns an automatic
    * Dimension of 100 by 100. Else, the method returns Dimensions that match the width and height of the Bubble.
@@ -118,8 +120,8 @@ public class Bubble extends Component
     if (bubblePic == null) {
       return new Dimension(100,100);
     } else {
-      return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
-      //return new Dimension(1200, 600);
+      //return new Dimension(bubblePic.getWidth(null), bubblePic.getHeight(null));
+      return new Dimension(1200, 600);
     }
   }
   
@@ -133,27 +135,27 @@ public class Bubble extends Component
    * 
    * @param args []  String array that allows command line parameters to be used when executing the program.
    */ 
-  public static void main (String[]args)
-  {
-    Bubble b = new Bubble ("A",100,100, true);
-    //b.moveBubble(100,100);
-    JPanel j = new JPanel();
-    
-    //b.repaint();
-    JFrame f = new JFrame("Load Image Sample");
-    
-    
-    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
-    
-    f.addWindowListener(new WindowAdapter(){
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });
-    
-    f.add(b);
-    f.pack();
-    f.setVisible(true);
-    
-  }
+//  public static void main (String[]args)
+//  {
+//    Bubble b = new Bubble ("A",100,100, true);
+//    b.moveBubble(100,100);
+//    JPanel j = new JPanel();
+//    
+//    //b.repaint();
+//    JFrame f = new JFrame("Load Image Sample");
+//    
+//    
+//    //System.out.println(Bubble.currentX + ", " + Bubble.currentY);
+//    
+//    f.addWindowListener(new WindowAdapter(){
+//      public void windowClosing(WindowEvent e) {
+//        System.exit(0);
+//      }
+//    });
+//    
+//    f.add(b);
+//    f.pack();
+//    f.setVisible(true);
+//    
+//  }
 }

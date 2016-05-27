@@ -5,7 +5,7 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-/* The Bubble class creates a Bubble object.
+/** The Bubble class creates a Bubble object.
  * Each Bubble object has the following characteristics:
  * - The letter it contains (ex. A, B, C)
  * - Its starting X-coordinate
@@ -24,10 +24,11 @@ import javax.swing.*;
  * <b>newMoves</b> Contains whether the Bubble moves or not.
  * <p>
  * <b>bubblePic</b> A static BufferedImage variable that refers to the picture of the Bubble.
+ * 
  * @author Samantha Unger, Esther Yoo, and graphics code by Oracle and/or its affiliates.
  * @version 1 05.13.16
  */
-public class Bubble extends Component
+public class Bubble
 {
   private String letter;
   static int currentX;
@@ -54,7 +55,7 @@ public class Bubble extends Component
     //repaint();
   }
   
-  /* This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
+  /** This is the Bubble class constructor. It assigns new values to all of the object's attributes (instance variables)
    * each time it is called. It also loads the image (this is a temporary arrangement).
    * @param newLetter This parameter pass is used to assign a new value to instance variable, letter.
    * @param startX This parameter pass is used to assign a new value to instance variable, currentX.
@@ -80,24 +81,26 @@ public class Bubble extends Component
     return currentX+50;
   }
   
-  /* This method is currently empty, but will later be used to move Bubbles.
+  /** This method is used to move Bubbles.
+    * 
+    * @param x specifies how much the Bubble should move horizontally.
+    * @param y specifies how much the Bubble should move vertically.
    */
   public void moveBubble(int x, int y)
   {
     System.out.println("At moveBubble");
     currentX = currentX + x;
     currentY = currentY + y;
-    repaint();
+    //repaint();
   }
   
-  /* This method draws the Bubble image.
+  /** This method draws the Bubble image.
    * <p>
    * @param g This parameter pass is used to access the Graphics class.
    * <p>
    * <b>Local variables: </b>
    * <p>
    * <b>g </b> This local variable is used to access the Graphics class.
-   * <p>
    */
   //@Override
   public void paint(Graphics g) 
@@ -110,7 +113,7 @@ public class Bubble extends Component
     //repaint();
   }
   
-  /* This method sets the preferred Dimensions of the window.
+  /** This method sets the preferred Dimensions of the window.
    * @return new Dimension it returns the preferred Dimensions of the window.
    * The if structure checks if bubblepic has been assigned yet. If it has not (null), the method returns an automatic
    * Dimension of 100 by 100. Else, the method returns Dimensions that match the width and height of the Bubble.

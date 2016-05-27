@@ -1,4 +1,4 @@
-/* The AlphabetPopDriver is the driver class that creates FrameAlphabetPop as well
+/** The AlphabetPopDriver is the driver class that creates FrameAlphabetPop as well
  * as executes the program. 
  * 
  * @author Samantha Unger, Esther Yoo
