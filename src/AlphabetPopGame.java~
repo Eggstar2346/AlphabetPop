@@ -1,3 +1,13 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/** The AlphabetPopGame class will contain all the logistics for our game and bring the components of the game together.
+ * 
+ * @author Samantha Unger, Esther Yoo
+ * @version 1 05.27.16
+ */
+
 public class AlphabetPopGame extends JPanel
 {
   
