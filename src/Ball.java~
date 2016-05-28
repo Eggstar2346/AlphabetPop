@@ -7,6 +7,7 @@ public class Ball {
    float x, y;           // Ball's center x and y (package access)
    float speedX, speedY; // Ball's speed per step in x and y (package access)
    float radius;         // Ball's radius (package access)
+   String letter;
    private Color color;  // Ball's color
    private static final Color DEFAULT_COLOR = Color.BLUE;
   
@@ -16,7 +17,7 @@ public class Ball {
     * speedY in Java graphics coordinates for ease of operation.
     */
    public Ball(float x, float y, float radius, float speed, float angleInDegree,
-         Color color) {
+         Color color, String letter) {
       this.x = x;
       this.y = y;
       // Convert (speed, angle) to (x, y), with y-axis inverted
@@ -24,17 +25,34 @@ public class Ball {
       this.speedY = (float)(-speed * (float)Math.sin(Math.toRadians(angleInDegree)));
       this.radius = radius;
       this.color = color;
+      this.letter = letter;
    }
    /** Constructor with the default color */
    public Ball(float x, float y, float radius, float speed, float angleInDegree) {
-      this(x, y, radius, speed, angleInDegree, DEFAULT_COLOR);
+      this(x, y, radius, speed, angleInDegree, DEFAULT_COLOR, "A");
    }
    
    /** Draw itself using the given graphics context. */
    public void draw(Graphics g) {
       g.setColor(color);
       g.fillOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
+      g.setColor(Color.WHITE);
+      g.drawOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
    }
+   
+//   public void remove (Graphics g)
+//   {
+//     g.clearOval(x, y, radius, radius);
+//   }
+   
+   public float returnVerticalCenter()
+  {
+    return y+50;
+  }
+  public float returnHorizontalCenter()
+  {
+    return x+50;
+  }
    
    /** 
     * Make one move, check for collision and react accordingly if collision occurs.

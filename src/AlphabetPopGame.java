@@ -44,7 +44,8 @@ public class AlphabetPopGame extends JPanel
       int speed = (int)(Math.random() * (8 - 1) + 1) + 1;
       int angleInDegree;
       ball = new Ball[26];
-      for (int z = 0 ; z < 26 ; z ++)
+      ball[0] = new Ball(x, y, radius, speed, 227, Color.GREEN, "B");
+      for (int z = 1 ; z < 26 ; z ++)
       {
         x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
         y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
@@ -68,13 +69,14 @@ public class AlphabetPopGame extends JPanel
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println("XCoord: " + xCoord+ "      " + "YCoord" +yCoord);
-//        for (int x = 0;x<26;x++)
-//        {
+        //for (int x = 0;x<26;x++)
+        //{
           System.out.println(Math.sqrt(Math.pow(xCoord-ball[0].x,2)+Math.pow(yCoord-ball[0].y,2)));
           System.out.println("Horizontal center: " + ball[0].returnHorizontalCenter());
           if (Math.sqrt(Math.pow(xCoord-ball[0].returnHorizontalCenter(),2)+Math.pow(yCoord-ball[0].returnVerticalCenter(),2))<=50)
           {
-            System.out.println(x);
+           ball[0].setColor(Color.green);
+           System.out.println("TRUEEE");
           }
         //}
       }

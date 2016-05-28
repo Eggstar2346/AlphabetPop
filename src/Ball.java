@@ -47,11 +47,16 @@ public class Ball {
    
    public float returnVerticalCenter()
   {
-    return y+50;
+    return y;
   }
   public float returnHorizontalCenter()
   {
-    return x+50;
+    return x;
+  }
+  
+  public void setColor (Color newColor)
+  {
+    color = newColor;
   }
    
    /** 
