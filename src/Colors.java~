@@ -9,7 +9,6 @@ import java.awt.Color;
  * <b>Instance variables: </b>
  * <p>
  * <b>letters</b> A static Color variable that refers to the RGB colour specified in its parameters.
- * <p>
  */
 public class Colors
 {
