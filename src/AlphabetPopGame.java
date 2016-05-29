@@ -40,21 +40,22 @@ public class AlphabetPopGame extends JPanel
   
   char [] letters;
   int currentLetter;
+  Clip clip;
+  Clip music;
   
-  public void loadAudio(String fileName, int loop, float volAdjust)
+  Clip[] audio = new Clip[8];
+  
+  public void loadAudio()
   {
     try
     {
-      Clip clip = AudioSystem.getClip();
-      File effect = new File(fileName + ".wav");
-      AudioInputStream effectAudio = AudioSystem.getAudioInputStream(effect);
-      clip.open(effectAudio);
-      FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-      gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
-      if (loop == 0)
-        clip.loop(0);
-      else
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+      for (int x = 0; x < 5; x++)
+      {
+        audio[x] = AudioSystem.getClip();
+        File audioClip = new File("Music_" + (x+1) + ".wav");
+        AudioInputStream audioClipStream = AudioSystem.getAudioInputStream(audioClip);
+        audio[x].open(audioClipStream);
+      }
     }
     catch (UnsupportedAudioFileException q) {
       q.printStackTrace();
@@ -63,6 +64,36 @@ public class AlphabetPopGame extends JPanel
     } catch (LineUnavailableException q) {
       q.printStackTrace();
     }
+  }
+  
+  public void volume(float volAdjust, int clipNum)
+  {
+    FloatControl gainControl = (FloatControl) audio[clipNum].getControl(FloatControl.Type.MASTER_GAIN);
+    gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
+  }
+  
+  public void loadAudio(String fileName, int loop, float volAdjust)
+  {
+      try
+      {
+        Clip clip = AudioSystem.getClip();
+        File effect = new File(fileName + ".wav");
+        AudioInputStream effectAudio = AudioSystem.getAudioInputStream(effect);
+        clip.open(effectAudio);
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
+        if (loop == 0)
+          clip.start();
+        else
+          clip.loop(Clip.LOOP_CONTINUOUSLY);
+      }
+      catch (UnsupportedAudioFileException q) {
+        q.printStackTrace();
+      } catch (IOException q) {
+        q.printStackTrace();
+      } catch (LineUnavailableException q) {
+        q.printStackTrace();
+      }
   }
   
   /**
@@ -76,7 +107,7 @@ public class AlphabetPopGame extends JPanel
     
     canvasWidth = width;
     canvasHeight = height;
-    
+    loadAudio();
     levelThree();
     // Init the Container Box to fill the screen
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.GREEN);
@@ -92,6 +123,7 @@ public class AlphabetPopGame extends JPanel
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println("XCoord: " + xCoord+ "      " + "YCoord" +yCoord);
+        
         for (int z = NUM_BUBBLES-1;z>=0;z--)
         {
 //          System.out.println(Math.sqrt(Math.pow(xCoord-ball[z].x,2)+Math.pow(yCoord-ball[z].y,2)));
@@ -100,7 +132,9 @@ public class AlphabetPopGame extends JPanel
           {
             if (ball[z].getLetter() == letters[currentLetter])
             {
-              loadAudio("Bubble_Pop",0,+0.0f);
+              loadAudio("Music_5",0,+5.0f);
+              //volume(+6.0f, 4);
+              //audio[4].loop(0);
               ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
               ball[z].setSpeed(0);
@@ -111,11 +145,11 @@ public class AlphabetPopGame extends JPanel
             if (currentLetter > letters.length-1)
             {
               currentLetter = 0;
+              audio[2].stop();
             }
             System.out.println("This is bubble number: " + currentLetter);
             //erase bubble
             //ball[z].setColor(Color.black, Color.black, Color.black);
-            
             break;
           }
         }
@@ -226,7 +260,9 @@ public class AlphabetPopGame extends JPanel
   
   public void levelThree()
   {
-    loadAudio("Music_3",1,-10.0f);
+    //loadAudio("Music_3",1,-10.0f);
+    volume(-15.0f, 2);
+    audio[2].loop(Clip.LOOP_CONTINUOUSLY);
     BufferedReader input;
     try
     {
