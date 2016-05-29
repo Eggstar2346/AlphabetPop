@@ -8,8 +8,11 @@ public class Ball {
    float speedX, speedY; // Ball's speed per step in x and y (package access)
    float radius;         // Ball's radius (package access)
    String letter;
+   boolean wasClicked;
+   float angleInDegree;
    private Color color;  // Ball's color
-   private static final Color DEFAULT_COLOR = Color.BLUE;
+   private Color outline;  // Ball's color
+   private Color letterCol;  // Ball's color
   
    /**
     * Constructor: For user friendliness, user specifies velocity in speed and
@@ -17,27 +20,55 @@ public class Ball {
     * speedY in Java graphics coordinates for ease of operation.
     */
    public Ball(float x, float y, float radius, float speed, float angleInDegree,
-         Color color, String letter) {
+         Color color, String letter, boolean wasClicked) {
       this.x = x;
       this.y = y;
+      this.angleInDegree = angleInDegree;
       // Convert (speed, angle) to (x, y), with y-axis inverted
       this.speedX = (float)(speed * Math.cos(Math.toRadians(angleInDegree)));
       this.speedY = (float)(-speed * (float)Math.sin(Math.toRadians(angleInDegree)));
       this.radius = radius;
       this.color = color;
+      outline = Color.white;
+      letterCol = Colors.letters;
       this.letter = letter;
+      this.wasClicked = wasClicked;
    }
    /** Constructor with the default color */
    public Ball(float x, float y, float radius, float speed, float angleInDegree) {
-      this(x, y, radius, speed, angleInDegree, DEFAULT_COLOR, "A");
+      this(x, y, radius, speed, angleInDegree, Colors.bubbles, "A", false);
+   }
+   
+   public void setLocation (int x, int y)
+   {
+     this.x = x;
+     this.y = y;
+   }
+   
+   public boolean getWasClicked()
+   {
+     return wasClicked;
+   }
+   
+   public void setRadius (float newRadius)
+   {
+     radius = newRadius;
+   }
+   
+   public void setWasClicked(boolean newWasClicked)
+   {
+     wasClicked = newWasClicked;
    }
    
    /** Draw itself using the given graphics context. */
    public void draw(Graphics g) {
       g.setColor(color);
       g.fillOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
-      g.setColor(Color.WHITE);
+      g.setColor(outline);
       g.drawOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
+      g.setColor(letterCol);
+      g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
+      g.drawString(letter, (int)x-30, (int)y+25);
    }
    
 //   public void remove (Graphics g)
@@ -57,6 +88,14 @@ public class Ball {
   public void setColor (Color newColor)
   {
     color = newColor;
+//    outline = newOutLine;
+//    letterCol = newLetter;
+  }
+  
+  public void setSpeed (float speed)
+  {
+    this.speedX = (float)(speed * Math.cos(Math.toRadians(angleInDegree)));
+    this.speedY = (float)(-speed * (float)Math.sin(Math.toRadians(angleInDegree)));
   }
    
    /** 
