@@ -45,6 +45,8 @@ public class AlphabetPopGame extends JPanel
   
   Clip[] audio = new Clip[8];
   
+  private GameTimer t;
+  
   public void loadAudio()
   {
     try
@@ -152,6 +154,7 @@ public class AlphabetPopGame extends JPanel
               audio[2].stop();
             }
             System.out.println("This is bubble number: " + currentLetter);
+            System.out.println("Time elapsed is "+ t.getTimeElapsed());
             //erase bubble
             //ball[z].setColor(Color.black, Color.black, Color.black);
             break;
@@ -196,7 +199,7 @@ public class AlphabetPopGame extends JPanel
         }
       }
     };
-    gameThread.start();  // Invoke GaemThread.run()
+    gameThread.start();  // Invoke GameThread.run()
   }
   
   /** 
@@ -267,6 +270,8 @@ public class AlphabetPopGame extends JPanel
     //loadAudio("Music_3",1,-10.0f);
     volume(-15.0f, 2);
     audio[2].loop(Clip.LOOP_CONTINUOUSLY);
+    t = new GameTimer();
+    t.start();
     BufferedReader input;
     try
     {

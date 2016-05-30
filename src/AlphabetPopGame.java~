@@ -49,7 +49,7 @@ public class AlphabetPopGame extends JPanel
   {
     try
     {
-      for (int x = 0; x < 5; x++)
+      for (int x = 0; x < 6; x++)
       {
         audio[x] = AudioSystem.getClip();
         File audioClip = new File("Music_" + (x+1) + ".wav");
@@ -141,6 +141,10 @@ public class AlphabetPopGame extends JPanel
               ball[z].setRadius(-100);
               ball[z].setLocation(-100,-100);
               currentLetter++;
+            }
+            else
+            {
+              loadAudio("Music_7",0,+5.0f);
             }
             if (currentLetter > letters.length-1)
             {
