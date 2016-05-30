@@ -25,7 +25,7 @@ public class ContainerBox {
       maxY = y + height - 1;
       imageName = name;
       this.colorBorder = colorBorder;
-      pic = loadImage();
+      loadImage(pic);
    }
    
 //   /** Constructor with the default color */
@@ -41,23 +41,23 @@ public class ContainerBox {
       maxY = y + height - 1;
    }
    
-   public BufferedImage loadImage()
+   public void loadImage(BufferedImage pic)
   {
     try 
     {
-      return ImageIO.read(new File(imageName));
+      pic = ImageIO.read(new File(imageName));
     } 
     catch (IOException e) 
     {
       System.out.println("NOOOOO");
     }
-    return null;
     //repaint();
   }
 
    /** Draw itself using the given graphic context. */
    public void draw(Graphics g) {
       //g.setColor(image);
+      System.out.println(pic.toString());
       g.drawImage(pic, minX, minY, null);
       g.setColor(colorBorder);
       g.drawRect(minX, minY, maxX - minX - 1, maxY - minY - 1);

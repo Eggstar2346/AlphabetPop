@@ -22,7 +22,7 @@ public class FrameAlphabetPop extends JFrame
 //    add (panel);
     
     //add(new Splashscreen()); 
-    add(new LevelOne());
+    //add(new LevelOne());
     //add(new MainMenu()); //this displays the main menu.  I commented it out to see the splashscreen.
     setSize (1200, 700);
     setVisible (true);

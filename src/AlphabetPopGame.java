@@ -13,15 +13,39 @@ import java.io.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+
 /** The AlphabetPopGame class will contain all the logistics for our game and bring the components of the game together.
   * 
   * @author Samantha Unger, Esther Yoo
   * @version 1 05.27.16
   */
 
+
+
 public class AlphabetPopGame extends JPanel
 {
+  
+//  public void loadImage(BufferedImage pic, String fileName)
+//  {
+//    try 
+//    {
+//      pic = ImageIO.read(new File(fileName));
+//    } 
+//    catch (IOException e) 
+//    {
+//      System.out.println("NOOOOO");
+//    }
+//    //repaint();
+//  }
+  
   private Ball[] ball = new Ball[26];
+  private String [] words = new String [30];
   private static final int UPDATE_RATE = 30;  // Frames per second (fps)
   private static final int NUM_BUBBLES = 26;
   private String word;
@@ -42,12 +66,15 @@ public class AlphabetPopGame extends JPanel
   int speed;
   int angleInDegree;
   
+  int background;
+  
   char [] letters;
   int currentLetter;
   Clip clip;
   Clip music;
   
   Clip[] audio = new Clip[8];
+  BufferedImage [] pics = new BufferedImage [8];
   
   private GameTimer t;
   
@@ -112,13 +139,41 @@ public class AlphabetPopGame extends JPanel
    * @param height : screen height
    */
   public AlphabetPopGame(int width, int height) {
-    
+    //loadImage(pics[3], "Bubble2.png");
+    BufferedReader input;
+    try
+    {
+      File temp;
+      String fileName = "Words.txt";
+      input = new BufferedReader (new FileReader (fileName));
+      if (!input.readLine().equals("This is a Green Eggs & Sam file."))
+      {
+        JOptionPane.showMessageDialog (this, "This is not a .GSE file!", "Incompatible File Type", JOptionPane.ERROR_MESSAGE);
+//        input = new BufferedReader(new FileReader(temp));
+//        fileName = temp;
+      }
+      //read in the word
+      //int random = (int)(Math.random() * 6) + 21;
+      for (int z = 0; z < 27; z++)
+      {
+        words [z] = input.readLine();
+      }
+    }
+    catch (IOException q)
+    {
+      System.out.println("Open File IO Error");
+    }
+    catch (Exception e)
+    {
+      System.out.println("Open Error");
+    }
     canvasWidth = width;
     canvasHeight = height;
     loadAudio();
     levelThree();
+    System.out.println(word);
     // Init the Container Box to fill the screen
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.RED);
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater.jpg", Color.BLACK);
     //box2 = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.blue);
     
     // Init the custom drawing panel for drawing the game
@@ -127,7 +182,7 @@ public class AlphabetPopGame extends JPanel
     this.setLayout(new BorderLayout());
     this.add(canvas, BorderLayout.CENTER);
     this.add(canvas2, BorderLayout.SOUTH);
-    
+    //draw();
     addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
@@ -238,6 +293,7 @@ public class AlphabetPopGame extends JPanel
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
       // Draw the box and the ball
+      //draw(g);
       box.draw(g);
       for (int z = 0; z < NUM_BUBBLES; z++)
       {
@@ -247,6 +303,7 @@ public class AlphabetPopGame extends JPanel
       g.setColor(Color.WHITE);
       g.setFont(new Font("Courier New", Font.PLAIN, 12));
       g.drawString("Ball " + ball.toString(), 20, 30);
+      
     }
     
     /** Called back to get the preferred size of the component. */
@@ -291,12 +348,16 @@ public class AlphabetPopGame extends JPanel
   
   public void levelOne()
   {
+    background = 1;
     letters = new char [3];
+    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
   }
   
   public void levelTwo()
   {
+    background = 2;
     letters = new char [4];
+    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
     // Init the ball at a random location (inside the box) and moveAngle
     Random rand = new Random();
     //ball[0] = new Ball(x, y, radius, speed, 227, Color.RED, "A", false);
@@ -314,40 +375,43 @@ public class AlphabetPopGame extends JPanel
   public void levelThree()
   {
     //loadAudio("Music_3",1,-10.0f);
+    background = 3;
     volume(-15.0f, 2);
+    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
     audio[2].loop(Clip.LOOP_CONTINUOUSLY);
     t = new GameTimer();
     t.start();
-    BufferedReader input;
-    try
-    {
-      File temp;
-      String fileName = "Words.txt";
-      input = new BufferedReader (new FileReader (fileName));
-      if (!input.readLine().equals("This is a Green Eggs & Sam file."))
-      {
-        JOptionPane.showMessageDialog (this, "This is not a .GSE file!", "Incompatible File Type", JOptionPane.ERROR_MESSAGE);
-//        input = new BufferedReader(new FileReader(temp));
-//        fileName = temp;
-      }
-      //read in the word
-      int random = (int)(Math.random() * 6) + 22;
-      for (int z = 0; z < random; z++)
-      {
-        input.readLine();
-      }
-      word = input.readLine();
-      word = word.toUpperCase();
-      System.out.println(word);
-    }
-    catch (IOException q)
-    {
-      System.out.println("Open File IO Error");
-    }
-    catch (Exception e)
-    {
-      System.out.println("Open Error");
-    }
+    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
+//    BufferedReader input;
+//    try
+//    {
+//      File temp;
+//      String fileName = "Words.txt";
+//      input = new BufferedReader (new FileReader (fileName));
+//      if (!input.readLine().equals("This is a Green Eggs & Sam file."))
+//      {
+//        JOptionPane.showMessageDialog (this, "This is not a .GSE file!", "Incompatible File Type", JOptionPane.ERROR_MESSAGE);
+////        input = new BufferedReader(new FileReader(temp));
+////        fileName = temp;
+//      }
+//      //read in the word
+//      int random = (int)(Math.random() * 6) + 21;
+//      for (int z = 0; z < random; z++)
+//      {
+//        input.readLine();
+//      }
+//      word = input.readLine();
+//      word = word.toUpperCase();
+//      System.out.println(word);
+//    }
+//    catch (IOException q)
+//    {
+//      System.out.println("Open File IO Error");
+//    }
+//    catch (Exception e)
+//    {
+//      System.out.println("Open Error");
+//    }
     letters = new char [word.length()];
     for (int x = 0; x < word.length(); x++)
     {
@@ -372,6 +436,12 @@ public class AlphabetPopGame extends JPanel
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
   }
+  
+//  public void draw (Graphics g)
+//  {
+//      g.drawImage(pics[background], 0, 0, null);
+//      System.out.println(background);
+//  }
   
   public void highScores()
   {
