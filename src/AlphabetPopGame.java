@@ -31,6 +31,8 @@ public class AlphabetPopGame extends JPanel
   private DrawCanvas canvas; // Custom canvas for drawing the box/ball
   private int canvasWidth;
   private int canvasHeight;
+  int xCoord;
+  int yCoord;
   
   int radius = 50;
   int x;
@@ -124,12 +126,14 @@ public class AlphabetPopGame extends JPanel
     addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        try{
-        gameThread.wait();
-        }
-        catch (InterruptedException exception){}
-        int xCoord = e.getX();
-        int yCoord = e.getY();
+        
+//        try{
+        gameThread.suspend();
+        xCoord = e.getX();
+        yCoord = e.getY();
+//        }
+//        catch (InterruptedException exception){}
+        
         System.out.println("XCoord: " + xCoord+ "      " + "YCoord" +yCoord);
         
         for (int z = NUM_BUBBLES-1;z>=0;z--)
@@ -166,7 +170,7 @@ public class AlphabetPopGame extends JPanel
             break;
           }
         }
-        gameThread.notify();
+        gameThread.resume();
       }
     });
     
