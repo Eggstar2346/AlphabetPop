@@ -47,6 +47,8 @@ public class AlphabetPopGame extends JPanel
   
   private GameTimer t;
   
+  Thread gameThread;
+  
   public void loadAudio()
   {
     try
@@ -122,6 +124,10 @@ public class AlphabetPopGame extends JPanel
     addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
+        try{
+        gameThread.wait();
+        }
+        catch (InterruptedException exception){}
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println("XCoord: " + xCoord+ "      " + "YCoord" +yCoord);
@@ -160,6 +166,7 @@ public class AlphabetPopGame extends JPanel
             break;
           }
         }
+        gameThread.notify();
       }
     });
     
@@ -185,7 +192,7 @@ public class AlphabetPopGame extends JPanel
   /** Start the ball bouncing. */
   public void gameStart() {
     // Run the game logic in its own thread.
-    Thread gameThread = new Thread() {
+    gameThread = new Thread() {
       public void run() {
         while (true) {
           // Execute one time-step for the game 
