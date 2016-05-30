@@ -7,7 +7,7 @@ public class Ball {
    float x, y;           // Ball's center x and y (package access)
    float speedX, speedY; // Ball's speed per step in x and y (package access)
    float radius;         // Ball's radius (package access)
-   String letter;
+   char letter;
    boolean wasClicked;
    float angleInDegree;
    private Color color;  // Ball's color
@@ -20,7 +20,7 @@ public class Ball {
     * speedY in Java graphics coordinates for ease of operation.
     */
    public Ball(float x, float y, float radius, float speed, float angleInDegree,
-         Color color, String letter, boolean wasClicked) {
+         Color color, char letter, boolean wasClicked) {
       this.x = x;
       this.y = y;
       this.angleInDegree = angleInDegree;
@@ -36,7 +36,7 @@ public class Ball {
    }
    /** Constructor with the default color */
    public Ball(float x, float y, float radius, float speed, float angleInDegree) {
-      this(x, y, radius, speed, angleInDegree, Colors.bubbles, "A", false);
+      this(x, y, radius, speed, angleInDegree, Colors.bubbles, 'A', false);
    }
    
    public void setLocation (int x, int y)
@@ -68,7 +68,7 @@ public class Ball {
       g.drawOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
       g.setColor(letterCol);
       g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
-      g.drawString(letter, (int)x-30, (int)y+25);
+      g.drawString("" + letter, (int)x-30, (int)y+25);
    }
    
 //   public void remove (Graphics g)
@@ -83,6 +83,11 @@ public class Ball {
   public float returnHorizontalCenter()
   {
     return x;
+  }
+  
+  public char getLetter()
+  {
+    return letter;
   }
   
   public void setColor (Color newColor)

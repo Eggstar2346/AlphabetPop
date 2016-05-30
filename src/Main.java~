@@ -15,5 +15,7 @@ public class Main {
             frame.setVisible(true);  // Show it
          }
       });
+      //new AudioRecordings();
+      
    }
 }

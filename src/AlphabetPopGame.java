@@ -27,8 +27,10 @@ public class AlphabetPopGame extends JPanel
   private String word;
   //private Ball ball;         // A single bouncing Ball's instance
   private ContainerBox box;  // The container rectangular box
+  private ContainerBox box2;
   
   private DrawCanvas canvas; // Custom canvas for drawing the box/ball
+  private DrawLetters canvas2;
   private int canvasWidth;
   private int canvasHeight;
   int xCoord;
@@ -116,19 +118,22 @@ public class AlphabetPopGame extends JPanel
     loadAudio();
     levelThree();
     // Init the Container Box to fill the screen
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.GREEN);
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.RED);
+    //box2 = new ContainerBox(0, 0, canvasWidth, canvasHeight, Color.BLACK, Color.blue);
     
     // Init the custom drawing panel for drawing the game
     canvas = new DrawCanvas();
+    canvas2 = new DrawLetters();
     this.setLayout(new BorderLayout());
     this.add(canvas, BorderLayout.CENTER);
+    this.add(canvas2, BorderLayout.SOUTH);
     
     addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent e) {
+      public void mousePressed(MouseEvent e) {
         
 //        try{
-        gameThread.suspend();
+        //gameThread.suspend();
         xCoord = e.getX();
         yCoord = e.getY();
 //        }
@@ -170,7 +175,7 @@ public class AlphabetPopGame extends JPanel
             break;
           }
         }
-        gameThread.resume();
+        //gameThread.resume();
       }
     });
     
@@ -186,6 +191,7 @@ public class AlphabetPopGame extends JPanel
         canvasHeight = dim.height;
         // Adjust the bounds of the container to fill the window
         box.set(0, 0, canvasWidth, canvasHeight);
+        //box2.set(0, 0, 100, 100);
       }
     });
     
@@ -250,6 +256,35 @@ public class AlphabetPopGame extends JPanel
     }
   }
   
+  class DrawLetters extends JPanel {
+    /** Custom drawing codes */
+    @Override
+    public void paintComponent(Graphics g) {
+      super.paintComponent(g);    // Paint background
+      // Draw the box and the ball
+      g.setColor(Color.red);
+      g.fillRect(0, 0, 100,100);
+      g.fillRect(450, 0, 100,100);
+      g.setColor(Color.black);
+      g.setFont(new Font("Courier New", Font.PLAIN, 12));
+      g.drawString("Time: " + t.getTimeElapsed(), 0, 50);
+//      for (int z = 0; z < NUM_BUBBLES; z++)
+//      {
+//        ball[z].draw(g);
+//      }
+//      // Display ball's information
+//      g.setColor(Color.WHITE);
+//      g.setFont(new Font("Courier New", Font.PLAIN, 12));
+//      g.drawString("Ball " + ball.toString(), 20, 30);
+    }
+    
+    /** Called back to get the preferred size of the component. */
+    @Override
+    public Dimension getPreferredSize() {
+      return (new Dimension(100, 100));
+    }
+  }
+  
   public AlphabetPopGame() 
   { 
   }
@@ -296,7 +331,8 @@ public class AlphabetPopGame extends JPanel
 //        fileName = temp;
       }
       //read in the word
-      for (int z = 0; z < (int)(Math.random() * 7) + 22; z++)
+      int random = (int)(Math.random() * 6) + 22;
+      for (int z = 0; z < random; z++)
       {
         input.readLine();
       }

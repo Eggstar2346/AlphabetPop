@@ -11,7 +11,7 @@ Toy
 Elk
 Cow
 Gum
-Pool 
+Pool
 Book
 Bowl
 Hand
