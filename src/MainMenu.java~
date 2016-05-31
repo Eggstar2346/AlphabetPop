@@ -5,11 +5,21 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
+/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
+ * which page in the game they would like to go to and takes them there.
+ * 
+ * @author Samantha Unger, Esther Yoo
+ * @version 1 05.19.16
+ */
 
 public class MainMenu extends JPanel
 {
   private BufferedImage menu;
   
+          /**
+ * This is the constructor that constructs the MainMenu and checks where the user clicks so they can be directed 
+ * to the corresponding page.
+ */
   public MainMenu ()
   {
     try 
@@ -54,6 +64,11 @@ public class MainMenu extends JPanel
 });
   }
   
+        /**
+* This is the method that paints components on the frame.
+* 
+* @param g Graphics passed in to allow painting on the frame.
+*/ 
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);

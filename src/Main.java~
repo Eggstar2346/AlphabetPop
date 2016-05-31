@@ -10,8 +10,10 @@ public class Main {
          public void run() {
             JFrame frame = new JFrame("A World of Balls");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setContentPane(new AlphabetPopGame(1200, 700)); // BallWorld is a JPanel
+            frame.setContentPane(new AlphabetPopGame(1200, 550)); // BallWorld is a JPanel
             frame.pack();            // Preferred size of BallWorld
+            //frame.setSize(1200,650);
+            
             frame.setVisible(true);  // Show it
          }
       });

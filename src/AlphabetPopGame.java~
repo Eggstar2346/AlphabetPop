@@ -74,6 +74,9 @@ public class AlphabetPopGame extends JPanel
   Clip music;
   
   Clip[] audio = new Clip[8];
+  Clip[] alphabet = new Clip[26];
+  Clip[] click = new Clip[3];
+  
   BufferedImage [] pics = new BufferedImage [8];
   
   private GameTimer t;
@@ -90,6 +93,13 @@ public class AlphabetPopGame extends JPanel
         File audioClip = new File("Music_" + (x+1) + ".wav");
         AudioInputStream audioClipStream = AudioSystem.getAudioInputStream(audioClip);
         audio[x].open(audioClipStream);
+      }
+      for (int x = 0; x < 26; x++)
+      {
+        alphabet[x] = AudioSystem.getClip();
+        File alphabetClip = new File(("" + (char)(65+x)) + ".wav");
+        AudioInputStream alphabetClipStream = AudioSystem.getAudioInputStream(alphabetClip);
+        alphabet[x].open(alphabetClipStream);
       }
     }
     catch (UnsupportedAudioFileException q) {
@@ -171,6 +181,7 @@ public class AlphabetPopGame extends JPanel
     canvasHeight = height;
     loadAudio();
     levelThree();
+    alphabet[letters[currentLetter]-65].start();
     System.out.println(word);
     // Init the Container Box to fill the screen
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater.jpg", Color.BLACK);
@@ -198,21 +209,37 @@ public class AlphabetPopGame extends JPanel
         
         for (int z = NUM_BUBBLES-1;z>=0;z--)
         {
+          
 //          System.out.println(Math.sqrt(Math.pow(xCoord-ball[z].x,2)+Math.pow(yCoord-ball[z].y,2)));
 //          System.out.println("Horizontal center: " + ball[z].returnHorizontalCenter());
           if (Math.sqrt(Math.pow(xCoord-ball[z].returnHorizontalCenter(),2)+Math.pow(yCoord-ball[z].returnVerticalCenter(),2))<=50 && !ball[z].getWasClicked())
           {
             if (ball[z].getLetter() == letters[currentLetter])
             {
-              loadAudio("Music_5",0,+5.0f);
+              //loadAudio("Music_5",0,+5.0f);
+              audio[4].setMicrosecondPosition(0);
+              audio[4].start();
+//              try
+//              {
+//                Thread.sleep(100);
+//              }
+//              catch (InterruptedException r)
+//              {
+//              }
+              //alphabet[letter].stop();
               //volume(+6.0f, 4);
-              //audio[4].loop(0);
+              
               ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
               ball[z].setSpeed(0);
               ball[z].setRadius(-100);
               ball[z].setLocation(-100,-100);
               currentLetter++;
+              if (currentLetter <= letters.length-1)
+              {
+                alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                alphabet[letters[currentLetter]-65].start();
+              }
             }
             else
             {
@@ -381,7 +408,7 @@ public class AlphabetPopGame extends JPanel
     audio[2].loop(Clip.LOOP_CONTINUOUSLY);
     t = new GameTimer();
     t.start();
-    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
+    //word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
 //    BufferedReader input;
 //    try
 //    {
@@ -412,21 +439,35 @@ public class AlphabetPopGame extends JPanel
 //    {
 //      System.out.println("Open Error");
 //    }
+//    for (int x = 0; x < 26; x++)
+//    {
+//      alphabet[x].start();
+//      try
+//      {
+//      Thread.sleep(1000);
+//      }
+//      catch (InterruptedException e)
+//      {
+//      }
+//      alphabet[x].stop();
+//    }
     letters = new char [word.length()];
     for (int x = 0; x < word.length(); x++)
     {
       letters[x] = word.charAt(x);
     }
     // Init the ball at a random location (inside the box) and moveAngle
+    //letters needed for word
     Random rand = new Random();
     for (int z = 0 ; z < word.length(); z ++)
     {
       x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
       y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
-      speed = (int)(Math.random() * (7 - 4) + 1) + 4;
+      speed = (int)(Math.random() * (7 - 4) + 1) + 1;
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, letters[z], false);
     }
+    //extra letters
     for (int z = word.length(); z < 26; z++)
     {
       x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
