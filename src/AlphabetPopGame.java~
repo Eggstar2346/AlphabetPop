@@ -83,6 +83,8 @@ public class AlphabetPopGame extends JPanel
   
   Thread gameThread;
   
+  int round1Time, round2Time, round3Time;
+  
   public void loadAudio()
   {
     try
@@ -377,7 +379,65 @@ public class AlphabetPopGame extends JPanel
   {
     background = 1;
     letters = new char [3];
-    word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
+    word = words[((int)(Math.random() * 6))].toUpperCase();
+    
+    volume(-15.0f, 2);
+    audio[2].loop(Clip.LOOP_CONTINUOUSLY);
+    t = new GameTimer();
+    t.start();
+    //word = words[((int)(Math.random() * 6) + 21)].toUpperCase();
+//    BufferedReader input;
+//    try
+//    {
+//      File temp;
+//      String fileName = "Words.txt";
+//      input = new BufferedReader (new FileReader (fileName));
+//      if (!input.readLine().equals("This is a Green Eggs & Sam file."))
+//      {
+//        JOptionPane.showMessageDialog (this, "This is not a .GSE file!", "Incompatible File Type", JOptionPane.ERROR_MESSAGE);
+////        input = new BufferedReader(new FileReader(temp));
+////        fileName = temp;
+//      }
+//      //read in the word
+//      int random = (int)(Math.random() * 6) + 21;
+//      for (int z = 0; z < random; z++)
+//      {
+//        input.readLine();
+//      }
+//      word = input.readLine();
+//      word = word.toUpperCase();
+//      System.out.println(word);
+//    }
+//    catch (IOException q)
+//    {
+//      System.out.println("Open File IO Error");
+//    }
+//    catch (Exception e)
+//    {
+//      System.out.println("Open Error");
+//    }
+//    for (int x = 0; x < 26; x++)
+//    {
+//      alphabet[x].start();
+//      try
+//      {
+//      Thread.sleep(1000);
+//      }
+//      catch (InterruptedException e)
+//      {
+//      }
+//      alphabet[x].stop();
+//    }
+    for (int x = 0; x < word.length(); x++)
+    {
+      letters[x] = word.charAt(x);
+    }
+    // Init the ball at a random location (inside the box) and moveAngle
+    //letters needed for word
+    for (int z = 0 ; z < 26; z ++)
+    {
+      ball[z] = new Ball(50+(z%9)*(2*radius+30), 50+(z/9)*(2*radius+30), radius, 0, 0, Colors.bubbles, (char)(65+z), false);
+    }
   }
   
   public void levelTwo()
