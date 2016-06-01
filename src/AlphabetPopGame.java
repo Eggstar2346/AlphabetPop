@@ -383,11 +383,6 @@ public class AlphabetPopGame extends JPanel
     public Dimension getPreferredSize() {
       return (new Dimension(100, 100));
     }
-    
-    public void draw (Graphics g)
-    {
-      
-    }
   }
   
   public AlphabetPopGame() 

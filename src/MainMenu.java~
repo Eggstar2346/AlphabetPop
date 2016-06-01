@@ -15,6 +15,7 @@ import java.awt.image.*;
 public class MainMenu extends JPanel
 {
   private BufferedImage menu;
+  private int choice;
   
           /**
  * This is the constructor that constructs the MainMenu and checks where the user clicks so they can be directed 
@@ -22,9 +23,12 @@ public class MainMenu extends JPanel
  */
   public MainMenu ()
   {
+    choice=0;
+    System.out.println("YAS");
     try 
     {
       menu = ImageIO.read(new File("MainMenu.jpg"));
+      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
@@ -43,26 +47,43 @@ public class MainMenu extends JPanel
         if (yCoord>=162&&yCoord<=211)
         {
           System.out.println("Instructions");
+          choice = 1;
         }
         else if (yCoord>=260&&yCoord<=309)
         {
           System.out.println("Play");
+          choice = 2;
         } 
         else if (yCoord>=363&&yCoord<=412)
         {
           System.out.println("High Scores");
+          choice = 3;
         }
         else 
         {
           if (yCoord>=462&&yCoord<=511)
           {
             System.out.println("Exit");
+            choice = 4;
           }
         }
       }
     }
 });
   }
+  
+  public int getChoice()
+  {
+    
+    System.out.println("HERE");
+    return choice;
+  }
+  
+  public void resetChoice()
+  {
+    choice = 0;
+  }
+  
   
         /**
 * This is the method that paints components on the frame.
@@ -74,6 +95,7 @@ public class MainMenu extends JPanel
     super.paintComponent(g);
     g.setColor(Color.WHITE);
     g.drawImage(menu, 0, 0, null);
+    System.out.println("YAY");
   }
   
 //  public void mouseClicked (MouseEvent e)

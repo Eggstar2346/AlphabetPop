@@ -230,6 +230,7 @@ public class AlphabetPopGame extends JPanel
 //              }
               //alphabet[letter].stop();
               //volume(+6.0f, 4);
+              //draw letters at bottom
               
               ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
@@ -348,12 +349,25 @@ public class AlphabetPopGame extends JPanel
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
       // Draw the box and the ball
-      g.setColor(Color.red);
-      g.fillRect(0, 0, 100,100);
-      g.fillRect(450, 0, 100,100);
+      g.setColor(Colors.boxes);
+      for (int x = 0; x < letters.length; x++)
+      {
+        g.fillRect((x*110) + 300, 0, 100,100);
+      }
+      
+      //g.fillRect(450, 0, 100,100);
       g.setColor(Color.black);
       g.setFont(new Font("Courier New", Font.PLAIN, 12));
       g.drawString("Time: " + t.getTimeElapsed(), 0, 50);
+      
+      System.out.println("GOT HEREEEEEEEEEEEEEEEEEEE");
+      g.setFont(new Font("Courier New", Font.PLAIN, 40));
+      g.setColor(Colors.letters);
+      for (int x = -1; x < currentLetter; x++)
+      {
+        if (x != -1)
+          g.drawString("" + letters[x], (x*100) + 350, 50);
+      }
 //      for (int z = 0; z < NUM_BUBBLES; z++)
 //      {
 //        ball[z].draw(g);
@@ -368,6 +382,11 @@ public class AlphabetPopGame extends JPanel
     @Override
     public Dimension getPreferredSize() {
       return (new Dimension(100, 100));
+    }
+    
+    public void draw (Graphics g)
+    {
+      
     }
   }
   
