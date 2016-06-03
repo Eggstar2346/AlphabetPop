@@ -24,7 +24,7 @@ import java.awt.image.*;
  * <b>image</b> This creates an instance of a BufferedImage that is used to display the message asking the user if they
  * would like to exit.
  * 
- * @author Samantha Unger, Esther Yoo
+ * @author Samantha Unger
  * @version 1 06.01.16
  */
 

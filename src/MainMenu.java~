@@ -12,6 +12,20 @@ import java.awt.image.*;
  * @version 1 05.19.16
  */
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.image.*;
+
+/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
+ * which page in the game they would like to go to and takes them there.
+ * 
+ * @author Samantha Unger, Esther Yoo
+ * @version 1 05.19.16
+ */
+
 public class MainMenu extends JPanel
 {
   private BufferedImage menu;
@@ -48,11 +62,13 @@ public class MainMenu extends JPanel
         {
           System.out.println("Instructions");
           choice = 1;
+          Main.switchMenu(6);
         }
         else if (yCoord>=260&&yCoord<=309)
         {
           System.out.println("Play");
           choice = 2;
+          Main.switchMenu(4);
         } 
         else if (yCoord>=363&&yCoord<=412)
         {
@@ -65,6 +81,7 @@ public class MainMenu extends JPanel
           {
             System.out.println("Exit");
             choice = 4;
+            Main.switchMenu(5);
           }
         }
       }

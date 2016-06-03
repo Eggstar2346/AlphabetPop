@@ -20,11 +20,36 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-/**
- * Auto Generated Java Class.
- */
-public class LevelTwo extends Levels {
-  
+/** <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Esther Yoo, Samantha Unger
+  * <b>Version #</b> 1
+  * <b>Date</b> 05.27.16
+  * <b>Time Spent</b> 2 hours
+  * 
+  * 
+  * @author Esther Yoo
+  * @author Samantha Unger
+  * @version 1.1 05.27.16
+  * 
+  * The LevelTwo class is a Level (JPanel) that contains all the setup for the third level of the game.
+  * It can be accessed by the user by going to menu, clicking on "Play", and choosing the "Medium" level.
+  */
+public class LevelTwo extends Levels 
+{
+  /**
+   * The class constructor contains all the setup required for Level 2.
+   * 
+   * Assigns appropriate values for Level 2 to variables inherited from Levels <p>
+   * The volume is adjusted and the background music is started.<p>
+   * Next, GameTimer is instantiated and the timer is started.<p>
+   * In the for-loop, each element in the array, letters, is assigned a character from the chosen word.<p>
+   * Then, in the next for-loop, the starting coordinates of the bubbles, their speed, and their angles 
+   * are all determined randomly.<p>
+   * The audio clip that plays the letter corresponding to the current letter is started.<p>
+   * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
+   * results accordingly.
+   */
   public LevelTwo(int x, int y)
   {
     super(x, y);

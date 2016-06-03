@@ -20,11 +20,38 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-/**
- * Auto Generated Java Class.
- */
+/** <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1
+  * <b>Date</b> 05.30.16
+  * <b>Time Spent</b> 1.5 hours
+  * 
+  * 
+  * @author Samantha Unger
+  * @version 1.1 05.27.16
+  * 
+  * The LevelOne class is a Level (JPanel) that contains all the setup for the first level of the game.
+  * It can be accessed by the user by going to menu, clicking on "Play", and choosing the "Easy" level.
+  */
 public class LevelOne extends Levels {
   
+    /**
+   * The class constructor contains all the setup required for Level 1.
+   * 
+   * Assigns appropriate values for Level 1 to variables inherited from Levels <p>
+   * The volume is adjusted and the background music is started.<p>
+   * Next, GameTimer is instantiated and the timer is started.<p>
+   * In the for-loop, each element in the array, letters, is assigned a character from the chosen word.<p>
+   * Then, in the next for-loop, the starting coordinates of the bubbles, their speed, and their angles 
+   * are set so that the bubbles display nicely on the panel.<p>
+   * The audio clip that plays the letter corresponding to the current letter is started.<p>
+   * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
+   * results accordingly.
+   * 
+   * @param x int that stores the screen width
+   * @param y int that stores the screen height
+   */
   public LevelOne(int x, int y)
   {
     super(x, y);

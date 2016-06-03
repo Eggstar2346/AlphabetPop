@@ -21,10 +21,9 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-
-/**
- * Auto Generated Java Class.
- */
+/** THIS JAVADOC ISN'T COMPLETE BUT JUST SAYING: REMEMBER TO PUT THIS IN
+  * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo.
+  */
 public abstract class Levels extends JPanel {
   
   protected Ball[] ball = new Ball[26];

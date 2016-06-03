@@ -1,83 +1,55 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+import javax.swing.*;
+import java.io.*;
+import javax.swing.filechooser.*;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import java.io.*;
+import javax.sound.sampled.*;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
-import java.awt.image.*;
+import javax.swing.*;
 
-/* The LevelOne class allows the user to play level one of the game.
- * 
- * @author Samantha Unger, Esther Yoo
- * @version 1 05.19.16
+/**
+ * Auto Generated Java Class.
  */
-
-public class LevelOne extends JPanel {
-
-  private BufferedImage background;
-  private NewBubble[] bubbles;
+public class LevelOne extends Levels {
   
-  
-        /**
- * This is the constructor that constructs the Bubble objects that are required for the level.
- */ 
-  public LevelOne()
+  public LevelOne(int x, int y)
   {
-    //Bubble.loadImage();
-    bubbles = new NewBubble[26];
-    for (int x = 0 ; x < 26 ; x ++)
+    super(x, y);
+    background = 1;
+    letters = new char [3];
+    readWords("Level1.txt");
+    word = words.get(0).toUpperCase();
+    
+    volume(-15.0f, 2);
+    audio[2].loop(Clip.LOOP_CONTINUOUSLY);
+    t = new GameTimer();
+    t.start();
+    
+    for (int q = 0; q < word.length(); q++)
     {
-      bubbles[x] = new NewBubble (""+ (char)(65+x), 0, 0, false);
-      //add(bubbles[x]);
+      letters[q] = word.charAt(q);
     }
-    add(bubbles[0]);
-    //add(bubbles[1]);
-    //add(bubbles[2]);
-    
-//    try 
-//    {
-//      background = ImageIO.read(new File("LevelOneBackground.jpg"));
-//    } 
-//    catch (IOException e) 
-//    {
-//      System.out.println("NOOOOO");
-//    } 
-    //repaint();
-    
-    addMouseListener(new MouseAdapter() {
-    @Override
-    public void mouseClicked(MouseEvent e) {
-      int xCoord = e.getX();
-      int yCoord = e.getY();
-      System.out.println(xCoord+ "      "+yCoord);
-      for (int x = 0;x<26;x++)
-      {
-        System.out.println(Math.sqrt(Math.pow(xCoord-bubbles[x].returnHorizontalCenter(),2)+Math.pow(yCoord-bubbles[x].returnVerticalCenter(),2)));
-        System.out.println(bubbles[x].returnHorizontalCenter());
-        if (Math.sqrt(Math.pow(xCoord-bubbles[x].returnHorizontalCenter(),2)+Math.pow(yCoord-bubbles[x].returnVerticalCenter(),2))<=50)
-        {
-          System.out.println(x);
-        }
-      }
+
+    for (int z = 0 ; z < 26; z ++)
+    {
+      ball[z] = new Ball(50+(z%9)*(2*radius+30), 50+(z/9)*(2*radius+30), radius, 0, 0, Colors.bubbles, (char)(65+z), false);
     }
-});
+    alphabet[letters[currentLetter]-65].start();
+    
+    startup();
   }
-
-
-        /**
-* This is the method that paints components on the frame.
-* 
-* @param g Graphics passed in to allow painting on the frame.
-*/ 
-   public void paintComponent (Graphics g)
-  {
-    //super.paintComponent(g);
-    //g.setColor(Color.WHITE);
-//    for (int x = 0 ; x < 26 ; x ++)
-//    {
-      //repaint();
-    //}
-    //g.drawImage(background, 0, 0, null);
-  }  
-  
   
 }
