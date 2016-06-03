@@ -20,7 +20,6 @@ import java.awt.Color;
   * <b>bubbles</b> A static Color variable that refers to the RGB colour specified in its parameters.
   * <p>
   * <b>boxes</b> A static Color variable that refers to the RGB colour specified in its parameters.
-  * <p>
   */
 public class Colors
 {

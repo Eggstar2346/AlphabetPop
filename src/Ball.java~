@@ -113,7 +113,7 @@ public class Ball {
       float ballMinX = box.minX + radius;
       float ballMinY = box.minY + radius;
       float ballMaxX = box.maxX - radius;
-      float ballMaxY = box.maxY - radius;
+      float ballMaxY = box.maxY - radius-150;
    
       // Calculate the ball's new position
       x += speedX;
