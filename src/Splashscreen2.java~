@@ -99,7 +99,9 @@ public class Splashscreen2 extends JPanel
       }
     }
     
-    //ball[0].moveOneStepWithCollisionDetection(box);
+    if (t.getTimeElapsed()==38)
+Main.switchMenu(0);    
+//ball[0].moveOneStepWithCollisionDetection(box);
   }
   
   public void paintComponent (Graphics g)

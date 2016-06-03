@@ -43,6 +43,7 @@ public class LevelTwo extends Levels {
       letters[q] = word.charAt(q);
     }
     Random rand = new Random();
+    //ball[0] = new Ball(x, y, radius, speed, 227, Color.RED, "A", false);
     for (int z = 0 ; z < 26 ; z ++)
     {
       x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
