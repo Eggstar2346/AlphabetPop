@@ -11,7 +11,7 @@ public class Main {
       // Run UI in the Event Dispatcher Thread (EDT), instead of Main thread
       javax.swing.SwingUtilities.invokeLater(new Runnable() {
          public void run() {
-            JFrame frame = new JFrame("A World of Balls");
+            JFrame frame = new JFrame("Alphabet Pop");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             MainMenu m = new MainMenu();
             frame.add(m);

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
+import javax.sound.sampled.*;
+import javax.swing.*;
 
 public class Splashscreen2 extends JPanel
 {
@@ -14,6 +16,7 @@ public class Splashscreen2 extends JPanel
   private ContainerBox box;
   private GameTimer t; //= new GameTimer();
   int currentLetter;
+  Clip bubblePop;
   
   public Splashscreen2() 
   { 
@@ -29,8 +32,26 @@ public class Splashscreen2 extends JPanel
     
     t.setTimeElapsed(1);
     t.start();
-    
+    loadAudio();
     gameStart();
+  }
+  
+  public void loadAudio()
+  {
+    try
+    {
+        bubblePop = AudioSystem.getClip();
+        File popClip = new File("Music_5.wav");
+        AudioInputStream popClipStream = AudioSystem.getAudioInputStream(popClip);
+        bubblePop.open(popClipStream);
+    }
+    catch (UnsupportedAudioFileException q) {
+      q.printStackTrace();
+    } catch (IOException q) {
+      q.printStackTrace();
+    } catch (LineUnavailableException q) {
+      q.printStackTrace();
+    }
   }
   
   public void gameStart() {
@@ -58,17 +79,21 @@ public class Splashscreen2 extends JPanel
       if (title.charAt(z) != ' ')
       introBubble[z].moveOneStepWithCollisionDetection(box);
     }
-    if (t.getTimeElapsed()%5 == 0)
+    if (t.getTimeElapsed()%3 == 0)
     {
-      System.out.println(t.getTimeElapsed());
+      System.out.println(currentLetter);
       if (currentLetter == 8)
         currentLetter++;
       if (currentLetter < title.length())
       {
+        System.out.println("Here");
         introBubble[currentLetter].setSpeed(0);
         introBubble[currentLetter].setRadius(-100);
         introBubble[currentLetter].setLocation(-100,-100);
-        
+        System.out.println("First");
+        bubblePop.setMicrosecondPosition(0);
+        bubblePop.start();
+        System.out.println("Second");
         t.setTimeElapsed(t.getTimeElapsed() + 1);
         currentLetter++;
       }
@@ -82,7 +107,7 @@ public class Splashscreen2 extends JPanel
     super.paintComponent(g);
     box.draw(g);
     g.drawImage(splash, 0, 0, null);
-    System.out.println("YAY");
+    //System.out.println("YAY");
     for (int z = 0; z < title.length(); z++)
     {
       if (title.charAt(z) != ' ')
@@ -99,20 +124,6 @@ public class Splashscreen2 extends JPanel
         }
       }
   }
-  
-//  for (int z = 0; z < title.length(); z++)
-//    {
-//      try
-//      {
-//        Thread.sleep(1000);
-//      }
-//      catch (InterruptedException e)
-//      {
-//      }
-//    introBubble[z].setSpeed(0);
-//    introBubble[z].setRadius(-100);
-//    introBubble[z].setLocation(-100,-100);
-//    }
 
 public static void main (String [] args)
 {

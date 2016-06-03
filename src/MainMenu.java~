@@ -93,7 +93,6 @@ public class MainMenu extends JPanel
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
-    g.setColor(Color.WHITE);
     g.drawImage(menu, 0, 0, null);
     System.out.println("YAY");
   }

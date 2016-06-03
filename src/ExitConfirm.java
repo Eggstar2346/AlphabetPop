@@ -12,21 +12,7 @@ import java.awt.image.*;
  * @version 1 05.19.16
  */
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
-import javax.imageio.*;
-import java.awt.image.*;
-
-/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
- * which page in the game they would like to go to and takes them there.
- * 
- * @author Samantha Unger, Esther Yoo
- * @version 1 05.19.16
- */
-
-public class MainMenu extends JPanel
+public class ExitConfirm extends JPanel
 {
   private BufferedImage menu;
   private int choice;
@@ -35,13 +21,13 @@ public class MainMenu extends JPanel
  * This is the constructor that constructs the MainMenu and checks where the user clicks so they can be directed 
  * to the corresponding page.
  */
-  public MainMenu ()
+  public ExitConfirm ()
   {
     choice=0;
     System.out.println("YAS");
     try 
     {
-      menu = ImageIO.read(new File("MainMenu.jpg"));
+      menu = ImageIO.read(new File("Exit.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
@@ -60,28 +46,17 @@ public class MainMenu extends JPanel
       {
         if (yCoord>=162&&yCoord<=211)
         {
-          System.out.println("Instructions");
+          System.out.println("Yes");
           choice = 1;
-          Main.switchMenu(6);
-        }
-        else if (yCoord>=260&&yCoord<=309)
-        {
-          System.out.println("Play");
-          choice = 2;
-          Main.switchMenu(4);
-        } 
-        else if (yCoord>=363&&yCoord<=412)
-        {
-          System.out.println("High Scores");
-          choice = 3;
+          Main.frame.dispatchEvent(new WindowEvent(Main.frame, WindowEvent.WINDOW_CLOSING));
         }
         else 
         {
-          if (yCoord>=462&&yCoord<=511)
+          if (yCoord>=363&&yCoord<=412)
           {
-            System.out.println("Exit");
+            System.out.println("No");
             choice = 4;
-            Main.switchMenu(5);
+            Main.switchMenu(0);
           }
         }
       }
@@ -110,6 +85,7 @@ public class MainMenu extends JPanel
    public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
+    g.setColor(Color.WHITE);
     g.drawImage(menu, 0, 0, null);
     System.out.println("YAY");
   }
