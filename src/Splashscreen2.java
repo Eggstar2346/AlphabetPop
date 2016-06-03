@@ -7,7 +7,15 @@ import java.awt.image.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
-/** @author Esther Yoo
+/** <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Esther Yoo
+  * <b>Version #</b> 1
+  * <b>Date</b> 06.02.16
+  * <b>Time Spent</b> 3 hours
+  * 
+  * 
+  * @author Esther Yoo
   * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo.
   * @version 1.1 06.2.16
   * 

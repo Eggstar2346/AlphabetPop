@@ -14,4 +14,5 @@ public class Colors
 {
   static Color letters = new Color (0, 76, 153);
   static Color bubbles = new Color (102, 178, 255);
+  static Color boxes = new Color (153, 255, 255);
 }

@@ -5,9 +5,15 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/** @author Esther Yoo
-  * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo.
-  * @version 1.1 06.2.16
+/**<b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1
+  * <b>Date</b> 06.01.16
+  * <b>Time Spent</b> 1 hour  
+  * 
+  * @author Samantha Unger
+  * @version 1.1 06.1.16
   * 
   * The Instructions class is a JPanel that goes into a Powerpoint-resembling system
   * where users can navigate through the different "slides" to learn how to play the game.
