@@ -5,8 +5,33 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
- * which page in the game they would like to go to and takes them there.
+/* The LevelMenu class loads the Levels image and displays it on the screen.   It allows the user to select
+ * which level of the game they would like to go to and takes them there.
+ * 
+ * 
+ * <p>
+ * <b> Version Information: </b>
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1
+ * <b>Date</b> 06.01.16
+ * <b>Time Spent</b> 1 hour
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1.1
+ * <b>Date</b> 06.02.16
+ * <b>Time Spent</b> 1 hour
+ * <b>What Was Changed</b> The constructor is now coded to use the static method found within the Main class.  
+ * Unnecessary methods related to detecting the mouse location were also removed, along with a "choice" variable that
+ * indicated where the user clicked.
+ * 
+ * 
+ * <p>
+ * <b> Instance Variables: </b>
+ * <p>
+ * <b>menu</b> This creates an instance of a BufferedImage that is used to display the level selection menu.
+ * 
+ * 
  * 
  * @author Samantha Unger, Esther Yoo
  * @version 1 05.19.16
@@ -15,15 +40,23 @@ import java.awt.image.*;
 public class LevelMenu extends JPanel
 {
   private BufferedImage menu;
-  private int choice;
   
-          /**
- * This is the constructor that constructs the MainMenu and checks where the user clicks so they can be directed 
- * to the corresponding page.
+ /**
+ * This is the constructor that constructs the BufferedImage and checks where the user clicks so they can be directed 
+ * to the corresponding page.  Based on what the user clicks, a different value is passed into a static method from
+ * the Main class.  This method also has a nested inner class.  MouseAdapter is used to see where the user has clicked.  
+ * A try catch block is used to trap in case the image cannot be read in.  An if statement is used to determine where
+ * the user has clicked.
+ * 
+ * <p>
+ * <b>Local variables: </b>
+ * <p>
+ * <b>xCoord </b> This int is used to know what the x-coordinate is of the location the user clicked.
+ * <p>
+ * <b>yCoord </b> This int is used to know what the y-coordinate is of the location the user clicked.
  */
   public LevelMenu ()
   {
-    choice=0;
     System.out.println("YAS");
     try 
     {
@@ -47,19 +80,16 @@ public class LevelMenu extends JPanel
         if (yCoord>=162&&yCoord<=211)
         {
           System.out.println("Level One");
-          choice = 1;
           Main.switchMenu(1);
         }
         else if (yCoord>=260&&yCoord<=309)
         {
           System.out.println("Level Two");
-          choice = 2;
           Main.switchMenu(2);
         } 
         else if (yCoord>=363&&yCoord<=412)
         {
           System.out.println("Level Three");
-          choice = 3;
           Main.switchMenu(3);
         }
         else 
@@ -67,7 +97,6 @@ public class LevelMenu extends JPanel
           if (yCoord>=462&&yCoord<=511)
           {
             System.out.println("Back");
-            choice = 4;
             Main.switchMenu(0);
           }
         }
@@ -75,22 +104,11 @@ public class LevelMenu extends JPanel
     }
 });
   }
-  
-  public int getChoice()
-  {
-    
-    System.out.println("HERE");
-    return choice;
-  }
-  
-  public void resetChoice()
-  {
-    choice = 0;
-  }
-  
+
   
         /**
-* This is the method that paints components on the frame.
+* This is the method that paints components on the frame.  It calls the super's paintComponent method, passing in
+* g, and draws the image.
 * 
 * @param g Graphics passed in to allow painting on the frame.
 */ 
@@ -101,32 +119,4 @@ public class LevelMenu extends JPanel
     g.drawImage(menu, 0, 0, null);
     System.out.println("YAY");
   }
-  
-//  public void mouseClicked (MouseEvent e)
-//  {
-//    System.out.println("1");
-//    int xCoord = e.getX();
-//    int yCoord = e.getY();
-//    System.out.println(xCoord+ "      "+yCoord);
-//  }
-//  
-//  public void mouseExited (MouseEvent e)
-//  {
-//    System.out.println("2");
-//  }
-//  
-//  public void mouseEntered (MouseEvent e)
-//  {
-//    System.out.println("3");
-//  }
-//  
-//  public void mouseReleased (MouseEvent e)
-//  {
-//    System.out.println("4");
-//  }
-//  
-//  public void mousePressed (MouseEvent e)
-//  {
-//    System.out.println("5");
-//  }
 }

@@ -5,29 +5,53 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
- * which page in the game they would like to go to and takes them there.
+/* The ExitConfirm class loads the Exit image and displays it on the screen.   It allows the user to select
+ * whether they would really like to exit or not.
+ *
+ * 
+ * <p>
+ * <b> Version Information: </b>
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1
+ * <b>Date</b> 06.01.16
+ * <b>Time Spent</b> 1 hour
+ * 
+ * 
+ * <p>
+ * <b> Instance Variables: </b>
+ * <p>
+ * <b>image</b> This creates an instance of a BufferedImage that is used to display the message asking the user if they
+ * would like to exit.
  * 
  * @author Samantha Unger, Esther Yoo
- * @version 1 05.19.16
+ * @version 1 06.01.16
  */
 
 public class ExitConfirm extends JPanel
 {
-  private BufferedImage menu;
-  private int choice;
+  private BufferedImage image;
   
           /**
- * This is the constructor that constructs the MainMenu and checks where the user clicks so they can be directed 
- * to the corresponding page.
+ * This is the constructor that constructs the BufferedImage and checks where the user clicks so they can be directed 
+ * to the corresponding page.  If the user clicks "Yes", the window is closed using a static method from the Main class.
+ * If the user clicks "No", a static method from the Main class is used to bring the user to the menu.  This method 
+ * also has a nested inner class.  MouseAdapter is used to see where the user has clicked.  A try catch block is used
+ * to trap in case the image cannot be read in.  An if statement is used to determine where the user has clicked.
+ * 
+ * <p>
+ * <b>Local variables: </b>
+ * <p>
+ * <b>xCoord </b> This int is used to know what the x-coordinate is of the location the user clicked.
+ * <p>
+ * <b>yCoord </b> This int is used to know what the y-coordinate is of the location the user clicked.
  */
   public ExitConfirm ()
   {
-    choice=0;
     System.out.println("YAS");
     try 
     {
-      menu = ImageIO.read(new File("Exit.jpg"));
+      image = ImageIO.read(new File("Exit.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
@@ -47,7 +71,6 @@ public class ExitConfirm extends JPanel
         if (yCoord>=162&&yCoord<=211)
         {
           System.out.println("Yes");
-          choice = 1;
           Main.frame.dispatchEvent(new WindowEvent(Main.frame, WindowEvent.WINDOW_CLOSING));
         }
         else 
@@ -55,7 +78,6 @@ public class ExitConfirm extends JPanel
           if (yCoord>=363&&yCoord<=412)
           {
             System.out.println("No");
-            choice = 4;
             Main.switchMenu(0);
           }
         }
@@ -64,21 +86,10 @@ public class ExitConfirm extends JPanel
 });
   }
   
-  public int getChoice()
-  {
-    
-    System.out.println("HERE");
-    return choice;
-  }
-  
-  public void resetChoice()
-  {
-    choice = 0;
-  }
-  
   
         /**
-* This is the method that paints components on the frame.
+* This is the method that paints components on the frame.  It calls the super's paintComponent method, passing in
+* g, and draws the image.
 * 
 * @param g Graphics passed in to allow painting on the frame.
 */ 
@@ -86,35 +97,8 @@ public class ExitConfirm extends JPanel
   {
     super.paintComponent(g);
     g.setColor(Color.WHITE);
-    g.drawImage(menu, 0, 0, null);
+    g.drawImage(image, 0, 0, null);
     System.out.println("YAY");
   }
   
-//  public void mouseClicked (MouseEvent e)
-//  {
-//    System.out.println("1");
-//    int xCoord = e.getX();
-//    int yCoord = e.getY();
-//    System.out.println(xCoord+ "      "+yCoord);
-//  }
-//  
-//  public void mouseExited (MouseEvent e)
-//  {
-//    System.out.println("2");
-//  }
-//  
-//  public void mouseEntered (MouseEvent e)
-//  {
-//    System.out.println("3");
-//  }
-//  
-//  public void mouseReleased (MouseEvent e)
-//  {
-//    System.out.println("4");
-//  }
-//  
-//  public void mousePressed (MouseEvent e)
-//  {
-//    System.out.println("5");
-//  }
 }
