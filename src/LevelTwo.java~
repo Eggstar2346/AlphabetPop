@@ -49,6 +49,9 @@ public class LevelTwo extends Levels
    * The audio clip that plays the letter corresponding to the current letter is started.<p>
    * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
    * results accordingly.
+   * 
+   * @param x int that stores the screen width
+   * @param y int that stores the screen height
    */
   public LevelTwo(int x, int y)
   {

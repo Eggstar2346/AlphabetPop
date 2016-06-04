@@ -71,13 +71,22 @@ public class LevelTwo extends Levels
       letters[q] = word.charAt(q);
     }
     Random rand = new Random();
-    for (int z = 0 ; z < 26 ; z ++)
+    for (int z = 0 ; z < word.length(); z ++)
     {
       x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
       y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
       speed = (int)(Math.random() * (3 - 1) + 1) + 1;
       angleInDegree = rand.nextInt(360);
-      ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+z), false);
+      ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, letters[z], false);
+    }
+    
+    for (int z = word.length(); z < 26; z++)
+    {
+      x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
+      y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
+      speed = (int)(Math.random() * (3 - 1) + 1) + 1;
+      angleInDegree = rand.nextInt(360);
+      ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
     alphabet[letters[currentLetter]-65].start();
     
