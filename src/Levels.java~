@@ -21,9 +21,95 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-/** THIS JAVADOC ISN'T COMPLETE BUT JUST SAYING: REMEMBER TO PUT THIS IN
-  * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo.
-  */
+/**
+ * 
+ * <p>
+ * <b> Version Information: </b>
+ * <p>
+ * <b>Author</b> Esther Yoo
+ * <b>Version #</b> 1
+ * <b>Date</b> 05.31.16
+ * <b>Time Spent</b> 3 hours
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1
+ * <b>Date</b> 06.02.16
+ * <b>Time Spent</b> 5 hours
+ * <b>What Was Changed</b> The code organization was improved and startup() method was created.  Some problems involving
+ * file IO were fixed.
+ * 
+ * <p>
+ * <b> Instance Variables: </b>
+ * <p>
+ * <b>ball</b> This creates an array of Ball objects that are used as the bubbles.
+ * <p>
+ * <b>UPDATE_RATE</b> This final int is used to store the update rate.
+ * <p>
+ * <b>ball</b> This creates an array of Ball objects that are used as the bubbles.
+ * <p>
+ * <b>NUM_BUBBLES</b> This final int stores the number of bubbles to be used.
+ * <p>
+ * <b>word</b> This String stores the word the user must spell.
+ * <p>
+ * <b>words</b> This ArrayList stores all of the words from the file.
+ * <p>
+ * <b>box</b> This stores an instance of the ContainerBox class for putting the bubbles.
+ * <p>
+ * <b>box2</b> This stores an instance of the ContainerBox class for putting the bubbles.
+ * <p>
+ * <b>canvas</b> This creates an instance of the DrawCanvas class for drawing the box and bubbles on.
+ * <p>
+ * <b>canvas2</b> This creates an instance of the DrawLetters class for drawing the letters on.
+ * <p>
+ * <b>canvasWidth</b> This int stores the width of the canvas.
+ * <p>
+ * <b>canvasHeight</b> This int stores the height of the canvas.
+ * <p>
+ * <b>xCoord</b> This int stores the x-coordinate of where the user presses.
+ * <p>
+ * <b>yCoord</b> This int stores the y-coordinate of where the user presses.
+ * <p>
+ * <b>radius</b> This int stores the radius size for the bubbles.
+ * <p>
+ * <b>x</b> This int is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>y</b> This int is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>speed</b> This int is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>angleInDegree</b> This int is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>background</b> This int is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>letters</b> This char array stores the letters of the current word to be spelled.
+ * <p>
+ * <b>currentLetter</b> This int stores the index of the current letter that the user is finding.
+ * <p>
+ * <b>clip</b> This Clip is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>music</b> This Clip is not used in the current version and may be removed in future versions.
+ * <p>
+ * <b>audio</b> This Clip array stores the music.
+ * <p>
+ * <b>alphabet</b> This Clip array stores the sound of the letters.
+ * <p>
+ * <b>click</b> This Clip array stores the sounds to be played when the user clicks.
+ * <p>
+ * <b>pics</b> This array of BufferedImage objects stores the background images.
+ * <p>
+ * <b>t</b> This GameTimer is used to time the game.
+ * <p>
+ * <b>round1Time</b> This int stores the time spent on the first round.
+ * <p>
+ * <b>round2Time</b> This int stores the time spent on the second round.
+ * <p>
+ * <b>round3Time</b> This int stores the time spent on the third round.
+ * 
+ * 
+ * 
+ * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo, Samantha Unger
+ * @version 1.1 06.02.16
+ */
 public abstract class Levels extends JPanel {
   
   protected Ball[] ball = new Ball[26];
@@ -67,6 +153,13 @@ public abstract class Levels extends JPanel {
   
   int round1Time, round2Time, round3Time;
   
+  
+    /**
+   * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
+   * ArrayList.
+   * 
+   * @param file String that stores the name of the file to read the words in from 
+   */
   public void readWords(String file)
   {
     BufferedReader input;
@@ -125,6 +218,9 @@ public abstract class Levels extends JPanel {
     }
   }
   
+    /**
+   * This method loads all of the audio clips into the correct arrays.
+   */
   public void loadAudio()
   {
     try
@@ -153,12 +249,25 @@ public abstract class Levels extends JPanel {
     }
   }
   
+    /**
+   * This method changes the volume of a given clip.
+   * 
+   * @param volAdjust float that stores the amount to adjust the volume by
+   * @param clipNum int that stores the index of the clip to have its volume altered
+   */
   public void volume(float volAdjust, int clipNum)
   {
     FloatControl gainControl = (FloatControl) audio[clipNum].getControl(FloatControl.Type.MASTER_GAIN);
     gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
   }
   
+    /**
+   * This method loads in an audio clip and adjusts its volume.
+   * 
+   * @param fileName String that stores the name of the file to be read in
+   * @param loop int that determines whether or not the clip should be looped
+   * @param volAdjust float that stores how much to adjust the volume by
+   */  
   public void loadAudio(String fileName, int loop, float volAdjust)
   {
       try
@@ -184,11 +293,10 @@ public abstract class Levels extends JPanel {
   }
   
   /**
-   * Constructor to create the UI components and init the game objects.
-   * Set the drawing canvas to fill the screen (given its width and height).
+   * This constructor sets the value of of the canvasHeight, canvasWidth and calls the loadAudio method.
    * 
-   * @param width : screen width
-   * @param height : screen height
+   * @param width int that contains the screen width
+   * @param height int that contains the screen height
    */
   public Levels(int width, int height) {
 
@@ -198,6 +306,11 @@ public abstract class Levels extends JPanel {
 
   }
   
+    /**
+   * This method constructs the necessary objects to play the game.  A nested MouseAdapter class is necessary so that
+   * the user's click location can be taken.  A component listener is added to the screen.  A for loop is used to 
+   * check each letter.  If statements are used to check letters.  The gameStart() method is called.
+   */
   public void startup()
   {
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater.jpg", Color.BLACK);
@@ -299,8 +412,8 @@ public abstract class Levels extends JPanel {
   }
   
   /** 
-   * One game time-step. 
-   * Update the game objects, with proper collision detection and response.
+   * This method updates the game objects, with proper collision detection and response. It uses a for loop to update
+   * each object.
    */
   public void gameUpdate() {
     for (int z = 0; z < 26; z++)
@@ -310,9 +423,14 @@ public abstract class Levels extends JPanel {
     //ball[0].moveOneStepWithCollisionDetection(box);
   }
   
-  /** The custom drawing panel for the bouncing ball (inner class). */
+  /** This inner class is a custom drawing panel for the bouncing ball. It overrides the paintComponent() method and 
+    * uses for loops to draw each bubble.
+   */
   class DrawCanvas extends JPanel {
-    /** Custom drawing codes */
+      /**
+   * This method paints components on the screen.  It uses a for loop to draw each bubble.
+   * @param g Graphics passed in to allow painting on the frame.
+   */
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
@@ -330,15 +448,23 @@ public abstract class Levels extends JPanel {
       
     }
     
-    /** Called back to get the preferred size of the component. */
+    /** This method is overriden to get the preferred size of the component. 
+      * @return Dimension that indicates the preferred size
+      */
     @Override
     public Dimension getPreferredSize() {
       return (new Dimension(canvasWidth, canvasHeight));
     }
   }
   
+    /** This inner class is a custom drawing panel for the letters. It overrides the paintComponent() method and 
+    * uses for loops to draw each bubble.
+   */
   class DrawLetters extends JPanel {
-    /** Custom drawing codes */
+          /**
+   * This method paints components on the screen. 
+   * @param g Graphics passed in to allow painting on the frame.
+   */
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
@@ -359,7 +485,9 @@ public abstract class Levels extends JPanel {
 //      g.drawString("Ball " + ball.toString(), 20, 30);
     }
     
-    /** Called back to get the preferred size of the component. */
+        /** This method is overriden to get the preferred size of the component. 
+      * @return Dimension that indicates the preferred size
+      */
     @Override
     public Dimension getPreferredSize() {
       return (new Dimension(100, 100));

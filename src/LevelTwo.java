@@ -26,11 +26,17 @@ import javax.swing.*;
   * <b>Version #</b> 1
   * <b>Date</b> 05.27.16
   * <b>Time Spent</b> 2 hours
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.04.16
+  * <b>Time Spent</b> 5 minutes
+  * <b>What Was Changed</b> The generateSpeed() and getLevel() methods were added.
   * 
   * 
   * @author Esther Yoo
   * @author Samantha Unger
-  * @version 1.1 05.27.16
+  * @version 1.1 06.04.16
   * 
   * The LevelTwo class is a Level (JPanel) that contains all the setup for the third level of the game.
   * It can be accessed by the user by going to menu, clicking on "Play", and choosing the "Medium" level.
@@ -93,4 +99,12 @@ public class LevelTwo extends Levels
     startup();
   }
   
+  public int generateSpeed()
+  {
+    return (int)(Math.random() * (3 - 1) + 1) + 1;
+  }
+  public int getLevel()
+  {
+    return 2;
+  }
 }

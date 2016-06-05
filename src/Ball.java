@@ -7,11 +7,17 @@ import java.util.Formatter;
   * <b>Version #</b> 1
   * <b>Date</b> 05.02.16
   * <b>Time Spent</b> 1 hour
-  * 
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.04.16
+  * <b>Time Spent</b> 5 minutes
+  * <b>What Was Changed</b> The setLetter() method was added.
   * 
   * @author Esther Yoo
   * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo.
-  * @version 1.1 05.22.16
+  * @author Samantha Unger
+  * @version 1.1 06.04.16
   * 
   * The Ball class is a data class 
   *
@@ -173,6 +179,11 @@ public class Ball {
   public char getLetter()
   {
     return letter;
+  }
+  
+  public void setLetter (char newLetter)
+  {
+    letter = newLetter;
   }
   
   /** The setColor method is a mutator method that sets the value of the color variable of the bubble, 

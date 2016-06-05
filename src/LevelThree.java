@@ -26,11 +26,17 @@ import javax.swing.*;
   * <b>Version #</b> 1
   * <b>Date</b> 05.27.16
   * <b>Time Spent</b> 4 hours
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.04.16
+  * <b>Time Spent</b> 10 minutes
+  * <b>What Was Changed</b> The generateSpeed() and getLevel() methods were added.
   * 
   * 
   * @author Esther Yoo
   * @author Samantha Unger
-  * @version 1.1 05.27.16
+  * @version 1.1 06.04.16
   * 
   * The LevelThree class is a Level (JPanel) that contains all the setup for the third level of the game.
   * It can be accessed by the user by going to menu, clicking on "Play", and choosing the "Hard" level.
@@ -96,4 +102,12 @@ public class LevelThree extends Levels
     startup();
   }
   
+  public int generateSpeed()
+  {
+    return (int)(Math.random() * (8 - 1) + 1) + 1;
+  }
+  public int getLevel()
+  {
+    return 3;
+  }
 }

@@ -92,7 +92,7 @@ public class Main {
       public void run() {
         frame = new JFrame("A World of Balls");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new Splashscreen2());
+        frame.add(new MainMenu()); //this should be splashscreen but i dont want it to play every single time
 //        MainMenu m = new MainMenu();
 //        frame.add(m);
         frame.pack();

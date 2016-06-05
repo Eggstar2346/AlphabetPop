@@ -1,0 +1,50 @@
+/**
+ * Auto Generated Java Class.
+ */
+public class DisplayTime extends JPanel {
+  
+  int round1, round2, round3;
+  
+    public DisplayTime (int newRound1, newRound2, newRound3)
+    {
+    System.out.println("YAS");
+    round1=newRound1;
+    round2=newRound2;
+    round3=newRound3;
+    try 
+    {
+      menu = ImageIO.read(new File("background.jpg"));
+      System.out.println("GOOD");
+    } 
+    catch (IOException e) 
+    {
+      System.out.println("NOOOOO");
+    } 
+    repaint();
+    
+    addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+      int xCoord = e.getX();
+      int yCoord = e.getY();
+      System.out.println(xCoord+ "      "+yCoord);
+      Main.switchMenu(0);
+        }
+      }
+     );
+  }
+  
+  public void paintComponent (Graphics g)
+  {
+    super.paintComponent(g);
+    g.drawImage(menu, 0, 0, null);
+    g.setFont(new Font("Courier New", Font.PLAIN, 12));
+    g.drawString("You completed the first level!" + t.getTimeElapsed(), 0, 50);
+    g.drawString("You completed round 1 in " + round1 + " seconds!", 0, 100);
+    g.drawString("You completed round 2 in " + round2 + " seconds!", 0, 150);
+    g.drawString("You completed round 3 in " + round3 + " seconds!", 0, 200);
+    g.drawString("This is a total of " + (round1+round2+round3) + " seconds!", 0, 250);
+    System.out.println("YAY");
+  }
+  
+}
