@@ -151,7 +151,8 @@ public abstract class Levels extends JPanel {
   
   Thread gameThread;
   
-  int round1Time, round2Time, round3Time;
+  int currentWord;
+  int[] roundTimes = new int[3];
   
   
     /**
@@ -339,8 +340,9 @@ public abstract class Levels extends JPanel {
             if (ball[z].getLetter() == letters[currentLetter])
             {
               audio[4].setMicrosecondPosition(0);
+              audio[4].start();
               
-              ball[z].setColor(Color.green);
+              //ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
               ball[z].setSpeed(0);
               ball[z].setRadius(-100);
@@ -359,8 +361,27 @@ public abstract class Levels extends JPanel {
             if (currentLetter > letters.length-1)
             {
               currentLetter = 0;
-              audio[2].stop();
-              Main.switchMenu(0);
+              roundTimes[currentWord]=t.getTimeElapsed();
+              if (currentWord==2)
+              {
+                audio[2].stop();
+                System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
+                //Main.switchMenu(0);
+                Main.frame.getContentPane().removeAll();
+                Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2]));
+                    Main.frame.repaint();
+    Main.frame.revalidate();
+                return;
+              }
+              else
+              {
+                currentWord++;
+                word = words.get(currentWord).toUpperCase();
+                t.setTimeElapsed(0);
+                setBubbles();
+                alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                alphabet[letters[currentLetter]-65].start();
+              }
             }
             System.out.println("This is bubble number: " + currentLetter);
             System.out.println("Time elapsed is "+ t.getTimeElapsed());
@@ -496,9 +517,52 @@ public abstract class Levels extends JPanel {
   
 
   
-  
+  public void setBubbles()
+  {
+    if (getLevel()!=1)
+    {
+      Random rand = new Random();
+      for (int q = 0; q < word.length(); q++)
+      {
+        letters[q] = word.charAt(q);
+        ball[q].setLocation(rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10,rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10);
+        ball[q].setSpeed(generateSpeed());
+        //angleInDegree = rand.nextInt(360);
+        ball[q].setRadius(radius);
+        ball[q].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
+        System.out.println(letters[q]);
+        ball[q].setLetter(letters[q]);
+        ball[q].setWasClicked(false);
+      }
+      for (int z = word.length(); z < 26; z++)
+      {
+        ball[z].setLocation(rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10,rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10);
+        ball[z].setSpeed(generateSpeed());
+        //angleInDegree = rand.nextInt(360);
+        ball[z].setRadius(radius);
+        ball[z].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
+        ball[z].setLetter( (char)(65+(int)(Math.random() * (25)) + 1));
+        ball[z].setWasClicked(false);
+      }
+    }
+    else
+    {
+      for (int q = 0; q < word.length(); q++)
+      {
+        letters[q] = word.charAt(q);
+      }
+      for (int z = 0 ; z < 26; z ++)
+      {
+        ball[z].setLocation(50+(z%9)*(2*radius+30), 50+(z/9)*(2*radius+30));
+        ball[z].setRadius(radius);
+        ball[z].setWasClicked(false);
+      }
+    }
+  }
+   
+   public abstract int generateSpeed();
+   public abstract int getLevel();
 
-  
 //  
 ////  public void draw (Graphics g)
 ////  {

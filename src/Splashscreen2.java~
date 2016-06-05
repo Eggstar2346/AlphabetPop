@@ -43,7 +43,6 @@ import javax.swing.*;
   * <b>currentLetter</b> An integer variable that keeps track of which letter index is to be popped next.
   * <p>
   * <b>bubblePop</b> A Clip variable that refers to the bubble-popping audio clip.
-  * <p>
   */
 
 public class Splashscreen2 extends JPanel

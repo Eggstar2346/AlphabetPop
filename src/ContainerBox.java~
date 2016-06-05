@@ -42,7 +42,6 @@ import javax.swing.*;
   * <b>DEFAULT_COLOR_FILLED</b> A Color variable that stores default interior colour (black).
   * <p>
   * <b>DEFAULT_COLOR_BORDER</b> A Color variable that stores default border colour (yellow).
-  * <p>
   */
 public class ContainerBox {
   int minX, maxX, minY, maxY;
@@ -56,6 +55,12 @@ public class ContainerBox {
    * The class constructor assigns all the values passed in its parameter to the appropriate instance variables.
    * 
    * Variable pic is assigned by calling the method loadImage();
+   *  @param x int of new x coordinate
+    * @param y int of new y coordinate
+    * @param width int of new width
+    * @param height int of new height
+    * @param name String for image name
+    * @param colorBorder Color for border
    */
   public ContainerBox(int x, int y, int width, int height, String name, Color colorBorder) {
     minX = x;
@@ -71,6 +76,11 @@ public class ContainerBox {
     * 
     * minX and minY are determined by their respective parameter passes.
     * maxX and maxY are determined by adding the widths and heights to x and y, then subtracting 1.
+    * 
+    * @param x int of new x coordinate
+    * @param y int of new y coordinate
+    * @param width int of new width
+    * @param height int of new height
     */
   public void set(int x, int y, int width, int height) {
     minX = x;
@@ -83,6 +93,8 @@ public class ContainerBox {
     * 
     * Inside the try-catch statement, the image file is read in and returned according to imageName. A catch is
     * provided to catch any I/O errors. If the image file was not returned in the try catch, null is returned.
+    * 
+    * @return BufferedImage that was loaded in
     */
   public BufferedImage loadImage()
   {

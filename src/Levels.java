@@ -154,6 +154,7 @@ public abstract class Levels extends JPanel {
   int currentWord;
   int[] roundTimes = new int[3];
   
+  boolean showRoundDone = false;
   
     /**
    * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
@@ -369,12 +370,13 @@ public abstract class Levels extends JPanel {
                 //Main.switchMenu(0);
                 Main.frame.getContentPane().removeAll();
                 Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2]));
-                    Main.frame.repaint();
-    Main.frame.revalidate();
+                Main.frame.repaint();
+                Main.frame.revalidate();
                 return;
               }
               else
               {
+                Main.frame.add(new DisplayRounds(currentWord, getLevel()));
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 t.setTimeElapsed(0);
@@ -489,13 +491,41 @@ public abstract class Levels extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
+      
+      g.setColor(Colors.boxes);
+      for (int x = 0; x < letters.length; x++)
+      {
+        g.fillRect((x*110) + 300, 0, 100,100);
+      }
+      g.setFont(new Font("Courier New", Font.PLAIN, 40));
+      g.setColor(Colors.letters);
+      for (int x = -1; x < currentLetter; x++)
+      {
+        if (x != -1)
+          g.drawString("" + letters[x], (x*100) + 350, 50);
+      }
       // Draw the box and the ball
-      g.setColor(Color.red);
-      g.fillRect(0, 0, 100,100);
-      g.fillRect(450, 0, 100,100);
       g.setColor(Color.black);
       g.setFont(new Font("Courier New", Font.PLAIN, 12));
       g.drawString("Time: " + t.getTimeElapsed(), 0, 50);
+      BufferedImage back = null;
+//      if (showRoundDone)
+//      {
+//        
+//        showRoundDone = false;
+//        for (int x = 0; x < 10000; x++)
+//        {
+//        g.drawImage(back, 0, 0, null);
+//        }
+//        try
+//        {
+//          Thread.sleep(1000);
+//        }
+//        catch (InterruptedException e){}
+        //System.out.println("IS IT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?!?!!?!?!??!");
+      }
+      
+      
 //      for (int z = 0; z < NUM_BUBBLES; z++)
 //      {
 //        ball[z].draw(g);
@@ -513,7 +543,6 @@ public abstract class Levels extends JPanel {
     public Dimension getPreferredSize() {
       return (new Dimension(100, 100));
     }
-  }
   
 
   
@@ -529,7 +558,10 @@ public abstract class Levels extends JPanel {
         ball[q].setSpeed(generateSpeed());
         //angleInDegree = rand.nextInt(360);
         ball[q].setRadius(radius);
-        ball[q].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
+        if (getLevel() == 2)
+          ball[q].setSpeed( (int)(Math.random() * (3 - 1) + 1) + 1);
+        else
+          ball[q].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
         System.out.println(letters[q]);
         ball[q].setLetter(letters[q]);
         ball[q].setWasClicked(false);
@@ -540,8 +572,11 @@ public abstract class Levels extends JPanel {
         ball[z].setSpeed(generateSpeed());
         //angleInDegree = rand.nextInt(360);
         ball[z].setRadius(radius);
-        ball[z].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
-        ball[z].setLetter( (char)(65+(int)(Math.random() * (25)) + 1));
+        if (getLevel() == 2)
+          ball[z].setSpeed( (int)(Math.random() * (3 - 1) + 1) + 1);
+        else
+          ball[z].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
+        ball[z].setLetter((char)(65+(int)(Math.random() * (25)) + 1));
         ball[z].setWasClicked(false);
       }
     }
@@ -569,8 +604,5 @@ public abstract class Levels extends JPanel {
 ////      g.drawImage(pics[background], 0, 0, null);
 ////      System.out.println(background);
 ////  }
-  
-
 }
-
   
