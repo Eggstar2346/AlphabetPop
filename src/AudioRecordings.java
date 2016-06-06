@@ -79,27 +79,43 @@ public class AudioRecordings
     gainControl.setValue(volAdjust);
   }
   
-  public static void oneAfterAnother ()
+  public static void oneAfterAnother (String wavFile1, String wavFile2)
   {
-    byte[] buffer = new byte[4096];
     try {
-      File file = new File ("Click the letter.wav");
-      AudioInputStream is = AudioSystem.getAudioInputStream(file);
-      AudioFormat format = is.getFormat();
-      SourceDataLine line = AudioSystem.getSourceDataLine(format);
-      line.open(format);
-      line.start();
-      while (is.available() > 0) 
-      {
-        int len = is.read(buffer);
-        line.write(buffer, 0, len);
-      }
-      line.drain();
-      line.close();
-    } 
-    catch (Exception e) {
+      AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File(wavFile1));
+      AudioInputStream clip2 = AudioSystem.getAudioInputStream(new File(wavFile2));
+      
+      AudioInputStream appendedFiles = 
+        new AudioInputStream(
+                             new SequenceInputStream(clip1, clip2),     
+                             clip1.getFormat(), 
+                             clip1.getFrameLength() + clip2.getFrameLength());
+      
+      AudioSystem.write(appendedFiles, 
+                        AudioFileFormat.Type.WAVE, 
+                        new File("D:\\wavAppended.wav"));
+    } catch (Exception e) {
       e.printStackTrace();
     }
+//    byte[] buffer = new byte[4096];
+//    try {
+//      File file = new File ("Click the letter.wav");
+//      AudioInputStream is = AudioSystem.getAudioInputStream(file);
+//      AudioFormat format = is.getFormat();
+//      SourceDataLine line = AudioSystem.getSourceDataLine(format);
+//      line.open(format);
+//      line.start();
+//      while (is.available() > 0) 
+//      {
+//        int len = is.read(buffer);
+//        line.write(buffer, 0, len);
+//      }
+//      line.drain();
+//      line.close();
+//    } 
+//    catch (Exception e) {
+//      e.printStackTrace();
+//    }
 //    try {
 //      AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 //      AudioFormat format = audioStream.getFormat();
