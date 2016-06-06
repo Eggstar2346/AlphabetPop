@@ -25,7 +25,6 @@ import java.awt.image.*;
   * <p>
   * <b>choice</b> An integer variable that takes the user's choice and uses it to switch between Instructions, Play,
   * Highscores, and Exit.
-  * <p>
   */
 public class Instructions extends JPanel {
   

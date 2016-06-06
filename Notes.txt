@@ -7,10 +7,10 @@ Music_?
 2 - background
 3 - background
 4 - background
-5 - bubble popping
-6 - unused
-7 - wrong bubble
-8 - background
-9 - background
+5 - background
+6 - background
+7 - background
+
+8 - bubble popping
+9 - wrong bubble
 10 - kids saying "yayyyy!"
-11 - background
