@@ -32,11 +32,21 @@ import java.util.ArrayList;
  * <b>Time Spent</b> 3 hours
  * <p>
  * <b>Author</b> Samantha Unger
- * <b>Version #</b> 1
+ * <b>Version #</b> 1.1
  * <b>Date</b> 06.02.16
  * <b>Time Spent</b> 5 hours
  * <b>What Was Changed</b> The code organization was improved and startup() method was created.  Some problems involving
  * file IO were fixed.
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1.2
+ * <b>Date</b> 06.05.16
+ * <b>Time Spent</b> 1 hour
+ * <b>What Was Changed</b> The code now properly displays the letters.  Brackets within the LettersCanvas class had to 
+ * be moved to the correct location.
+ * 
+ * 
+ * 
  * 
  * <p>
  * <b> Instance Variables: </b>
@@ -108,7 +118,7 @@ import java.util.ArrayList;
  * 
  * 
  * @author Chua Hock-Chuan for original graphics code, modifed by Esther Yoo, Samantha Unger
- * @version 1.1 06.02.16
+ * @version 1.2 06.05.16
  */
 public abstract class Levels extends JPanel {
   
@@ -534,7 +544,6 @@ public abstract class Levels extends JPanel {
 //      g.setColor(Color.WHITE);
 //      g.setFont(new Font("Courier New", Font.PLAIN, 12));
 //      g.drawString("Ball " + ball.toString(), 20, 30);
-    }
     
         /** This method is overriden to get the preferred size of the component. 
       * @return Dimension that indicates the preferred size
@@ -543,6 +552,7 @@ public abstract class Levels extends JPanel {
     public Dimension getPreferredSize() {
       return (new Dimension(100, 100));
     }
+  }
   
 
   

@@ -84,7 +84,7 @@ public class LevelThree extends Levels
     {
       x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
       y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
-      speed = (int)(Math.random() * (7 - 4) + 1) + 1;
+      speed = (int)(Math.random() * (8-1) + 1) + 1;
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, letters[z], false);
     }

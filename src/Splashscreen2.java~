@@ -55,6 +55,7 @@ public class Splashscreen2 extends JPanel
   private GameTimer t; //= new GameTimer();
   private int currentLetter;
   private Clip bubblePop;
+  private Clip background;
   
   /**
    * The class constructor first creates the ContainerBox, with the appropriate image
@@ -83,6 +84,10 @@ public class Splashscreen2 extends JPanel
       File popClip = new File("Music_5.wav");
       AudioInputStream popClipStream = AudioSystem.getAudioInputStream(popClip);
       bubblePop.open(popClipStream);
+      background = AudioSystem.getClip();
+      File backgroundClip = new File("Music_9.wav");
+      AudioInputStream backgroundClipStream = AudioSystem.getAudioInputStream(backgroundClip);
+      background.open(backgroundClipStream);
     }
     catch (UnsupportedAudioFileException q) {
       q.printStackTrace();
@@ -92,6 +97,7 @@ public class Splashscreen2 extends JPanel
       q.printStackTrace();
     }
     gameStart();
+    background.start();
   }
   
   /** The gameStart method runs all the bubbles at the same time.

@@ -78,26 +78,10 @@ public class Splashscreen2 extends JPanel
     t = new GameTimer();
     t.setTimeElapsed(1);
     t.start();
-    try
-    {
-      bubblePop = AudioSystem.getClip();
-      File popClip = new File("Music_5.wav");
-      AudioInputStream popClipStream = AudioSystem.getAudioInputStream(popClip);
-      bubblePop.open(popClipStream);
-      background = AudioSystem.getClip();
-      File backgroundClip = new File("Music_9.wav");
-      AudioInputStream backgroundClipStream = AudioSystem.getAudioInputStream(backgroundClip);
-      background.open(backgroundClipStream);
-    }
-    catch (UnsupportedAudioFileException q) {
-      q.printStackTrace();
-    } catch (IOException q) {
-      q.printStackTrace();
-    } catch (LineUnavailableException q) {
-      q.printStackTrace();
-    }
     gameStart();
-    background.start();
+    AudioRecordings.volume(-12, AudioRecordings.background[4]);
+    AudioRecordings.background[4].start();
+    System.out.println("bazinga");
   }
   
   /** The gameStart method runs all the bubbles at the same time.
@@ -151,15 +135,19 @@ public class Splashscreen2 extends JPanel
         introBubble[currentLetter].setSpeed(0);
         introBubble[currentLetter].setRadius(-100);
         introBubble[currentLetter].setLocation(-100,-100);
-        bubblePop.setMicrosecondPosition(0);
-        bubblePop.start();
+         AudioRecordings.volume(6, AudioRecordings.effects[0]);
+        AudioRecordings.effects[0].setMicrosecondPosition(0);
+        AudioRecordings.effects[0].start();
         t.setTimeElapsed(t.getTimeElapsed() + 1);
         currentLetter++;
       }
     }
     
     if (t.getTimeElapsed()==38)
-      Main.switchMenu(0);    
+    {
+      AudioRecordings.background[4].stop();
+      Main.switchMenu(0);
+    }
   }
   
   /** The paintComponent method draws all the components (bubble, letters) on the screen.

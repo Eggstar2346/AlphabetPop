@@ -46,6 +46,7 @@ public class Main {
   public static void switchMenu(int choice)
   {
     frame.getContentPane().removeAll();
+    //AudioRecordings.background[currentLevel()].stop();
     if (choice==0)
     {
       frame.add (new MainMenu());
@@ -84,15 +85,17 @@ public class Main {
    */
   public static void main(String[] args) {
     // Run UI in the Event Dispatcher Thread (EDT), instead of Main thread
+    new AudioRecordings();
+    new Images();
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
           /**
    * The run method runs the program by constructing the JFrame, and setting its visibility, size, default close 
    * operation and adding the splashscreen.
    */
       public void run() {
-        frame = new JFrame("A World of Balls");
+        frame = new JFrame("Alphabet Pop");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new MainMenu()); //this should be splashscreen but i dont want it to play every single time
+        frame.add(new MainMenu()); //new Splashscreen2());//this should be splashscreen but i dont want it to play every single time
 //        MainMenu m = new MainMenu();
 //        frame.add(m);
         frame.pack();

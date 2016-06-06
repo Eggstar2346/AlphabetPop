@@ -26,10 +26,18 @@ import javax.swing.*;
   * <b>Version #</b> 1
   * <b>Date</b> 05.30.16
   * <b>Time Spent</b> 1.5 hours
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.04.16
+  * <b>Time Spent</b> 10 minutes
+  * <b>What Was Changed</b> The generateSpeed() and getLevel() methods were added.
+  * 
+  * 
   * 
   * 
   * @author Samantha Unger
-  * @version 1.1 05.27.16
+  * @version 1.1 06.04.16
   * 
   * The LevelOne class is a Level (JPanel) that contains all the setup for the first level of the game.
   * It can be accessed by the user by going to menu, clicking on "Play", and choosing the "Easy" level.
@@ -79,4 +87,14 @@ public class LevelOne extends Levels {
     startup();
   }
   
+  
+  public int generateSpeed()
+  {
+    return 0;
+  }
+  
+  public int getLevel()
+  {
+    return 1;
+  }
 }
