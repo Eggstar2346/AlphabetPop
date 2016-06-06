@@ -128,7 +128,7 @@ public abstract class Levels extends JPanel {
   String word;
   protected ArrayList<String>words;
 
-  private ContainerBox box;  // The container rectangular box
+ ContainerBox box;  // The container rectangular box
   private ContainerBox box2;
   
   private DrawCanvas canvas; // Custom canvas for drawing the box/ball
@@ -230,80 +230,6 @@ public abstract class Levels extends JPanel {
     }
   }
   
-    /**
-   * This method loads all of the audio clips into the correct arrays.
-   */
-  public void loadAudio()
-  {
-    try
-    {
-      for (int x = 0; x < 6; x++)
-      {
-        audio[x] = AudioSystem.getClip();
-        File audioClip = new File("Music_" + (x+1) + ".wav");
-        AudioInputStream audioClipStream = AudioSystem.getAudioInputStream(audioClip);
-        audio[x].open(audioClipStream);
-      }
-      for (int x = 0; x < 26; x++)
-      {
-        alphabet[x] = AudioSystem.getClip();
-        File alphabetClip = new File(("" + (char)(65+x)) + ".wav");
-        AudioInputStream alphabetClipStream = AudioSystem.getAudioInputStream(alphabetClip);
-        alphabet[x].open(alphabetClipStream);
-      }
-    }
-    catch (UnsupportedAudioFileException q) {
-      q.printStackTrace();
-    } catch (IOException q) {
-      q.printStackTrace();
-    } catch (LineUnavailableException q) {
-      q.printStackTrace();
-    }
-  }
-  
-    /**
-   * This method changes the volume of a given clip.
-   * 
-   * @param volAdjust float that stores the amount to adjust the volume by
-   * @param clipNum int that stores the index of the clip to have its volume altered
-   */
-  public void volume(float volAdjust, int clipNum)
-  {
-    FloatControl gainControl = (FloatControl) audio[clipNum].getControl(FloatControl.Type.MASTER_GAIN);
-    gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
-  }
-  
-    /**
-   * This method loads in an audio clip and adjusts its volume.
-   * 
-   * @param fileName String that stores the name of the file to be read in
-   * @param loop int that determines whether or not the clip should be looped
-   * @param volAdjust float that stores how much to adjust the volume by
-   */  
-  public void loadAudio(String fileName, int loop, float volAdjust)
-  {
-      try
-      {
-        Clip clip = AudioSystem.getClip();
-        File effect = new File(fileName + ".wav");
-        AudioInputStream effectAudio = AudioSystem.getAudioInputStream(effect);
-        clip.open(effectAudio);
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(volAdjust); // Reduce volume by 10 decibels.
-        if (loop == 0)
-          clip.start();
-        else
-          clip.loop(Clip.LOOP_CONTINUOUSLY);
-      }
-      catch (UnsupportedAudioFileException q) {
-        q.printStackTrace();
-      } catch (IOException q) {
-        q.printStackTrace();
-      } catch (LineUnavailableException q) {
-        q.printStackTrace();
-      }
-  }
-  
   /**
    * This constructor sets the value of of the canvasHeight, canvasWidth and calls the loadAudio method.
    * 
@@ -314,7 +240,7 @@ public abstract class Levels extends JPanel {
 
     canvasWidth = width;
     canvasHeight = height;
-    loadAudio();
+    //loadAudio();
 
   }
   
@@ -325,7 +251,7 @@ public abstract class Levels extends JPanel {
    */
   public void startup()
   {
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater.jpg", Color.BLACK);
+    //box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass2.jpg", Color.BLACK);
     
     canvas = new DrawCanvas();
     canvas2 = new DrawLetters();
@@ -350,8 +276,8 @@ public abstract class Levels extends JPanel {
           {
             if (ball[z].getLetter() == letters[currentLetter])
             {
-              audio[4].setMicrosecondPosition(0);
-              audio[4].start();
+              AudioRecordings.effects[0].setMicrosecondPosition(0);
+              AudioRecordings.effects[0].start();
               
               //ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
@@ -361,13 +287,14 @@ public abstract class Levels extends JPanel {
               currentLetter++;
               if (currentLetter <= letters.length-1)
               {
-                alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                alphabet[letters[currentLetter]-65].start();
+                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                AudioRecordings.alphabet[letters[currentLetter]-65].start();
               }
             }
             else
             {
-              loadAudio("Music_7",0,+5.0f);
+              AudioRecordings.effects[1].setMicrosecondPosition(0);
+              AudioRecordings.effects[1].start();
             }
             if (currentLetter > letters.length-1)
             {
@@ -375,7 +302,7 @@ public abstract class Levels extends JPanel {
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
-                audio[2].stop();
+                AudioRecordings.background[2].stop();
                 System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
                 //Main.switchMenu(0);
                 Main.frame.getContentPane().removeAll();
@@ -391,8 +318,8 @@ public abstract class Levels extends JPanel {
                 word = words.get(currentWord).toUpperCase();
                 t.setTimeElapsed(0);
                 setBubbles();
-                alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                alphabet[letters[currentLetter]-65].start();
+                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                AudioRecordings.alphabet[letters[currentLetter]-65].start();
               }
             }
             System.out.println("This is bubble number: " + currentLetter);
@@ -519,31 +446,7 @@ public abstract class Levels extends JPanel {
       g.setFont(new Font("Courier New", Font.PLAIN, 12));
       g.drawString("Time: " + t.getTimeElapsed(), 0, 50);
       BufferedImage back = null;
-//      if (showRoundDone)
-//      {
-//        
-//        showRoundDone = false;
-//        for (int x = 0; x < 10000; x++)
-//        {
-//        g.drawImage(back, 0, 0, null);
-//        }
-//        try
-//        {
-//          Thread.sleep(1000);
-//        }
-//        catch (InterruptedException e){}
-        //System.out.println("IS IT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?!?!!?!?!??!");
       }
-      
-      
-//      for (int z = 0; z < NUM_BUBBLES; z++)
-//      {
-//        ball[z].draw(g);
-//      }
-//      // Display ball's information
-//      g.setColor(Color.WHITE);
-//      g.setFont(new Font("Courier New", Font.PLAIN, 12));
-//      g.drawString("Ball " + ball.toString(), 20, 30);
     
         /** This method is overriden to get the preferred size of the component. 
       * @return Dimension that indicates the preferred size
@@ -607,12 +510,5 @@ public abstract class Levels extends JPanel {
    
    public abstract int generateSpeed();
    public abstract int getLevel();
-
-//  
-////  public void draw (Graphics g)
-////  {
-////      g.drawImage(pics[background], 0, 0, null);
-////      System.out.println(background);
-////  }
 }
   

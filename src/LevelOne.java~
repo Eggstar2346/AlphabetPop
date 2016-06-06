@@ -68,8 +68,8 @@ public class LevelOne extends Levels {
     readWords("Level1.txt");
     word = words.get(0).toUpperCase();
     
-    volume(-15.0f, 2);
-    audio[2].loop(Clip.LOOP_CONTINUOUSLY);
+    AudioRecordings.volume(-15.0f, AudioRecordings.background[1]);
+    AudioRecordings.background[1].loop(Clip.LOOP_CONTINUOUSLY);
     t = new GameTimer();
     t.start();
     
@@ -82,8 +82,8 @@ public class LevelOne extends Levels {
     {
       ball[z] = new Ball(50+(z%9)*(2*radius+30), 50+(z/9)*(2*radius+30), radius, 0, 0, Colors.bubbles, (char)(65+z), false);
     }
-    alphabet[letters[currentLetter]-65].start();
-    
+    AudioRecordings.alphabet[letters[currentLetter]-65].start();
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg", Color.BLACK);
     startup();
   }
   

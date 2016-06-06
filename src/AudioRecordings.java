@@ -12,7 +12,7 @@ public class AudioRecordings
 {
   static Clip[] background = new Clip[7];
   static Clip[] alphabet = new Clip[26];
-  static Clip[] effects = new Clip[3];
+  static Clip[] effects = new Clip[6];
   
    /**
    * This constructor loads all of the audio clips into the correct arrays.
@@ -38,13 +38,25 @@ public class AudioRecordings
         alphabet[x].open(alphabetClipStream);
       }
       //load effects
-      for (int x = 0; x < effects.length; x++)
+      for (int x = 0; x < 3; x++)
       {
         effects[x] = AudioSystem.getClip();
         File effectsClip = new File(("Music_" + (x+8) + ".wav"));
         AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
         effects[x].open(effectsClipStream);
       }
+      effects[3] = AudioSystem.getClip();
+      File effectsClip = new File(("Click the Letter.wav"));
+      AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
+      effects[3].open(effectsClipStream);
+      effects[4] = AudioSystem.getClip();
+      File effectsClip2 = new File(("Before.wav"));
+      AudioInputStream effectsClipStream2 = AudioSystem.getAudioInputStream(effectsClip2);
+      effects[4].open(effectsClipStream2);
+      effects[5] = AudioSystem.getClip();
+      File effectsClip3 = new File(("After.wav"));
+      AudioInputStream effectsClipStream3 = AudioSystem.getAudioInputStream(effectsClip3);
+      effects[5].open(effectsClipStream3);
     }
     catch (UnsupportedAudioFileException q) {
       q.printStackTrace();
@@ -66,4 +78,58 @@ public class AudioRecordings
     FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
     gainControl.setValue(volAdjust);
   }
+  
+  public static void oneAfterAnother ()
+  {
+    byte[] buffer = new byte[4096];
+    try {
+      File file = new File ("Click the letter.wav");
+      AudioInputStream is = AudioSystem.getAudioInputStream(file);
+      AudioFormat format = is.getFormat();
+      SourceDataLine line = AudioSystem.getSourceDataLine(format);
+      line.open(format);
+      line.start();
+      while (is.available() > 0) 
+      {
+        int len = is.read(buffer);
+        line.write(buffer, 0, len);
+      }
+      line.drain();
+      line.close();
+    } 
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+//    try {
+//      AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+//      AudioFormat format = audioStream.getFormat();
+//      DataLine.Info info = new DataLine.Info(Clip.class, format);
+//      Clip audioClip = (Clip) AudioSystem.getLine(info);
+//      audioClip.addLineListener(this);
+//      audioClip.open(audioStream);
+//      audioClip.start();
+//      
+//      while (!playCompleted) {
+//        // wait for the playback completes
+//        try {
+//          Thread.sleep(1000);
+//        } catch (InterruptedException ex) {
+//          ex.printStackTrace();
+//        }
+//      }
+//      
+//      audioClip.close();
+//      
+//    } catch (UnsupportedAudioFileException ex) {
+//      System.out.println("The specified audio file is not supported.");
+//      ex.printStackTrace();
+//    } catch (LineUnavailableException ex) {
+//      System.out.println("Audio line for playing back is unavailable.");
+//      ex.printStackTrace();
+//    } catch (IOException ex) {
+//      System.out.println("Error playing the audio file.");
+//      ex.printStackTrace();
+//    }
+//  }
+}
 }

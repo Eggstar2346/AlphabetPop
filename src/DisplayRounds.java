@@ -30,18 +30,21 @@ public class DisplayRounds extends JPanel
   public DisplayRounds (int currentWord, int currentLevel)
   {
     System.out.println("IS THIS WORKING OR NO");
-    box = new ContainerBox(0, 0, 1200,650, ("Round" + currentWord+1 + "Back.jpg"), Color.BLACK);
-//    try 
-//    {
-//      background = ImageIO.read(new File("Round" + currentWord+1 + "Back.jpg"));
-//      System.out.println(background.toString());
-//    } 
-//    catch (IOException e) 
-//    {
-//    }
+    AudioRecordings.effects[2].setMicrosecondPosition(0);
+    AudioRecordings.effects[2].start();
+    //box = new ContainerBox(0, 0, 1200,650, ("Round" + currentWord+1 + "Back.jpg"), Color.BLACK);
+    try 
+    {
+      background = ImageIO.read(new File("Round1Back.jpg"));
+      //System.out.println(background.toString());
+    } 
+    catch (IOException e) 
+    {
+      System.out.println("Hello");
+    }
     
-   // repaint();
-    //revalidate();
+    repaint();
+    revalidate();
     
     addMouseListener(new MouseAdapter() {
       @Override
@@ -49,6 +52,7 @@ public class DisplayRounds extends JPanel
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println(xCoord+ "      "+yCoord);
+        AudioRecordings.effects[2].stop();
         Main.switchMenu(currentLevel);
       }
     }
@@ -59,8 +63,8 @@ public class DisplayRounds extends JPanel
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
-    box.draw(g);
-    //g.drawImage(background, 0, 0, null);
+    //box.draw(g);
+    g.drawImage(background, 0, 0, null);
 //    g.setFont(new Font("Courier New", Font.PLAIN, 12));
 //    g.drawString("You completed the first level!", 0, 50);
 //    g.drawString("You completed round 1 in " + round1 + " seconds!", 0, 100);

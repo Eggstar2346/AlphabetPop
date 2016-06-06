@@ -94,9 +94,14 @@ public class LevelTwo extends Levels
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    AudioRecordings.alphabet[letters[currentLetter]-65].start();
+//    AudioRecordings.effects[3].setMicrosecondPosition(0);
+//    AudioRecordings.effects[3].start();
+    
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass2.jpg", Color.BLACK);
     startup();
+    AudioRecordings.oneAfterAnother();
+    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+    AudioRecordings.alphabet[letters[currentLetter]-65].start();
   }
   
   public int generateSpeed()

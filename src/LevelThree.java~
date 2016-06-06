@@ -69,8 +69,8 @@ public class LevelThree extends Levels
     readWords("Level3.txt");
     word = words.get(0).toUpperCase();
     
-    volume(-15.0f, 2);
-    audio[2].loop(Clip.LOOP_CONTINUOUSLY);
+    AudioRecordings.volume(-15.0f, AudioRecordings.background[3]);
+    AudioRecordings.background[3].loop(Clip.LOOP_CONTINUOUSLY);
     t = new GameTimer();
     t.start();
     
@@ -97,8 +97,8 @@ public class LevelThree extends Levels
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    alphabet[letters[currentLetter]-65].start();
-    
+    AudioRecordings.alphabet[letters[currentLetter]-65].start();
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg", Color.BLACK);
     startup();
   }
   

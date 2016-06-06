@@ -287,8 +287,31 @@ public abstract class Levels extends JPanel {
               currentLetter++;
               if (currentLetter <= letters.length-1)
               {
-                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                if (getLevel() < 3)
+                {
+                  System.out.println("OVERRRRRRRRRRRRRRRR HEREEEEEEEEEEEEEEEE");
+//                  AudioRecordings.effects[3].setMicrosecondPosition(0);
+//                  AudioRecordings.effects[3].start();
+                  AudioRecordings.oneAfterAnother();
+                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                }
+                else
+                {
+                  int rand = (int)(Math.random()*2)+4;
+                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
+                  AudioRecordings.effects[rand].start();
+                  if (rand == 4)
+                  {
+                    AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
+                    AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                  }
+                  else
+                  {
+                    AudioRecordings.alphabet[letters[currentLetter]-66].setMicrosecondPosition(0);
+                    AudioRecordings.alphabet[letters[currentLetter]-66].start();
+                  }
+                }
               }
             }
             else
@@ -313,13 +336,43 @@ public abstract class Levels extends JPanel {
               }
               else
               {
-                Main.frame.add(new DisplayRounds(currentWord, getLevel()));
+                //Main.frame.getContentPane().removeAll();
+//                setLayout(null);
+//                DisplayRounds d = new DisplayRounds(currentWord, getLevel());
+//                d.setBounds(0,0,550,1200);
+//                Main.frame.add(d);
+//                Main.frame.repaint();
+//                Main.frame.revalidate();
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 t.setTimeElapsed(0);
                 setBubbles();
-                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                AudioRecordings.alphabet[letters[currentLetter]-65].start();
+//                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+//                AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                if (getLevel() < 3)
+                {
+//                  AudioRecordings.effects[3].setMicrosecondPosition(0);
+//                  AudioRecordings.effects[3].start();
+                  AudioRecordings.oneAfterAnother();
+                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                }
+                else
+                {
+                  int rand = (int)(Math.random()*2)+4;
+                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
+                  AudioRecordings.effects[rand].start();
+                  if (rand == 4)
+                  {
+                    AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
+                    AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                  }
+                  else
+                  {
+                    AudioRecordings.alphabet[letters[currentLetter]-66].setMicrosecondPosition(0);
+                    AudioRecordings.alphabet[letters[currentLetter]-66].start();
+                  }
+                }
               }
             }
             System.out.println("This is bubble number: " + currentLetter);
@@ -405,7 +458,6 @@ public abstract class Levels extends JPanel {
       g.setColor(Color.WHITE);
       g.setFont(new Font("Courier New", Font.PLAIN, 12));
       g.drawString("Ball " + ball.toString(), 20, 30);
-      
     }
     
     /** This method is overriden to get the preferred size of the component. 
