@@ -165,6 +165,8 @@ public abstract class Levels extends JPanel {
   int[] roundTimes = new int[3];
   
   boolean showRoundDone = false;
+  AudioRecordings a;
+  AudioRecordings b;
   
     /**
    * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
@@ -292,8 +294,18 @@ public abstract class Levels extends JPanel {
                   System.out.println("OVERRRRRRRRRRRRRRRR HEREEEEEEEEEEEEEEEE");
 //                  AudioRecordings.effects[3].setMicrosecondPosition(0);
 //                  AudioRecordings.effects[3].start();
-                  AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
-                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                  a = new AudioRecordings (AudioRecordings.effects[3]);
+                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+                  a.setMicrosecondPosition(0);
+                  a.start();
+                  try
+                  {
+                    a.join();
+                  }
+                  catch (InterruptedException f)
+                  {
+                    f.printStackTrace();
+                  }
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 }
                 else
@@ -353,9 +365,21 @@ public abstract class Levels extends JPanel {
                 {
 //                  AudioRecordings.effects[3].setMicrosecondPosition(0);
 //                  AudioRecordings.effects[3].start();
-                  AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+                  
+                  
+                  //AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                  a = new AudioRecordings(AudioRecordings.alphabet[letters[currentLetter]-65]);
                   AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                  a.start();
+                  try
+                  {
+                    a.join();
+                  }
+                  catch (InterruptedException f)
+                  {
+                    f.printStackTrace();
+                  }
                 }
                 else
                 {

@@ -329,7 +329,7 @@ public abstract class Levels extends JPanel {
                 System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
                 //Main.switchMenu(0);
                 Main.frame.getContentPane().removeAll();
-                Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2]));
+                Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
                 Main.frame.repaint();
                 Main.frame.revalidate();
                 return;
