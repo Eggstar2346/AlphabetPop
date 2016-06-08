@@ -292,7 +292,7 @@ public abstract class Levels extends JPanel {
                   System.out.println("OVERRRRRRRRRRRRRRRR HEREEEEEEEEEEEEEEEE");
 //                  AudioRecordings.effects[3].setMicrosecondPosition(0);
 //                  AudioRecordings.effects[3].start();
-                  AudioRecordings.oneAfterAnother();
+                  AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
                   AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 }
@@ -353,7 +353,7 @@ public abstract class Levels extends JPanel {
                 {
 //                  AudioRecordings.effects[3].setMicrosecondPosition(0);
 //                  AudioRecordings.effects[3].start();
-                  AudioRecordings.oneAfterAnother();
+                  AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
                   AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 }

@@ -87,7 +87,7 @@ public class DisplayTime extends JPanel {
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
-    //g.drawImage(background, 0, 0, null);
+    g.drawImage(background, 0, 0, null);
     g.setFont(new Font("Courier New", Font.PLAIN, 12));
     g.drawString("You completed the first level!", 0, 50);
     g.drawString("You completed round 1 in " + round1 + " seconds!", 0, 100);
