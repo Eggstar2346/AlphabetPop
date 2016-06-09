@@ -303,14 +303,15 @@ public abstract class Levels extends JPanel {
                 }
                 else
                 {
-                  rand = (int)(Math.random()*2)+1;
                   AudioRecordings.alphabetB[temp].stop();
                   AudioRecordings.alphabetA[temp].stop();
                   if (letters[currentLetter] == 'Z')
-                    rand = 1;
-                  if (letters[currentLetter] == 'A')
                     rand = 2;
-                  if (rand == 2)
+                  else if (letters[currentLetter] == 'A')
+                    rand = 1;
+                  else
+                    rand = (int)(Math.random()*2)+1;
+                  if (rand == 1)
                   {
                     AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
                     AudioRecordings.alphabetB[letters[currentLetter]-65].start();
@@ -387,7 +388,12 @@ public abstract class Levels extends JPanel {
                 }
                 else
                 {
-                  rand = (int)(Math.random()*2)+1;
+                  if (letters[currentLetter] == 'Z')
+                    rand = 2;
+                  else if (letters[currentLetter] == 'A')
+                    rand = 1;
+                  else
+                    rand = (int)(Math.random()*2)+1;
                   if (rand == 1)
                   {
                     AudioRecordings.alphabetB[temp].stop();
