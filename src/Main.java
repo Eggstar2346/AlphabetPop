@@ -25,6 +25,14 @@ import java.io.*;
  * <b>Time Spent</b> 2 hours
  * <b>What Was Changed</b> The code organization was improved by removing previous additions and the switchMenu() method 
  * was added.
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 2.1
+ * <b>Date</b> 06.08.16
+ * <b>Time Spent</b> 1 hour
+ * <b>What Was Changed</b> The CHM file was added and a key listener was programmed.
+ * 
+ * 
  * 
  * <p>
  * <b> Instance Variables: </b>
@@ -76,6 +84,10 @@ public class Main {
     {
       frame.add(new Instructions());
     }
+    else if (choice==7)
+    {
+      frame.add(new HighScores());
+    }
     frame.revalidate();
   }
   
@@ -110,7 +122,7 @@ public class Main {
               {
                 Runtime.getRuntime ( ).exec (progpath);
               }
-              catch (IOException easasads)
+              catch (IOException i)
               {
                 System.out.println("Doesn't work :/");
                 //messageDialog ("Couldn't find Help File");

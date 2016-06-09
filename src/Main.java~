@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import java.awt.event.*;
+import java.io.*;
 
 
 /**
@@ -98,6 +99,25 @@ public class Main {
         frame.add(new MainMenu()); //new Splashscreen2());//this should be splashscreen but i dont want it to play every single time
 //        MainMenu m = new MainMenu();
 //        frame.add(m);
+        frame.addKeyListener(new KeyAdapter() {
+          @Override
+          public void keyPressed(KeyEvent e) {
+            System.out.println(e.getKeyCode());
+            if (e.getKeyCode() == KeyEvent.VK_F1)
+            {
+              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
+              try
+              {
+                Runtime.getRuntime ( ).exec (progpath);
+              }
+              catch (IOException easasads)
+              {
+                System.out.println("Doesn't work :/");
+                //messageDialog ("Couldn't find Help File");
+              }
+            }
+          }
+        });
         frame.pack();
         frame.setVisible(true);
         frame.setSize(1200,650);
