@@ -69,7 +69,7 @@ public class Splashscreen2 extends JPanel
    */
   public Splashscreen2() 
   { 
-    box = new ContainerBox(0, 0, 1200,650, "SplashscreenBack.jpg", Color.BLACK);
+    box = new ContainerBox(0, 0, 1200,650, "SplashscreenBack.jpg");
     for (int x = 0; x < title.length(); x++)
     {
       if (title.charAt(x) != ' ')

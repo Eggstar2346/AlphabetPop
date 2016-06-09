@@ -97,8 +97,6 @@ public class LevelTwo extends Levels
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass.jpg", Color.BLACK);
     startup();
     AudioRecordings.alphabet[temp].stop();
-    //AudioRecordings.effects[0].setMicrosecondPosition(0);
-    //AudioRecordings.effects[0].start();
     AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
     AudioRecordings.alphabet[letters[currentLetter]-65].start();
     temp = letters[currentLetter]-65;

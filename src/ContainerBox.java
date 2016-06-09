@@ -46,7 +46,6 @@ import javax.swing.*;
 public class ContainerBox {
   int minX, maxX, minY, maxY;
   private String imageName;
-  private Color colorBorder;
   private BufferedImage pic;
   private static final Color DEFAULT_COLOR_FILLED = Color.BLACK;
   private static final Color DEFAULT_COLOR_BORDER = Color.YELLOW;
@@ -62,13 +61,12 @@ public class ContainerBox {
     * @param name String for image name
     * @param colorBorder Color for border
    */
-  public ContainerBox(int x, int y, int width, int height, String name, Color colorBorder) {
+  public ContainerBox(int x, int y, int width, int height, String name) {
     minX = x;
     minY = y;
     maxX = x + width - 1;
     maxY = y + height - 1;
     imageName = name;
-    this.colorBorder = colorBorder;
     pic = loadImage();
   }
   
@@ -115,7 +113,5 @@ public class ContainerBox {
     */
   public void draw(Graphics g) {
     g.drawImage(pic, minX, minY, null);
-    g.setColor(colorBorder);
-    g.drawRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
   }
 }

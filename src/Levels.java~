@@ -303,14 +303,15 @@ public abstract class Levels extends JPanel {
                 }
                 else
                 {
-                  rand = (int)(Math.random()*2)+1;
                   AudioRecordings.alphabetB[temp].stop();
                   AudioRecordings.alphabetA[temp].stop();
                   if (letters[currentLetter] == 'Z')
-                    rand = 1;
-                  if (letters[currentLetter] == 'A')
                     rand = 2;
-                  if (rand == 2)
+                  else if (letters[currentLetter] == 'A')
+                    rand = 1;
+                  else
+                    rand = (int)(Math.random()*2)+1;
+                  if (rand == 1)
                   {
                     AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
                     AudioRecordings.alphabetB[letters[currentLetter]-65].start();
@@ -355,6 +356,9 @@ public abstract class Levels extends JPanel {
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
+                AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+                AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
+                AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
                 System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
                 AudioRecordings.background[getLevel()].stop();
                 AudioRecordings.alphabet[temp].stop();
@@ -384,7 +388,12 @@ public abstract class Levels extends JPanel {
                 }
                 else
                 {
-                  rand = (int)(Math.random()*2)+1;
+                  if (letters[currentLetter] == 'Z')
+                    rand = 2;
+                  else if (letters[currentLetter] == 'A')
+                    rand = 1;
+                  else
+                    rand = (int)(Math.random()*2)+1;
                   if (rand == 1)
                   {
                     AudioRecordings.alphabetB[temp].stop();
@@ -509,11 +518,16 @@ public abstract class Levels extends JPanel {
       {
         g.fillRect((x*110) + 300, 0, 100,100);
       }
+      g.setFont(new Font("Courier New", Font.PLAIN, 20));
       g.setColor(Color.red);
       g.fillRect(1000, 20, 60, 60);
       g.setColor(Color.white);
       g.fillRect(1010, 30, 15, 40);
       g.fillRect(1035, 30, 15, 40);
+      g.setColor(Color.black);
+      g.fillRect(1070, 20, 120, 60);
+      g.setColor(Color.white);
+      g.drawString("Listen again!", 1075, 60);
       g.setFont(new Font("Courier New", Font.PLAIN, 40));
       g.setColor(Colors.letters);
       for (int x = -1; x < currentLetter; x++)

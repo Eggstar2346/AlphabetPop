@@ -136,7 +136,7 @@ public abstract class Levels extends JPanel {
   int yCoord;
 
  ContainerBox box;  // The container rectangular box
-  private ContainerBox box2 = new ContainerBox (0, 0, canvasWidth, canvasHeight, "lettersBack.jpg", Color.BLACK);;
+  private ContainerBox box2 = new ContainerBox (0, 0, canvasWidth, canvasHeight, "lettersBack.jpg");
   
   int radius = 50;
   int x;
