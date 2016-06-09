@@ -89,6 +89,7 @@ public class Main {
       frame.add(new HighScores());
     }
     frame.revalidate();
+    frame.requestFocus();
   }
   
     /**
