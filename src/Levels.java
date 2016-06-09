@@ -127,9 +127,6 @@ public abstract class Levels extends JPanel {
   private static final int NUM_BUBBLES = 26;
   String word;
   protected ArrayList<String>words;
-
- ContainerBox box;  // The container rectangular box
-  private ContainerBox box2;
   
   private DrawCanvas canvas; // Custom canvas for drawing the box/ball
   private DrawLetters canvas2;
@@ -137,6 +134,9 @@ public abstract class Levels extends JPanel {
   protected int canvasHeight;
   int xCoord;
   int yCoord;
+
+ ContainerBox box;  // The container rectangular box
+  private ContainerBox box2 = new ContainerBox (0, 0, canvasWidth, canvasHeight, "lettersBack.jpg", Color.BLACK);;
   
   int radius = 50;
   int x;
@@ -420,7 +420,7 @@ public abstract class Levels extends JPanel {
         canvasHeight = dim.height;
         // Adjust the bounds of the container to fill the window
         box.set(0, 0, canvasWidth, canvasHeight);
-        //box2.set(0, 0, 100, 100);
+        box2.set(0, 0, canvasWidth, 100);
       }
     });
     
@@ -478,10 +478,6 @@ public abstract class Levels extends JPanel {
       {
         ball[z].draw(g);
       }
-      // Display ball's information
-      g.setColor(Color.WHITE);
-      g.setFont(new Font("Courier New", Font.PLAIN, 12));
-      g.drawString("Ball " + ball.toString(), 20, 30);
     }
     
     /** This method is overriden to get the preferred size of the component. 
@@ -504,12 +500,17 @@ public abstract class Levels extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
-      
+      box2.draw (g);
       g.setColor(Colors.boxes);
       for (int x = 0; x < letters.length; x++)
       {
         g.fillRect((x*110) + 300, 0, 100,100);
       }
+      g.setColor(Color.red);
+      g.fillRect(1000, 20, 60, 60);
+      g.setColor(Color.white);
+      g.fillRect(1010, 30, 15, 40);
+      g.fillRect(1035, 30, 15, 40);
       g.setFont(new Font("Courier New", Font.PLAIN, 40));
       g.setColor(Colors.letters);
       for (int x = -1; x < currentLetter; x++)
@@ -519,8 +520,8 @@ public abstract class Levels extends JPanel {
       }
       // Draw the box and the ball
       g.setColor(Color.black);
-      g.setFont(new Font("Courier New", Font.PLAIN, 12));
-      g.drawString("Time: " + t.getTimeElapsed(), 0, 50);
+      g.setFont(new Font("Comic Sans", Font.PLAIN, 50));
+      g.drawString("Time: " + t.getTimeElapsed(), 70, 70);
       BufferedImage back = null;
       }
     
@@ -529,7 +530,7 @@ public abstract class Levels extends JPanel {
       */
     @Override
     public Dimension getPreferredSize() {
-      return (new Dimension(100, 100));
+      return (new Dimension(canvasWidth, 100));
     }
   }
   
