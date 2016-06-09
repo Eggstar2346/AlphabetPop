@@ -291,37 +291,41 @@ public abstract class Levels extends JPanel {
               {
                 if (getLevel() < 3)
                 {
-                  System.out.println("OVERRRRRRRRRRRRRRRR HEREEEEEEEEEEEEEEEE");
-//                  AudioRecordings.effects[3].setMicrosecondPosition(0);
-//                  AudioRecordings.effects[3].start();
-                  a = new AudioRecordings (AudioRecordings.effects[3]);
-                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
-                  a.setMicrosecondPosition(0);
-                  a.start();
-                  try
-                  {
-                    a.join();
-                  }
-                  catch (InterruptedException f)
-                  {
-                    f.printStackTrace();
-                  }
+                  AudioRecordings.effects[3].setMicrosecondPosition(0);
+                  AudioRecordings.effects[3].start();
+                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                  
+     //             a = new AudioRecordings (AudioRecordings.effects[3]);
+                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+       //           a.setMicrosecondPosition(0);
+       //           a.start();
+//                  try
+//                  {
+//                    a.join();
+//                  }
+//                  catch (InterruptedException f)
+//                  {
+//                    f.printStackTrace();
+//                  }
+//                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 }
                 else
                 {
-                  int rand = (int)(Math.random()*2)+4;
-                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
-                  AudioRecordings.effects[rand].start();
-                  if (rand == 4)
+                  int rand = (int)(Math.random()*2)+1;
+//                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
+//                  AudioRecordings.effects[rand].start();
+                  if (rand == 1)
                   {
-                    AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
-                    AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                    //AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
+                    //AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                    AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
+                    AudioRecordings.alphabetB[letters[currentLetter]-65].start();
                   }
                   else
                   {
-                    AudioRecordings.alphabet[letters[currentLetter]-66].setMicrosecondPosition(0);
-                    AudioRecordings.alphabet[letters[currentLetter]-66].start();
+                    AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
+                    AudioRecordings.alphabetA[letters[currentLetter]-66].start();
                   }
                 }
               }
@@ -363,38 +367,45 @@ public abstract class Levels extends JPanel {
 //                AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 if (getLevel() < 3)
                 {
+                  AudioRecordings.effects[3].setMicrosecondPosition(0);
+                  AudioRecordings.effects[3].start();
+                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
 //                  AudioRecordings.effects[3].setMicrosecondPosition(0);
 //                  AudioRecordings.effects[3].start();
                   //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
                   
                   
                   //AudioRecordings.alphabet[letters[currentLetter]-65].start();
-                  a = new AudioRecordings(AudioRecordings.alphabet[letters[currentLetter]-65]);
-                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-                  a.start();
-                  try
-                  {
-                    a.join();
-                  }
-                  catch (InterruptedException f)
-                  {
-                    f.printStackTrace();
-                  }
+//                  a = new AudioRecordings(AudioRecordings.alphabet[letters[currentLetter]-65]);
+//                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+//                  a.start();
+//                  try
+//                  {
+//                    a.join();
+//                  }
+//                  catch (InterruptedException f)
+//                  {
+//                    f.printStackTrace();
+//                  }
+                  
                 }
                 else
                 {
-                  int rand = (int)(Math.random()*2)+4;
-                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
-                  AudioRecordings.effects[rand].start();
-                  if (rand == 4)
+                  int rand = (int)(Math.random()*2)+1;
+//                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
+//                  AudioRecordings.effects[rand].start();
+                  if (rand == 1)
                   {
-                    AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
-                    AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                    //AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
+                    //AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                    AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
+                    AudioRecordings.alphabetB[letters[currentLetter]-65].start();
                   }
                   else
                   {
-                    AudioRecordings.alphabet[letters[currentLetter]-66].setMicrosecondPosition(0);
-                    AudioRecordings.alphabet[letters[currentLetter]-66].start();
+                    AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
+                    AudioRecordings.alphabetA[letters[currentLetter]-66].start();
                   }
                 }
               }

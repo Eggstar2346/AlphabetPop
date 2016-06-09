@@ -8,16 +8,43 @@ import javax.swing.*;
   * @version 1 05.27.16
   */
 
-public class AudioRecordings
+public class AudioRecordings extends Thread
 {
   static Clip[] background = new Clip[7];
   static Clip[] alphabet = new Clip[26];
   static Clip[] effects = new Clip[6];
+  Clip clip;
   
    /**
    * This constructor loads all of the audio clips into the correct arrays.
    */
-  public AudioRecordings()
+  public AudioRecordings(Clip clip)
+  {
+    loadAudio();
+    this.clip = clip;
+  }
+  
+  public AudioRecordings ()
+  {
+    loadAudio();
+  }
+  
+  public void setMicrosecondPosition (int time)
+  {
+    clip.setMicrosecondPosition(time);
+  }
+  
+  public void audioRecordings ()
+  {
+    clip.start();
+  }
+  
+  public void run()
+  {
+    audioRecordings();
+  }
+    
+  public void loadAudio()
   {
     try
     {
@@ -81,22 +108,6 @@ public class AudioRecordings
   
   public static void oneAfterAnother (String wavFile1, String wavFile2)
   {
-    try {
-      AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File(wavFile1));
-      AudioInputStream clip2 = AudioSystem.getAudioInputStream(new File(wavFile2));
-      
-      AudioInputStream appendedFiles = 
-        new AudioInputStream(
-                             new SequenceInputStream(clip1, clip2),     
-                             clip1.getFormat(), 
-                             clip1.getFrameLength() + clip2.getFrameLength());
-      
-      AudioSystem.write(appendedFiles, 
-                        AudioFileFormat.Type.WAVE, 
-                        new File("D:\\wavAppended.wav"));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
 //    byte[] buffer = new byte[4096];
 //    try {
 //      File file = new File ("Click the letter.wav");
@@ -116,6 +127,29 @@ public class AudioRecordings
 //    catch (Exception e) {
 //      e.printStackTrace();
 //    }
+    
+//    public void actionPerformed (ActionEvent e)
+//    {
+//      
+//    }
+//    try {
+//      AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File(wavFile1));
+//      AudioInputStream clip2 = AudioSystem.getAudioInputStream(new File(wavFile2));
+//      
+//      AudioInputStream appendedFiles = 
+//        new AudioInputStream(
+//                             new SequenceInputStream(clip1, clip2),     
+//                             clip1.getFormat(), 
+//                             clip1.getFrameLength() + clip2.getFrameLength());
+//      
+//      AudioSystem.write(appendedFiles, 
+//                        AudioFileFormat.Type.WAVE, 
+//                        new File("D:\\wavAppended.wav"));
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    }
+    
+    
 //    try {
 //      AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 //      AudioFormat format = audioStream.getFormat();

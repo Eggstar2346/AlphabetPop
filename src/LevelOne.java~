@@ -82,10 +82,23 @@ public class LevelOne extends Levels {
     {
       ball[z] = new Ball(50+(z%9)*(2*radius+30), 50+(z/9)*(2*radius+30), radius, 0, 0, Colors.bubbles, (char)(65+z), false);
     }
+//    AudioRecordings.effects[3].setMicrosecondPosition(0);
+//    AudioRecordings.effects[3].start();
+    a = new AudioRecordings (AudioRecordings.effects[3]);
+    //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
     AudioRecordings.effects[3].setMicrosecondPosition(0);
-    AudioRecordings.effects[3].start();
-    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-    AudioRecordings.alphabet[letters[currentLetter]-65].start();
+    b = new AudioRecordings (AudioRecordings.alphabet[letters[currentLetter]-65]);
+    b.setMicrosecondPosition(0);
+    a.start();
+    try
+    {
+      a.join();
+    }
+    catch (InterruptedException f)
+    {
+      f.printStackTrace();
+    }
+    b.start();
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg", Color.BLACK);
     startup();
   }

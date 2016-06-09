@@ -84,21 +84,25 @@ public class LevelOne extends Levels {
     }
 //    AudioRecordings.effects[3].setMicrosecondPosition(0);
 //    AudioRecordings.effects[3].start();
-    a = new AudioRecordings (AudioRecordings.effects[3]);
-    //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+//    a = new AudioRecordings (AudioRecordings.effects[3]);
+//    //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
+//    AudioRecordings.effects[3].setMicrosecondPosition(0);
+//    b = new AudioRecordings (AudioRecordings.alphabet[letters[currentLetter]-65]);
+//    b.setMicrosecondPosition(0);
+//    a.start();
+//    try
+//    {
+//      a.join();
+//    }
+//    catch (InterruptedException f)
+//    {
+//      f.printStackTrace();
+//    }
+//    b.start();
     AudioRecordings.effects[3].setMicrosecondPosition(0);
-    b = new AudioRecordings (AudioRecordings.alphabet[letters[currentLetter]-65]);
-    b.setMicrosecondPosition(0);
-    a.start();
-    try
-    {
-      a.join();
-    }
-    catch (InterruptedException f)
-    {
-      f.printStackTrace();
-    }
-    b.start();
+    AudioRecordings.effects[3].start();
+    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+    AudioRecordings.alphabet[letters[currentLetter]-65].start();
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg", Color.BLACK);
     startup();
   }
