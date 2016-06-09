@@ -89,6 +89,7 @@ public class Main {
       frame.add(new HighScores());
     }
     frame.revalidate();
+    frame.requestFocus();
   }
   
     /**
@@ -132,7 +133,7 @@ public class Main {
         });
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1200,730);
+        frame.setSize(1217,730);
       }
     });
   }
