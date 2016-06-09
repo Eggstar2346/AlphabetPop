@@ -62,15 +62,15 @@ public class Main {
     }
     else if (choice==1)
     {
-      frame.add (new LevelOne(1200,550));
+      frame.add (new LevelOne(1200,630));
     }
     else if (choice==2)
     {
-      frame.add (new LevelTwo(1200,550));
+      frame.add (new LevelTwo(1200,630));
     }
     else if (choice==3)
     {
-      frame.add (new LevelThree(1200,550));
+      frame.add (new LevelThree(1200,630));
     }
     else if (choice==4)
     {
@@ -132,7 +132,7 @@ public class Main {
         });
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1200,650);
+        frame.setSize(1217,730);
       }
     });
   }

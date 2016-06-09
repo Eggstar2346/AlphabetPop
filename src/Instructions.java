@@ -41,50 +41,28 @@ public class Instructions extends JPanel {
     
     addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent e) {
+      public void mousePressed(MouseEvent e) {
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println(xCoord+ "      "+yCoord);
         currentSlide++;
-        System.out.println(currentSlide);
-        if (currentSlide == 9)
+        if (currentSlide == 2)
+          AudioRecordings.alphabet[0].start();
+        if (currentSlide == 3)
+        {
+          AudioRecordings.alphabet[0].stop();
+          AudioRecordings.effects[0].start();
+        }
+        if (currentSlide == 4)
+        {
+          AudioRecordings.effects[0].stop();
+          AudioRecordings.effects[1].start();
+        }
+        //System.out.println(currentSlide);
+        if (currentSlide == 20)
           Main.switchMenu(choice);
         repaint();
         revalidate();
-//          Main.frame.getContentPane().removeAll();
-//          Main.frame.add(new Instructions());
-//          Main.frame.revalidate();
-//          Main.frame.repaint();
-          
-//        if (xCoord>=217&&xCoord<=1016)
-//        {
-//          if (yCoord>=162&&yCoord<=211)
-//          {
-//            System.out.println("Instructions");
-//            choice = 1;
-//          }
-//          else if (yCoord>=260&&yCoord<=309)
-//          {
-//            System.out.println("Play");
-//            choice = 2;
-//            Main.switchMenu(4);
-//          } 
-//          else if (yCoord>=363&&yCoord<=412)
-//          {
-//            System.out.println("High Scores");
-//            choice = 3;
-//          }
-//          else 
-//          {
-//            if (yCoord>=462&&yCoord<=511)
-//            {
-//              System.out.println("Exit");
-//              choice = 4;
-//              Main.switchMenu(5);
-//            }
-//          }
-//        }
-        
       }
     });
   }
@@ -102,7 +80,20 @@ public class Instructions extends JPanel {
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
+    //draw instructions background
     g.drawImage(Images.instructions[currentSlide], 0, 0, null);
+    //draw title
+    g.setColor(Colors.letters);
+    g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
+    g.drawString("Alphabet Pop", 375, 70);
+    //draw back/forward buttons
+    g.setColor(Color.black);
+    g.fillRect(1035, 0, 150, 50);
+    g.fillRect(0,0,150,50);
+    g.setColor(Color.white);
+    g.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    g.drawString("Backwards", 25, 30);
+    g.drawString("Forwards", 1060, 30);
   }
   
 }

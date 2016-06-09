@@ -69,6 +69,26 @@ public class MainMenu extends JPanel
     } 
     repaint();
     
+    addKeyListener(new KeyAdapter() { //this wont work for some reason
+          @Override
+          public void keyTyped(KeyEvent e) {
+            System.out.println(e.getKeyChar());
+            if (e.getKeyChar() == KeyEvent.VK_F1)
+            {
+              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
+              try
+              {
+                Runtime.getRuntime ( ).exec (progpath);
+              }
+              catch (IOException easasads)
+              {
+                System.out.println("Doesn't work :/");
+                //messageDialog ("Couldn't find Help File");
+              }
+            }
+          }
+        });
+    
     addMouseListener(new MouseAdapter() {
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -90,6 +110,7 @@ public class MainMenu extends JPanel
         else if (yCoord>=363&&yCoord<=412)
         {
           System.out.println("High Scores");
+          Main.switchMenu(7);
         }
         else 
         {

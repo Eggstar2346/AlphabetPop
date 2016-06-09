@@ -167,6 +167,8 @@ public abstract class Levels extends JPanel {
   boolean showRoundDone = false;
   AudioRecordings a;
   AudioRecordings b;
+  int temp;
+  int rand;
   
     /**
    * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
@@ -278,10 +280,10 @@ public abstract class Levels extends JPanel {
           {
             if (ball[z].getLetter() == letters[currentLetter])
             {
-              AudioRecordings.effects[0].setMicrosecondPosition(0);
-              AudioRecordings.effects[0].start();
+              AudioRecordings.alphabet[temp].stop();
+              //AudioRecordings.effects[0].setMicrosecondPosition(0);
+             // AudioRecordings.effects[0].start();
               
-              //ball[z].setColor(Color.green);
               ball[z].setWasClicked(true);
               ball[z].setSpeed(0);
               ball[z].setRadius(-100);
@@ -289,51 +291,63 @@ public abstract class Levels extends JPanel {
               currentLetter++;
               if (currentLetter <= letters.length-1)
               {
+                AudioRecordings.effects[0].setMicrosecondPosition(0);
+                AudioRecordings.effects[0].start();
                 if (getLevel() < 3)
                 {
-                  AudioRecordings.effects[3].setMicrosecondPosition(0);
-                  AudioRecordings.effects[3].start();
+                  AudioRecordings.alphabet[temp].stop();
+//                  
                   AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
-                  
-     //             a = new AudioRecordings (AudioRecordings.effects[3]);
-                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
-       //           a.setMicrosecondPosition(0);
-       //           a.start();
-//                  try
-//                  {
-//                    a.join();
-//                  }
-//                  catch (InterruptedException f)
-//                  {
-//                    f.printStackTrace();
-//                  }
-//                  AudioRecordings.alphabet[letters[currentLetter]-65].start();
+                  temp = letters[currentLetter]-65;
                 }
                 else
                 {
-                  int rand = (int)(Math.random()*2)+1;
-//                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
-//                  AudioRecordings.effects[rand].start();
-                  if (rand == 1)
+                  rand = (int)(Math.random()*2)+1;
+                  AudioRecordings.alphabetB[temp].stop();
+                  AudioRecordings.alphabetA[temp].stop();
+                  if (letters[currentLetter] == 'Z')
+                    rand = 1;
+                  if (letters[currentLetter] == 'A')
+                    rand = 2;
+                  if (rand == 2)
                   {
-                    //AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
-                    //AudioRecordings.alphabet[letters[currentLetter]-64].start();
                     AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
                     AudioRecordings.alphabetB[letters[currentLetter]-65].start();
+                    temp = letters[currentLetter]-65;
                   }
                   else
                   {
                     AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
                     AudioRecordings.alphabetA[letters[currentLetter]-66].start();
+                    temp = letters[currentLetter]-66;
                   }
                 }
               }
             }
             else
             {
+              //System.out.println("Hiiiiiiiiiiiiiiiiiiiiiii");
+              //AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+              //AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
+              //AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
               AudioRecordings.effects[1].setMicrosecondPosition(0);
               AudioRecordings.effects[1].start();
+//              if (getLevel() < 3)
+//                AudioRecordings.alphabet[letters[currentLetter]-65].start();
+//              else
+//              {
+//                if (rand == 1)
+//                {
+//                  AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
+//                  AudioRecordings.alphabetB[letters[currentLetter]-65].start();
+//                }
+//                else
+//                {
+//                  AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
+//                  AudioRecordings.alphabetA[letters[currentLetter]-66].start();
+//                }
+//              }
             }
             if (currentLetter > letters.length-1)
             {
@@ -341,9 +355,15 @@ public abstract class Levels extends JPanel {
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
-                AudioRecordings.background[2].stop();
+                AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+                AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
+                AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
+                System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
+                AudioRecordings.background[getLevel()].stop();
+                AudioRecordings.alphabet[temp].stop();
+                AudioRecordings.alphabetA[temp].stop();
+                AudioRecordings.alphabetB[temp].stop();
                 System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
-                //Main.switchMenu(0);
                 Main.frame.getContentPane().removeAll();
                 Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
                 Main.frame.repaint();
@@ -352,60 +372,35 @@ public abstract class Levels extends JPanel {
               }
               else
               {
-                //Main.frame.getContentPane().removeAll();
-//                setLayout(null);
-//                DisplayRounds d = new DisplayRounds(currentWord, getLevel());
-//                d.setBounds(0,0,550,1200);
-//                Main.frame.add(d);
-//                Main.frame.repaint();
-//                Main.frame.revalidate();
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 t.setTimeElapsed(0);
                 setBubbles();
-//                AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-//                AudioRecordings.alphabet[letters[currentLetter]-65].start();
                 if (getLevel() < 3)
                 {
-                  AudioRecordings.effects[3].setMicrosecondPosition(0);
-                  AudioRecordings.effects[3].start();
+                  AudioRecordings.alphabet[temp].stop();
+                  AudioRecordings.effects[0].setMicrosecondPosition(0);
+                  AudioRecordings.effects[0].start();
                   AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
                   AudioRecordings.alphabet[letters[currentLetter]-65].start();
-//                  AudioRecordings.effects[3].setMicrosecondPosition(0);
-//                  AudioRecordings.effects[3].start();
-                  //AudioRecordings.oneAfterAnother("Click the Letter.wav", (("" + (char)(65+currentLetter)) + ".wav"));
-                  
-                  
-                  //AudioRecordings.alphabet[letters[currentLetter]-65].start();
-//                  a = new AudioRecordings(AudioRecordings.alphabet[letters[currentLetter]-65]);
-//                  AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-//                  a.start();
-//                  try
-//                  {
-//                    a.join();
-//                  }
-//                  catch (InterruptedException f)
-//                  {
-//                    f.printStackTrace();
-//                  }
-                  
+                  temp = letters[currentLetter]-65;
                 }
                 else
                 {
-                  int rand = (int)(Math.random()*2)+1;
-//                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
-//                  AudioRecordings.effects[rand].start();
+                  rand = (int)(Math.random()*2)+1;
                   if (rand == 1)
                   {
-                    //AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
-                    //AudioRecordings.alphabet[letters[currentLetter]-64].start();
+                    AudioRecordings.alphabetB[temp].stop();
                     AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
                     AudioRecordings.alphabetB[letters[currentLetter]-65].start();
+                    temp = letters[currentLetter]-65;
                   }
                   else
                   {
+                    AudioRecordings.alphabetA[temp].stop();
                     AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
                     AudioRecordings.alphabetA[letters[currentLetter]-66].start();
+                    temp = letters[currentLetter]-66;
                   }
                 }
               }
@@ -517,11 +512,16 @@ public abstract class Levels extends JPanel {
       {
         g.fillRect((x*110) + 300, 0, 100,100);
       }
+      g.setFont(new Font("Courier New", Font.PLAIN, 20));
       g.setColor(Color.red);
       g.fillRect(1000, 20, 60, 60);
       g.setColor(Color.white);
       g.fillRect(1010, 30, 15, 40);
       g.fillRect(1035, 30, 15, 40);
+      g.setColor(Color.black);
+      g.fillRect(1070, 20, 120, 60);
+      g.setColor(Color.white);
+      g.drawString("Listen again!", 1075, 60);
       g.setFont(new Font("Courier New", Font.PLAIN, 40));
       g.setColor(Colors.letters);
       for (int x = -1; x < currentLetter; x++)

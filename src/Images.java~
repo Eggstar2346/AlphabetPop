@@ -8,27 +8,28 @@ import javax.swing.*;
 
 public class Images
 {
-  BufferedImage [] screens = new BufferedImage [5];
-  BufferedImage [] levels = new BufferedImage [3];
-  BufferedImage [] rounds = new BufferedImage [3];
-  BufferedImage [] components = new BufferedImage [20];
-  BufferedImage [] instructions = new BufferedImage [20];
+  static BufferedImage [] screens = new BufferedImage [5];
+  static BufferedImage [] levels = new BufferedImage [3];
+  static BufferedImage [] rounds = new BufferedImage [3];
+  static BufferedImage [] components = new BufferedImage [20];
+  static BufferedImage [] instructions = new BufferedImage [20];
   
-  public void loadImage()
+  public Images()
   {
     try 
     {
       //load screens
       
       //load rounds
-      for (int x = 0; x < rounds.length; x++)
-      {
-        rounds[x] = ImageIO.read(new File("Round" + (x+1) + ".jpg"));
-      }
+//      for (int x = 0; x < rounds.length; x++)
+//      {
+//        rounds[x] = ImageIO.read(new File("Round" + (x+1) + ".jpg"));
+//      }
       //load instructions
-      for (int x = 0; x < 3; x++)
+      for (int x = 0; x < instructions.length; x++)
       {
-        instructions[x] = ImageIO.read(new File("InstructionsBack" + (x+1) + ".jpg"));
+        instructions[x] = ImageIO.read(new File("IntructionsBack" + (x+1) + ".psd"));
+        System.out.println("WHOOOOOOOOOOOOOO");
       }
     } 
     catch (IOException e) 

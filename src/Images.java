@@ -12,7 +12,7 @@ public class Images
   static BufferedImage [] levels = new BufferedImage [3];
   static BufferedImage [] rounds = new BufferedImage [3];
   static BufferedImage [] components = new BufferedImage [20];
-  static BufferedImage [] instructions = new BufferedImage [9];
+  static BufferedImage [] instructions = new BufferedImage [20];
   
   public Images()
   {
@@ -28,7 +28,7 @@ public class Images
       //load instructions
       for (int x = 0; x < instructions.length; x++)
       {
-        instructions[x] = ImageIO.read(new File("IntructionsBack" + (x+1) + ".jpg"));
+        instructions[x] = ImageIO.read(new File("InstructionsBack" + (x+1) + ".jpg"));
         System.out.println("WHOOOOOOOOOOOOOO");
       }
     } 

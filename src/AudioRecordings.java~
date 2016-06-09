@@ -12,6 +12,8 @@ public class AudioRecordings extends Thread
 {
   static Clip[] background = new Clip[7];
   static Clip[] alphabet = new Clip[26];
+  static Clip[] alphabetB = new Clip[25];
+  static Clip[] alphabetA = new Clip[25];
   static Clip[] effects = new Clip[6];
   Clip clip;
   
@@ -56,13 +58,29 @@ public class AudioRecordings extends Thread
         AudioInputStream backgroundClipStream = AudioSystem.getAudioInputStream(backgroundClip);
         background[x].open(backgroundClipStream);
       }
-      //load alphabet
+      //load alphabet regular
       for (int x = 0; x < alphabet.length; x++)
       {
         alphabet[x] = AudioSystem.getClip();
-        File alphabetClip = new File(("" + (char)(65+x)) + ".wav");
+        File alphabetClip = new File(("Click the letter " + (char)(65+x)) + ".wav");
         AudioInputStream alphabetClipStream = AudioSystem.getAudioInputStream(alphabetClip);
         alphabet[x].open(alphabetClipStream);
+      }
+      //load alphabet before
+      for (int x = 0; x < alphabetB.length; x++)
+      {
+        alphabetB[x] = AudioSystem.getClip();
+        File alphabetBClip = new File(("Before " + (char)(65+x+1)) + ".wav");
+        AudioInputStream alphabetBClipStream = AudioSystem.getAudioInputStream(alphabetBClip);
+        alphabetB[x].open(alphabetBClipStream);
+      }
+      //load alphabet after
+      for (int x = 0; x < alphabetA.length; x++)
+      {
+        alphabetA[x] = AudioSystem.getClip();
+        File alphabetAClip = new File(("After " + (char)(65+x)) + ".wav");
+        AudioInputStream alphabetAClipStream = AudioSystem.getAudioInputStream(alphabetAClip);
+        alphabetA[x].open(alphabetAClipStream);
       }
       //load effects
       for (int x = 0; x < 3; x++)

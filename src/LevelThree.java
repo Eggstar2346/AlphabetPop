@@ -97,20 +97,22 @@ public class LevelThree extends Levels
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    int random = (int)(Math.random()*2)+1;
-//                  AudioRecordings.effects[rand].setMicrosecondPosition(0);
-//                  AudioRecordings.effects[rand].start();
+    int random= (int)(Math.random()*2)+1;
+    AudioRecordings.alphabetB[temp].stop();
+    AudioRecordings.alphabetA[temp].stop();
+    //AudioRecordings.effects[0].setMicrosecondPosition(0);
+    //AudioRecordings.effects[0].start();
     if (random == 1)
     {
-      //AudioRecordings.alphabet[letters[currentLetter]-64].setMicrosecondPosition(0);
-      //AudioRecordings.alphabet[letters[currentLetter]-64].start();
       AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
       AudioRecordings.alphabetB[letters[currentLetter]-65].start();
+      temp = letters[currentLetter]-65;
     }
     else
     {
       AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
       AudioRecordings.alphabetA[letters[currentLetter]-66].start();
+      temp = letters[currentLetter]-66;
     }
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg", Color.BLACK);
     startup();

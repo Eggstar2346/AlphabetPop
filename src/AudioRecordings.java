@@ -14,7 +14,7 @@ public class AudioRecordings extends Thread
   static Clip[] alphabet = new Clip[26];
   static Clip[] alphabetB = new Clip[25];
   static Clip[] alphabetA = new Clip[25];
-  static Clip[] effects = new Clip[6];
+  static Clip[] effects = new Clip[3];
   Clip clip;
   
    /**
@@ -90,18 +90,18 @@ public class AudioRecordings extends Thread
         AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
         effects[x].open(effectsClipStream);
       }
-      effects[3] = AudioSystem.getClip();
-      File effectsClip = new File(("Click the Letter.wav"));
-      AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
-      effects[3].open(effectsClipStream);
-      effects[4] = AudioSystem.getClip();
-      File effectsClip2 = new File(("Before.wav"));
-      AudioInputStream effectsClipStream2 = AudioSystem.getAudioInputStream(effectsClip2);
-      effects[4].open(effectsClipStream2);
-      effects[5] = AudioSystem.getClip();
-      File effectsClip3 = new File(("After.wav"));
-      AudioInputStream effectsClipStream3 = AudioSystem.getAudioInputStream(effectsClip3);
-      effects[5].open(effectsClipStream3);
+//      effects[3] = AudioSystem.getClip();
+//      File effectsClip = new File(("Click the Letter.wav"));
+//      AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
+//      effects[3].open(effectsClipStream);
+//      effects[4] = AudioSystem.getClip();
+//      File effectsClip2 = new File(("Before.wav"));
+//      AudioInputStream effectsClipStream2 = AudioSystem.getAudioInputStream(effectsClip2);
+//      effects[4].open(effectsClipStream2);
+//      effects[5] = AudioSystem.getClip();
+//      File effectsClip3 = new File(("After.wav"));
+//      AudioInputStream effectsClipStream3 = AudioSystem.getAudioInputStream(effectsClip3);
+//      effects[5].open(effectsClipStream3);
     }
     catch (UnsupportedAudioFileException q) {
       q.printStackTrace();

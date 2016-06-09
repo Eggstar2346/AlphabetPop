@@ -71,7 +71,7 @@ public class LevelMenu extends JPanel
     
     addMouseListener(new MouseAdapter() {
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
       int xCoord = e.getX();
       int yCoord = e.getY();
       System.out.println(xCoord+ "      "+yCoord);
