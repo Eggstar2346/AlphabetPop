@@ -50,6 +50,30 @@ public class HighScores extends JPanel {
     catch (NumberFormatException n)
     {
     }
+    addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        int xCoord = e.getX();
+        int yCoord = e.getY();
+        System.out.println(xCoord+ "      "+yCoord);
+        if (yCoord>=550&&yCoord<=619)
+        {
+          if (xCoord>=84&&xCoord<=275)
+          {
+            System.out.println("Back");
+            Main.switchMenu(0);
+          }
+          else 
+          {
+            if (xCoord>=617&&xCoord<=808)
+            {
+              System.out.println("Print");
+              new PrintFile(name,highScore,gameType);
+            }
+          }
+        }
+      }
+    });
   }
   
   public static boolean checkScoreFile()

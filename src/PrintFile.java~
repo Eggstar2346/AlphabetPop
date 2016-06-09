@@ -67,6 +67,7 @@ public class PrintFile implements Printable, ActionListener {
              try {
                   job.print();
              } catch (PrinterException ex) {
+               JOptionPane.showMessageDialog(new JFrame(),"The scores cannot be printed.","Printing Error!",JOptionPane.ERROR_MESSAGE);
               /* The job did not successfully complete */
              }
          }
@@ -80,7 +81,7 @@ public class PrintFile implements Printable, ActionListener {
            public void windowClosing(WindowEvent e) {System.exit(0);}
         });
         JButton printButton = new JButton("Print Hello World");
-        printButton.addActionListener(new HelloWorldPrinter());
+        printButton.addActionListener(new PrintFile());
         f.add("Center", printButton);
         f.pack();
         f.setVisible(true);

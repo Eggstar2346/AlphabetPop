@@ -35,13 +35,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.print.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
  
-public class PrintFile implements Printable, ActionListener {
+public class PrintFile implements Printable {
  
- 
+ private String[]names;
+ private String[]scores;
+ private String[]levels;
+  
     public int print(Graphics g, PageFormat pf, int page) throws
                                                         PrinterException {
- 
+      BufferedImage top = new BufferedImage(5,5,BufferedImage.TYPE_BYTE_GRAY); //idk what i did here, hope its okay
         if (page > 0) { /* We have only one page, and 'page' is zero-based */
             return NO_SUCH_PAGE;
         }
@@ -53,13 +59,43 @@ public class PrintFile implements Printable, ActionListener {
         g2d.translate(pf.getImageableX(), pf.getImageableY());
  
         /* Now we perform our rendering */
-        g.drawString("Wow, we did something!", 100, 100);
+        
+        try 
+        {
+          top = ImageIO.read(new File("printheading.jpg"));
+          System.out.println("GOOD");
+        } 
+        catch (IOException e) 
+        {
+          System.out.println("NOOOOO");
+        } 
+        g.drawImage(top,100,100,null);
+        g.setFont(new Font("Comic Sans", Font.PLAIN, 48));
+        g.drawString("Name", 90, 150);
+        g.drawString("Score", 500, 150);
+        g.drawString("Level", 1000, 150);
+        g.setFont(new Font("Comic Sans", Font.PLAIN, 30));
+        for (int x = 0 ; x < names.length ; x++)
+        {
+          g.drawString (names[x],90,180+x*40);
+          g.drawString (scores[x],500,180+x*40);
+          if (levels[x].equals("1"))
+            g.drawString ("Easy",1000,180+x*40);
+          else if (levels[x].equals("2"))
+            g.drawString ("Medium",1000,180+x*40);
+          else
+            g.drawString ("Hard",1000,180+x*40);
+        }
+        //g.drawString("Wow, we did something!", 100, 100);
  
         /* tell the caller that this page is part of the printed document */
         return PAGE_EXISTS;
     }
  
-    public void actionPerformed(ActionEvent e) {
+    public PrintFile (String[]newNames, String[]newScores, String[]newLevels) {
+      names=newNames;
+      scores=newScores;
+      levels=newLevels;
          PrinterJob job = PrinterJob.getPrinterJob();
          job.setPrintable(this);
          boolean ok = job.printDialog();
@@ -73,17 +109,17 @@ public class PrintFile implements Printable, ActionListener {
          }
     }
  
-    public static void main(String args[]) {
-  
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-        JFrame f = new JFrame("Hello World Printer");
-        f.addWindowListener(new WindowAdapter() {
-           public void windowClosing(WindowEvent e) {System.exit(0);}
-        });
-        JButton printButton = new JButton("Print Hello World");
-        printButton.addActionListener(new PrintFile());
-        f.add("Center", printButton);
-        f.pack();
-        f.setVisible(true);
-    }
+//    public static void main(String args[]) {
+//  
+//        UIManager.put("swing.boldMetal", Boolean.FALSE);
+//        JFrame f = new JFrame("Hello World Printer");
+//        f.addWindowListener(new WindowAdapter() {
+//           public void windowClosing(WindowEvent e) {System.exit(0);}
+//        });
+//        JButton printButton = new JButton("Print Hello World");
+//        printButton.addActionListener(new PrintFile());
+//        f.add("Center", printButton);
+//        f.pack();
+//        f.setVisible(true);
+//    }
 }
