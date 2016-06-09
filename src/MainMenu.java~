@@ -69,11 +69,14 @@ public class MainMenu extends JPanel
     } 
     repaint();
     
+    requestFocus();
+    
     addKeyListener(new KeyAdapter() { //this wont work for some reason
           @Override
           public void keyTyped(KeyEvent e) {
             System.out.println(e.getKeyChar());
-            if (e.getKeyChar() == KeyEvent.VK_F1)
+            System.out.println("MENU");
+            if (e.getKeyChar() == 80)
             {
               String progpath = new String ("hh.exe AlphabetPopHelp.chm");
               try
@@ -91,7 +94,7 @@ public class MainMenu extends JPanel
     
     addMouseListener(new MouseAdapter() {
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
       int xCoord = e.getX();
       int yCoord = e.getY();
       System.out.println(xCoord+ "      "+yCoord);

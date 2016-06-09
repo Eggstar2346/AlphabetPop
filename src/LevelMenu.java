@@ -69,6 +69,33 @@ public class LevelMenu extends JPanel
     } 
     repaint();
     
+    addKeyListener(new KeyAdapter() { //this wont work for some reason
+          @Override
+          public void keyPressed(KeyEvent e) {
+            System.out.println(e.getKeyCode());
+            System.out.println("MENU");
+            if (e.getKeyCode() == 49)
+            {
+              Main.switchMenu(1);
+            }
+            else if (e.getKeyCode() == 50)
+            {
+              Main.switchMenu(2);
+            }
+            else if (e.getKeyCode() == 51)
+            {
+              Main.switchMenu(3);
+            }
+            else
+            {
+              if (e.getKeyCode() ==  KeyEvent.VK_F1)
+              {
+                Main.openCHM();
+              }
+            }
+          }
+        });
+    
     addMouseListener(new MouseAdapter() {
     @Override
     public void mousePressed(MouseEvent e) {

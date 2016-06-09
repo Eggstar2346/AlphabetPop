@@ -79,7 +79,9 @@ public class Main {
     }
     else if (choice==4)
     {
-      frame.add (new LevelMenu());
+      c=new LevelMenu();
+      frame.add(c);
+      c.requestFocusInWindow();
     }
     else if (choice==5)
     {
@@ -137,16 +139,17 @@ public class Main {
             System.out.println(e.getKeyCode());
             if (e.getKeyCode() == KeyEvent.VK_F1)
             {
-              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
-              try
-              {
-                Runtime.getRuntime ( ).exec (progpath);
-              }
-              catch (IOException i)
-              {
-                System.out.println("Doesn't work :/");
-                //messageDialog ("Couldn't find Help File");
-              }
+              openCHM();
+//              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
+//              try
+//              {
+//                Runtime.getRuntime ( ).exec (progpath);
+//              }
+//              catch (IOException i)
+//              {
+//                System.out.println("Doesn't work :/");
+//                //messageDialog ("Couldn't find Help File");
+//              }
             }
           }
         });

@@ -98,20 +98,20 @@ public class HighScores extends JPanel {
     super.paintComponent(g);
     g.drawImage(background, 0, 0, null);
     g.setFont(new Font("Comic Sans", Font.PLAIN, 48));
-    g.drawString("Name", 90, 150);
-    g.drawString("Score", 500, 150);
-    g.drawString("Level", 1000, 150);
+    g.drawString("Name", 90, 120);
+    g.drawString("Score", 500, 120);
+    g.drawString("Level", 1000, 120);
     g.setFont(new Font("Comic Sans", Font.PLAIN, 30));
     for (int x = 0 ; x < name.length ; x++)
     {
-      g.drawString (name[x],90,180+x*40);
-      g.drawString (highScore[x],500,180+x*40);
+      g.drawString (name[x],90,150+x*40);
+      g.drawString (highScore[x],500,150+x*40);
       if (gameType[x].equals("1"))
-        g.drawString ("Easy",1000,180+x*40);
+        g.drawString ("Easy",1000,150+x*40);
       else if (gameType[x].equals("2"))
-        g.drawString ("Medium",1000,180+x*40);
+        g.drawString ("Medium",1000,150+x*40);
       else
-        g.drawString ("Hard",1000,180+x*40);
+        g.drawString ("Hard",1000,150+x*40);
     }
     System.out.println("YAY");
   }

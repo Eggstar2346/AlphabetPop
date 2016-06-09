@@ -31,7 +31,13 @@ import java.util.ArrayList;
  * <b>Version #</b> 1
  * <b>Date</b> 06.04.16
  * <b>Time Spent</b> 1.5 hours
- * 
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.08.16
+  * <b>Time Spent</b> 2 hours
+  * <b>What Was Changed</b> The visual appearance was improved.  This included the addition of the buttonPanel JPanel
+  * within the constructor.
  * 
  * 
  * <p>
@@ -61,13 +67,17 @@ public class DisplayTime extends JPanel {
     System.out.println(score);
     try 
     {
-      background = ImageIO.read(new File("background.jpg"));
+      background = ImageIO.read(new File("bubblybackground.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
       System.out.println("NOOOOO");
     } 
+    setLayout(new BorderLayout());
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setLayout(new FlowLayout());
+    add (buttonPanel, BorderLayout.SOUTH);
     revalidate();
     repaint();
     
@@ -91,13 +101,11 @@ public class DisplayTime extends JPanel {
     JLabel enterValue;
     enterValue= new JLabel ("What is your name?");
     enterValue.setFont(new Font ("Serif", Font.PLAIN, 16));
-    add (enterValue);
+    buttonPanel.add (enterValue);
     JButton continueButton = new JButton ("Continue");
     JTextField inputField = new JTextField (20);
-    JTextField outputField = new JTextField (25);
-    add (inputField);
-    add (outputField);
-    add (continueButton);
+    buttonPanel.add (inputField);
+    buttonPanel.add (continueButton);
     continueButton.addActionListener (new ActionListener ()
                                    {
       public void actionPerformed (ActionEvent e)
@@ -203,12 +211,13 @@ public class DisplayTime extends JPanel {
   {
     super.paintComponent(g);
     g.drawImage(background, 0, 0, null);
-    g.setFont(new Font("Courier New", Font.PLAIN, 12));
-    g.drawString("You completed the first level!", 0, 50);
-    g.drawString("You completed round 1 in " + round1 + " seconds!", 0, 100);
-    g.drawString("You completed round 2 in " + round2 + " seconds!", 0, 150);
-    g.drawString("You completed round 3 in " + round3 + " seconds!", 0, 200);
-    g.drawString("This is a total of " + (round1+round2+round3) + " seconds!", 0, 250);
+    g.setFont(new Font("Comic Sans", Font.PLAIN, 48));
+    g.drawString("You completed the first level!", 270, 90);
+    g.drawString("This is a total of " + (round1+round2+round3) + " seconds!", 270, 400);
+    g.setFont(new Font("Comic Sans", Font.PLAIN, 30));
+    g.drawString("You completed Round 1 in " + round1 + " seconds!", 300, 200);
+    g.drawString("You completed Round 2 in " + round2 + " seconds!", 300, 250);
+    g.drawString("You completed Round 3 in " + round3 + " seconds!", 300, 300);
     System.out.println("YAY");
   }
   

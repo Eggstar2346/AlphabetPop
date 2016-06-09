@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import java.awt.event.*;
 import java.io.*;
+import javax.swing.JPanel;
 
 
 /**
@@ -54,11 +55,15 @@ public class Main {
    */
   public static void switchMenu(int choice)
   {
+    JPanel c;
     frame.getContentPane().removeAll();
+    frame.requestFocus();
     //AudioRecordings.background[currentLevel()].stop();
     if (choice==0)
     {
-      frame.add (new MainMenu());
+      c=new MainMenu();
+      frame.add (c);
+      c.requestFocusInWindow();
     }
     else if (choice==1)
     {
@@ -89,7 +94,21 @@ public class Main {
       frame.add(new HighScores());
     }
     frame.revalidate();
-    frame.requestFocus();
+    //frame.requestFocus();
+  }
+  
+  public static void openCHM()
+  {
+    String progpath = new String ("hh.exe AlphabetPopHelp.chm");
+    try
+    {
+      Runtime.getRuntime ( ).exec (progpath);
+    }
+    catch (IOException i)
+    {
+      System.out.println("Doesn't work :/");
+      //messageDialog ("Couldn't find Help File");
+    }
   }
   
     /**
