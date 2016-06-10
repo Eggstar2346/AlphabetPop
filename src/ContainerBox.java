@@ -55,11 +55,11 @@ public class ContainerBox {
    * 
    * Variable pic is assigned by calling the method loadImage();
    *  @param x int of new x coordinate
-    * @param y int of new y coordinate
-    * @param width int of new width
-    * @param height int of new height
-    * @param name String for image name
-    * @param colorBorder Color for border
+   * @param y int of new y coordinate
+   * @param width int of new width
+   * @param height int of new height
+   * @param name String for image name
+   * @param colorBorder Color for border
    */
   public ContainerBox(int x, int y, int width, int height, String name) {
     minX = x;

@@ -31,30 +31,80 @@ import java.util.ArrayList;
  * <b>Version #</b> 1
  * <b>Date</b> 06.04.16
  * <b>Time Spent</b> 1.5 hours
-  * <p>
-  * <b>Author</b> Samantha Unger
-  * <b>Version #</b> 1.1
-  * <b>Date</b> 06.08.16
-  * <b>Time Spent</b> 2 hours
-  * <b>What Was Changed</b> The visual appearance was improved.  This included the addition of the buttonPanel JPanel
-  * within the constructor.
- * 
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1.1
+ * <b>Date</b> 06.08.16
+ * <b>Time Spent</b> 2 hours
+ * <b>What Was Changed</b> The visual appearance was improved.  This included the addition of the buttonPanel JPanel
+ * within the constructor.
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1.2
+ * <b>Date</b> 06.09.16
+ * <b>Time Spent</b> 2 hours
+ * <b>What Was Changed</b> The high scores are now saved and the user can be directed to the LevelAdvance panel if they
+ * have just completed the easy or medium level.
  * 
  * <p>
  * <b> Instance Variables: </b>
  * <p>
- * <b>image</b> This creates an instance of a BufferedImage that is used to display the menu.
- * 
+ * <b>round1</b> This int is used to store the number of seconds it took the user to finish round 1.
+ * <p>
+ * <b>round2/b> This int is used to store the number of seconds it took the user to finish round 2. 
+ * <p>
+ * <b>round3</b> This int is used to store the number of seconds it takes the user to finish round 3.
+ * <p>
+ * <b>score</b> This int is used to store user's calculated score.
+ * <p>
+ * <b>level</b> This int is used to store the level that the user just completed.
+ * <p>
+ * <b>background</b> This BufferedImage is used as the background.
  * 
  * 
  * @author Samantha Unger, Esther Yoo
- * @version 2 06.04.16
+ * @version 1.2 06.09.16
  */
 public class DisplayTime extends JPanel {
   
   private int round1, round2, round3, score, level;
   private BufferedImage background;
   
+  /**
+   * The class constructor assigns all the values passed in its parameter to the appropriate instance variables.  It 
+   * also calculates the user's score, reads in the background image (within a try block) and sets the panel layout.  A
+   * JLabel and JButton are added to a JPanel that is added to the bottom of this JPanel. An ActionListener is added 
+   * to the JButton and its inner ActionPerformed method is defined.  Within this ActionPerformed method, there are many
+   * things taking place.  The input is being checked using an if statement to see if it is too many or too few 
+   * characters.  If this is the case, the box is reset and a JOptionPane is used to inform the user.  If the user 
+   * input is acceptable, the scores are saved to a file.  The scores in the file are read in and the user's score
+   * is compared to these scores using an if statement.  If the user's score is greater than one of the scores, the 
+   * other scores are shifted and the new score is saved in its place.  Try blocks are used to catch IOException and 
+   * NumberFormatException, related to reading in from the file.  Lastly, if the user has just played level 3, they are
+   * taken to the menu.  Otherwise, the components are removed from the JFrame in the Main class, and a LevelAdvance is
+   * constructed and added to the JFrame.
+   * 
+   * <p>
+   * <b>Local variables: </b>
+   * <p>
+   * <b>buttonPanel </b> This JPanel is used to hold the JLabel, JButton and JTextField.
+   * <p>
+   * <b>enterValue </b> This JLabel is used to display a request for the user's name.
+   * <p>
+   * <b>continueButton </b> This JButton is used to allow the user to continue.
+   * <p>
+   * <b>inputField </b> This JTextField is used to allow the user to input their name.
+   * <p>
+   * <b>input </b> This BufferedReader is used to read in from the file.
+   * <p>
+   * <b>output </b> This PrintWriter is used to output to the file. 
+   * 
+   * 
+   * @param newRound1 This int is used to store the number of seconds the user took on round 1.
+   * @param newRound2 This int is used to store the number of seconds the user took on round 2.
+   * @param newRound3 This int is used to store the number of seconds the user took on round 3.
+   * @param newLevel This int is used to store the level the user played.
+   */
   public DisplayTime (int newRound1, int newRound2, int newRound3, int newLevel)
   {
     System.out.println("YAS");
@@ -62,7 +112,6 @@ public class DisplayTime extends JPanel {
     round2=newRound2;
     round3=newRound3;
     level=newLevel;
-    //score=(int)(level/(round1+round2+round3)*10000);
     score=3600/((round1+round2+round3)/(3*level));
     System.out.println(score);
     try 
@@ -82,22 +131,6 @@ public class DisplayTime extends JPanel {
     repaint();
     
     
-    
-    
-    
-    
-//    addMouseListener(new MouseAdapter() {
-//    @Override
-//    public void mouseClicked(MouseEvent e) {
-//      int xCoord = e.getX();
-//      int yCoord = e.getY();
-//      System.out.println(xCoord+ "      "+yCoord);
-//      Main.switchMenu(0);
-//        }
-//      }
-//     );
-    
-    
     JLabel enterValue;
     enterValue= new JLabel ("What is your name?");
     enterValue.setFont(new Font ("Serif", Font.PLAIN, 16));
@@ -107,7 +140,7 @@ public class DisplayTime extends JPanel {
     buttonPanel.add (inputField);
     buttonPanel.add (continueButton);
     continueButton.addActionListener (new ActionListener ()
-                                   {
+                                        {
       public void actionPerformed (ActionEvent e)
       {
         String userName = inputField.getText();
@@ -120,82 +153,82 @@ public class DisplayTime extends JPanel {
           BufferedReader input;
           PrintWriter output;
           try
+          {
+            input = new BufferedReader (new FileReader ("highscores.ges"));
+            String firstLine = input.readLine ();
+            if (firstLine != null && firstLine.equals ("This is the high score file."))    //is this good?
             {
-                input = new BufferedReader (new FileReader ("highscores.ges"));
-                String firstLine = input.readLine ();
-                if (firstLine != null && firstLine.equals ("This is the high score file."))    //is this good?
-                {
-                    numberOfScores = Integer.parseInt (input.readLine ());
-                    for (int x = 0 ; x < numberOfScores ; x++)
-                    {
-                        name [x] = input.readLine ();
-                        highScore [x] = Integer.parseInt (input.readLine ());
-                        gameType [x] = input.readLine ();
-                    }
-                    if (numberOfScores < 10)
-                    {
-                        numberOfScores++;
-                    }
-                    for (int x = 0 ; x < numberOfScores ; x++)
-                    {
-                        if (highScore [x] < score)
-                        {
-                            for (int z = numberOfScores - 1 ; z > x ; z--)
-                            {
-                                highScore [z] = highScore [z - 1];
-                                name [z] = name [z - 1];
-                                gameType [z] = gameType [z - 1];
-                            }
-                            highScore [x] = score;
-                            name [x] = userName;
-                            gameType [x] = ""+level;
-                            break;
-                        }
-                    }
-                }
-            }
-            catch (IOException i)
-            {
-            }
-            catch (NumberFormatException n)
-            {
-            }
-            if (numberOfScores == 0)
-            {
+              numberOfScores = Integer.parseInt (input.readLine ());
+              for (int x = 0 ; x < numberOfScores ; x++)
+              {
+                name [x] = input.readLine ();
+                highScore [x] = Integer.parseInt (input.readLine ());
+                gameType [x] = input.readLine ();
+              }
+              if (numberOfScores < 10)
+              {
                 numberOfScores++;
-                highScore [0] = score;
-                name [0] = userName;
-                gameType [0] = ""+level;
-            }
-            try
-            {
-                output = new PrintWriter (new FileWriter ("highscores.ges"));
-                output.println ("This is the high score file.");
-                output.println (numberOfScores);
-                for (int x = 0 ; x < numberOfScores ; x++)
+              }
+              for (int x = 0 ; x < numberOfScores ; x++)
+              {
+                if (highScore [x] < score)
                 {
-                    output.println (name [x]);
-                    output.println (highScore [x]);
-                    output.println (gameType [x]);
+                  for (int z = numberOfScores - 1 ; z > x ; z--)
+                  {
+                    highScore [z] = highScore [z - 1];
+                    name [z] = name [z - 1];
+                    gameType [z] = gameType [z - 1];
+                  }
+                  highScore [x] = score;
+                  name [x] = userName;
+                  gameType [x] = ""+level;
+                  break;
                 }
-                output.close ();
+              }
             }
-            catch (IOException i)
+          }
+          catch (IOException i)
+          {
+          }
+          catch (NumberFormatException n)
+          {
+          }
+          if (numberOfScores == 0)
+          {
+            numberOfScores++;
+            highScore [0] = score;
+            name [0] = userName;
+            gameType [0] = ""+level;
+          }
+          try
+          {
+            output = new PrintWriter (new FileWriter ("highscores.ges"));
+            output.println ("This is the high score file.");
+            output.println (numberOfScores);
+            for (int x = 0 ; x < numberOfScores ; x++)
             {
+              output.println (name [x]);
+              output.println (highScore [x]);
+              output.println (gameType [x]);
             }
-            if (level==3)
-            {
-              Main.switchMenu(0);
-              return;
-            }
-            else
-            {
-              Main.frame.getContentPane().removeAll();
-              Main.frame.add(new LevelAdvance(level+1));
-              Main.frame.repaint();
-              Main.frame.revalidate();
-              return;
-            }
+            output.close ();
+          }
+          catch (IOException i)
+          {
+          }
+          if (level==3)
+          {
+            Main.switchMenu(0);
+            return;
+          }
+          else
+          {
+            Main.frame.getContentPane().removeAll();
+            Main.frame.add(new LevelAdvance(level+1));
+            Main.frame.repaint();
+            Main.frame.revalidate();
+            return;
+          }
         }
         if (userName.length () < 1)
         {
@@ -212,12 +245,23 @@ public class DisplayTime extends JPanel {
       }});
   }
   
+  
+  /**
+   * This method is used to construct a JOptionPane with a given message and option type.
+   * 
+   * @param message This int is used to store the message to be displayed on the JOptionPane.
+   * @param optionType This int is used to store the option type for the JOptionPane.
+   */
   private int optionPane (String message, int optionType)
   {
     return JOptionPane.showConfirmDialog(null, message, "Name Length Error",optionType,JOptionPane.WARNING_MESSAGE);
   }
   
-  
+  /**
+   * This method paints components on the screen, including the times for each round, the score, and the total seconds
+   * taken. 
+   * @param g Graphics is passed in to allow painting on the frame.
+   */
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);

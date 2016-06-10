@@ -7,10 +7,10 @@ import java.awt.Color;
   * <b>Date</b> 06.01.16
   * <b>Time Spent</b> 1 hour  
   * 
-  * The Colors class contains all the colours we will use for our game.
+  * The Colors class contains some of the colours we use within the game.
   * 
   * @author Esther Yoo
-  * @version 1 05.27.16
+  * @version 1 06.01.16
   * 
   * <p>
   * <b>Instance variables: </b>
