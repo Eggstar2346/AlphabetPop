@@ -168,7 +168,7 @@ public abstract class Levels extends JPanel {
   boolean showRoundDone = false;
   AudioRecordings a;
   AudioRecordings b;
-  int temp = 65;
+  int temp;
   int rand;
   boolean paused = false;
   int tempTime;
@@ -289,7 +289,7 @@ public abstract class Levels extends JPanel {
               AudioRecordings.alphabet[temp-65].stop();
               if (temp-65<88)
               {
-                System.out.println("Temp" + temp);
+                System.out.println("Temp " + temp);
                 AudioRecordings.alphabetB[temp-65].stop();
               }
               if (temp-66>65)
@@ -340,13 +340,15 @@ public abstract class Levels extends JPanel {
             if (ball[z].getLetter() == letters[currentLetter])
             {
               AudioRecordings.alphabet[temp-65].stop();
-              if (temp-65<88)
+              if (rand == 1)
               {
+                System.out.println("TEMP HERE: " + temp);
                 AudioRecordings.alphabetB[temp-65].stop();
               }
-              if (temp-66>65)
+              else
               {
-                AudioRecordings.alphabetA[temp-66].stop();
+                if (rand == 2)
+                  AudioRecordings.alphabetA[temp-66].stop();
               }
               
               ball[z].setWasClicked(true);
@@ -368,17 +370,14 @@ public abstract class Levels extends JPanel {
                   if (letters[currentLetter] == 'Z')
                   {
                     rand = 2;
-                    //temp = letters[currentLetter];
                   }
                   else if (letters[currentLetter] == 'A')
                   {
                     rand = 1;
-                    //temp = letters[currentLetter];
                   }
                   else
                   {
                     rand = (int)(Math.random()*2)+1;
-                    //temp = letters[currentLetter];
                   }
                   AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
                   temp = letters[currentLetter];
@@ -392,20 +391,17 @@ public abstract class Levels extends JPanel {
             }
             if (currentLetter > letters.length-1)
             {
-              currentLetter = 0;
+
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
                 AudioRecordings.alphabet[letters[currentLetter]-65].stop();
-                if (letters[currentLetter]-65<88)
-                  AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
-                if (letters[currentLetter]-66>65)
-                  AudioRecordings.alphabetA[letters[currentLetter]-66].stop();
+                if (letters[currentLetter]>=66)
+                  AudioRecordings.alphabetB[letters[currentLetter]-66].stop();
+                if (letters[currentLetter]>=65 && letters[currentLetter]<=89)
+                  AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
                 System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
                 AudioRecordings.background[getLevel()].stop();
-                AudioRecordings.alphabet[temp-65].stop();
-                AudioRecordings.alphabetA[temp-65].stop();
-                AudioRecordings.alphabetB[temp-66].stop();
                 System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
                 Main.frame.getContentPane().removeAll();
                 Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
@@ -415,16 +411,29 @@ public abstract class Levels extends JPanel {
               }
               else
               {
+                              
+                AudioRecordings.effects[0].setMicrosecondPosition(0);
+                AudioRecordings.effects[0].start();
+                AudioRecordings.effects[2].start();
+                revalidate();
+                repaint();
+                try
+                {
+                  Thread.sleep(4000);
+                }
+                catch (InterruptedException q)
+                {
+                }
+                currentLetter = 0;
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 System.out.println(word);
                 t.setTimeElapsed(0);
                 setBubbles();
+                
                 if (getLevel() < 3)
                 {
                   AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-                  AudioRecordings.effects[0].setMicrosecondPosition(0);
-                  AudioRecordings.effects[0].start();
                   temp = letters[currentLetter];
                 }
                 else
@@ -432,17 +441,14 @@ public abstract class Levels extends JPanel {
                   if (letters[currentLetter] == 'Z')
                   {
                     rand = 2;
-                    //temp = letters[currentLetter];
                   }
                   else if (letters[currentLetter] == 'A')
                   {
                     rand = 1;
-                    //temp = letters[currentLetter];
                   }
                   else
                   {
                     rand = (int)(Math.random()*2)+1;
-                    //temp = letters[currentLetter];
                   }
                   AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
                   temp = letters[currentLetter];
