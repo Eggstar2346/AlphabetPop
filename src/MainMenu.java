@@ -60,7 +60,7 @@ public class MainMenu extends JPanel
     System.out.println("YAS");
     try 
     {
-      menu = ImageIO.read(new File("MainMenu2.jpg"));
+      menu = ImageIO.read(new File(".//resources//MainMenu2.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 

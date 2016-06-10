@@ -60,7 +60,7 @@ public class LevelMenu extends JPanel
     System.out.println("YAS");
     try 
     {
-      menu = ImageIO.read(new File("Levels.jpg"));
+      menu = ImageIO.read(new File(".//resources//Levels.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
