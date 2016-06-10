@@ -21,7 +21,7 @@ public class HighScores extends JPanel {
     System.out.println("YAS");
     try 
     {
-      background = ImageIO.read(new File("highscoresback.jpg"));
+      background = ImageIO.read(new File(".//resources//highscoresback.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
@@ -31,7 +31,7 @@ public class HighScores extends JPanel {
     repaint();
     try
     {
-      input = new BufferedReader (new FileReader ("highscores.ges"));
+      input = new BufferedReader (new FileReader (".//resources//highscores.ges"));
       input.readLine();
       int numberOfScores = Integer.parseInt (input.readLine ());
       name = new String [numberOfScores];

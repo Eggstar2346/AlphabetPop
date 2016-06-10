@@ -101,7 +101,7 @@ public class Main {
   
   public static void openCHM()
   {
-    String progpath = new String ("C:.//resources//hh.exe AlphabetPopHelp.chm");
+    String progpath = new String ("hh.exe AlphabetPopHelp.chm");
     try
     {
       Runtime.getRuntime ( ).exec (progpath);

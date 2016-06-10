@@ -116,7 +116,7 @@ public class DisplayTime extends JPanel {
     System.out.println(score);
     try 
     {
-      background = ImageIO.read(new File("bubblybackground.jpg"));
+      background = ImageIO.read(new File(".//resources//bubblybackground.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
@@ -154,7 +154,7 @@ public class DisplayTime extends JPanel {
           PrintWriter output;
           try
           {
-            input = new BufferedReader (new FileReader ("highscores.ges"));
+            input = new BufferedReader (new FileReader (".//resources//highscores.ges"));
             String firstLine = input.readLine ();
             if (firstLine != null && firstLine.equals ("This is the high score file."))    //is this good?
             {

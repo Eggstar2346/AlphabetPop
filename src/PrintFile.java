@@ -62,7 +62,7 @@ public class PrintFile implements Printable {
         
         try 
         {
-          top = ImageIO.read(new File("printback2.jpg"));
+          top = ImageIO.read(new File(".//resources//printback2.jpg"));
           System.out.println("GOOD");
         } 
         catch (IOException e) 

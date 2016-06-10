@@ -47,12 +47,12 @@ import java.util.Formatter;
   * <b>letterCol</b> A Color variable that stores the ball's letter colour.
   */
 public class Ball {
-  float x, y;
-  float speedX, speedY;
-  float radius;
-  char letter;
-  boolean wasClicked;
-  float angleInDegree;
+  private float x, y;
+  private float speedX, speedY;
+  private float radius;
+  private char letter;
+  private boolean wasClicked;
+  private float angleInDegree;
   private Color color;
   private Color outline;
   private Color letterCol;
@@ -252,37 +252,4 @@ public class Ball {
       y = ballMaxY;
     }
   }
-  
-//  /** Return the magnitude of speed. */
-//  public float getSpeed() {
-//    return (float)Math.sqrt(speedX * speedX + speedY * speedY);
-//  }
-//  
-//  /** Return the direction of movement in degrees (counter-clockwise). */
-//  public float getMoveAngle() {
-//    return (float)Math.toDegrees(Math.atan2(-speedY, speedX));
-//  }
-  
-//  /** Return mass */
-//  public float getMass() {
-//    return radius * radius * radius / 1000f;  // Normalize by a factor
-//  }
-//  
-//  /** Return the kinetic energy (0.5mv^2) */
-//  public float getKineticEnergy() {
-//    return 0.5f * getMass() * (speedX * speedX + speedY * speedY);
-//  }
-//  
-//  /** Describe itself. */
-//  public String toString() {
-//    sb.delete(0, sb.length());
-//    formatter.format("@(%3.0f,%3.0f) r=%3.0f V=(%2.0f,%2.0f) " +
-//                     "S=%4.1f \u0398=%4.0f KE=%3.0f", 
-//                     x, y, radius, speedX, speedY, getSpeed(), getMoveAngle(),
-//                     getKineticEnergy());  // \u0398 is theta
-//    return sb.toString();
-//  }
-//  // Re-use to build the formatted string for toString()
-//  private StringBuilder sb = new StringBuilder();
-//  private Formatter formatter = new Formatter(sb);
 }

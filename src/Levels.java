@@ -44,7 +44,12 @@ import java.util.ArrayList;
  * <b>Time Spent</b> 1 hour
  * <b>What Was Changed</b> The code now properly displays the letters.  Brackets within the LettersCanvas class had to 
  * be moved to the correct location.
- * 
+ * <p>
+ * <b>Author</b> Samantha Unger & Esther Yoo
+ * <b>Version #</b> 2
+ * <b>Date</b> 06.09.16
+ * <b>Time Spent</b> 5 hours
+ * <b>What Was Changed</b> The code now plays audio correctly and looks more appealing with backgrounds and such.
  * 
  * 
  * 
@@ -109,11 +114,17 @@ import java.util.ArrayList;
  * <p>
  * <b>t</b> This GameTimer is used to time the game.
  * <p>
- * <b>round1Time</b> This int stores the time spent on the first round.
+ * <b>gameThread</b> This Thread is used to run the game.
  * <p>
- * <b>round2Time</b> This int stores the time spent on the second round.
+ * <b>roundTimes</b> This array is used to store the times for the rounds.
  * <p>
- * <b>round3Time</b> This int stores the time spent on the third round.
+ * <b>temp</b> This int is used to hold the previous letter required.
+ * <p>
+ * <b>rand</b> This is used to store a random number, in the case of the hard level.
+ * <p>
+ * <b>paused</b> This boolean is used to determine whether or not the game has been paused.
+ * <p>
+ * <b>tempTime</b> This int stores the temporary time while pausing.
  * 
  * 
  * 
@@ -135,7 +146,7 @@ public abstract class Levels extends JPanel {
   int xCoord;
   int yCoord;
 
- ContainerBox box;  // The container rectangular box
+ ContainerBox box;  
   private ContainerBox box2 = new ContainerBox (0, 0, canvasWidth, canvasHeight, "lettersBack.jpg");
   
   int radius = 50;
@@ -165,9 +176,6 @@ public abstract class Levels extends JPanel {
   int currentWord;
   int[] roundTimes = new int[3];
   
-  boolean showRoundDone = false;
-  AudioRecordings a;
-  AudioRecordings b;
   int temp;
   int rand;
   boolean paused = false;
@@ -175,7 +183,8 @@ public abstract class Levels extends JPanel {
   
     /**
    * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
-   * ArrayList.
+   * ArrayList. A try block is used to catch in case of file problems.  A while loop is used to read in all of the
+   * words.
    * 
    * @param file String that stores the name of the file to read the words in from 
    */
@@ -220,11 +229,6 @@ public abstract class Levels extends JPanel {
     {
       System.out.println("Open File IO Error");
     }
-    catch (Exception e)
-    {
-      System.out.println("Open Error");
-    }
-    
     for (int x=words.size()-1; x>0;x--)
     {
       randNum=(int)(Math.random()*x);
@@ -250,6 +254,10 @@ public abstract class Levels extends JPanel {
     p = new PauseScreen();
   }
   
+      /**
+   * The pause method is called to pause and unpause the game.  It stops audio recordings and records the timer's 
+   * current time so that it can be reset later.  It also inverts the value of the boolean paused variable.
+   */
   private void pause()
   {
     paused = !paused;
@@ -291,9 +299,12 @@ public abstract class Levels extends JPanel {
   }
   
     /**
-   * This method constructs the necessary objects to play the game.  A nested MouseAdapter class is necessary so that
-   * the user's click location can be taken.  A component listener is added to the screen.  A for loop is used to 
-   * check each letter.  If statements are used to check letters.  The gameStart() method is called.
+   * This method constructs the necessary objects to play the game and adds them to the screen and its layout.  
+   * A nested MouseAdapter class is necessary so that
+   * the user's click location can be taken.  A mouse listener is added to the screen to register when a user clicks on 
+   * a location.  Here, if statements determine if they have clicked on an appropriate location. A for loop is used to 
+   * check each letter.  If statements are used to check the individual letters.  The gameStart() method is called.  
+   * Audio is also stopped if the user clicks on specific locations.  A component listener handles window resize.
    */
   public void startup()
   {
@@ -394,7 +405,7 @@ public abstract class Levels extends JPanel {
             }
             if (currentLetter > letters.length-1)
             {
-
+              currentLetter = 0;
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
@@ -413,21 +424,9 @@ public abstract class Levels extends JPanel {
                 return;
               }
               else
-              {
-                              
+              {              
                 AudioRecordings.effects[0].setMicrosecondPosition(0);
                 AudioRecordings.effects[0].start();
-                AudioRecordings.effects[2].start();
-                revalidate();
-                repaint();
-                try
-                {
-                  Thread.sleep(4000);
-                }
-                catch (InterruptedException q)
-                {
-                }
-                currentLetter = 0;
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 System.out.println(word);
@@ -487,7 +486,9 @@ public abstract class Levels extends JPanel {
     gameStart();
   }
   
-  /** Start the ball bouncing. */
+      /**
+   * This method starts the bubble movement.
+   */
   public void gameStart() {
     // Run the game logic in its own thread.
     gameThread = new Thread() {
@@ -609,7 +610,9 @@ public abstract class Levels extends JPanel {
   }
   
 
-  
+      /**
+   * The setBubbles method resets the array of bubbles and draws them about the screen.
+   */
   public void setBubbles()
   {
     if (getLevel()!=1)
@@ -659,7 +662,12 @@ public abstract class Levels extends JPanel {
     }
   }
    
+      /**
+   * This method returns the proper speed of the bubbles.
+   */
    public abstract int generateSpeed();
+       /**
+   * This method returns the level that the user is currently playing.
+   */
    public abstract int getLevel();
 }
-  

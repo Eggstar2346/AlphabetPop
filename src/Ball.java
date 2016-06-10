@@ -19,7 +19,7 @@ import java.util.Formatter;
   * @author Samantha Unger
   * @version 1.1 06.04.16
   * 
-  * The Ball class is a data class 
+  * The Ball class is a data class that contains all the properties about individual Ball (bubble) objects.
   *
   * <p>
   * <b>Instance variables: </b>

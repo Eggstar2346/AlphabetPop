@@ -52,9 +52,10 @@ public class LevelTwo extends Levels
    * In the for-loop, each element in the array, letters, is assigned a character from the chosen word.<p>
    * Then, in the next for-loop, the starting coordinates of the bubbles, their speed, and their angles 
    * are all determined randomly.<p>
-   * The audio clip that plays the letter corresponding to the current letter is started.<p>
-   * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
-   * results accordingly.
+   * The Levels class's instance variable, temp, is then assigned a value according to the first letter of the word
+   * chosen. Then, the method that plays the audio clip that plays the letter corresponding to the temp letter is started.<p>
+   * Lastly, the background image is loaded in and startup() is called, which checks whether the user's input is 
+   * correct or incorrect, and outputs the results accordingly.<p>
    * 
    * @param x int that stores the screen width
    * @param y int that stores the screen height
@@ -64,7 +65,7 @@ public class LevelTwo extends Levels
     super(x, y);
     background = 2;
     letters = new char [4];
-    readWords("Level2.txt");
+    readWords(".//resources//Level2.txt");
     word = words.get(0).toUpperCase();
     
     AudioRecordings.volume(-15.0f, AudioRecordings.background[5]);
@@ -95,13 +96,9 @@ public class LevelTwo extends Levels
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
     temp = letters[currentLetter];
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass.jpg");
-    startup();
-//    AudioRecordings.alphabet[temp].stop();
-//    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-//    AudioRecordings.alphabet[letters[currentLetter]-65].start();
     AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-    temp = letters[currentLetter];
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//grass2.jpg");
+    startup();
   }
   
   public int generateSpeed()

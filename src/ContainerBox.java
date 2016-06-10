@@ -98,7 +98,7 @@ public class ContainerBox {
   {
     try 
     {
-      return ImageIO.read(new File(imageName));
+      return ImageIO.read(new File(".//resources//" + imageName));
     } 
     catch (IOException e) 
     {

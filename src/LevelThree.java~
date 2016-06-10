@@ -97,26 +97,28 @@ public class LevelThree extends Levels
       angleInDegree = random.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    //int random;
-//    AudioRecordings.alphabetB[temp].stop();
-//    AudioRecordings.alphabetA[temp].stop();
+    
+    temp = letters[currentLetter];
     if (letters[currentLetter] == 'Z')
     {
       rand = 2;
-      //temp = letters[currentLetter];
     }
     else if (letters[currentLetter] == 'A')
     {
       rand = 1;
-      //temp = letters[currentLetter];
     }
     else
     {
       rand = (int)(Math.random()*2)+1;
-      //temp = letters[currentLetter];
     }
+    System.out.println("this is the rand: " + rand);
+    System.out.println("This is temp: " + temp);
+    System.out.println("The word is: " + word);
     AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
     temp = letters[currentLetter];
+    System.out.println("This is temp: " + temp);
+    
+    System.out.println("This is the current letter " + letters[currentLetter]);
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg");
     startup();
   }
