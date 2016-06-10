@@ -183,8 +183,18 @@ public class DisplayTime extends JPanel {
             catch (IOException i)
             {
             }
-          Main.switchMenu(0);
-          return;
+            if (level==3)
+            {
+              Main.switchMenu(0);
+              return;
+            }
+            else
+            {
+              Main.frame.getContentPane().removeAll();
+              Main.frame.add(new LevelAdvance(level+1));
+              Main.frame.repaint();
+              Main.frame.revalidate();
+            }
         }
         if (userName.length () < 1)
         {

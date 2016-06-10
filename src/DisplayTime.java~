@@ -63,7 +63,7 @@ public class DisplayTime extends JPanel {
     round3=newRound3;
     level=newLevel;
     //score=(int)(level/(round1+round2+round3)*10000);
-    score=round1+round2+round3;
+    score=3600/((round1+round2+round3)/(3*level));
     System.out.println(score);
     try 
     {
@@ -218,6 +218,8 @@ public class DisplayTime extends JPanel {
     g.drawString("You completed Round 1 in " + round1 + " seconds!", 300, 200);
     g.drawString("You completed Round 2 in " + round2 + " seconds!", 300, 250);
     g.drawString("You completed Round 3 in " + round3 + " seconds!", 300, 300);
+    g.setFont(new Font("Comic Sans", Font.PLAIN, 65));
+    g.drawString("Your SCORE is " + score + "!",270,500);
     System.out.println("YAY");
   }
   
