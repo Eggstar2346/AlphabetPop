@@ -97,9 +97,15 @@ public class LevelThree extends Levels
       angleInDegree = rand.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    int random= (int)(Math.random()*2)+1;
+    int random;
     AudioRecordings.alphabetB[temp].stop();
     AudioRecordings.alphabetA[temp].stop();
+    if (letters[currentLetter] == 'Z')
+      random = 2;
+    else if (letters[currentLetter] == 'A')
+      random = 1;
+    else
+      random = (int)(Math.random()*2)+1;
     //AudioRecordings.effects[0].setMicrosecondPosition(0);
     //AudioRecordings.effects[0].start();
     if (random == 1)
@@ -114,7 +120,7 @@ public class LevelThree extends Levels
       AudioRecordings.alphabetA[letters[currentLetter]-66].start();
       temp = letters[currentLetter]-66;
     }
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg", Color.BLACK);
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg");
     startup();
   }
   

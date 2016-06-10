@@ -1,0 +1,12 @@
+public class PauseScreen extends JPanel
+{
+  @Override
+  public void paintComponent(Graphics g)
+  {
+    super.paintComponent(g);
+    g.drawImage(Images.screens[0],0,0,null);
+    g.setColor(Color.white);
+    g.fillRect(500,210,50,50);
+    g.drawString("Resume",510,790);
+  }
+}

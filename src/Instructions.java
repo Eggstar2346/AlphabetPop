@@ -22,20 +22,15 @@ import java.awt.image.*;
   * <b>Instance variables: </b>
   * <p>
   * <b>instruct</b> A BufferedImage variable that refers to the background image used for the instructions.
-  * <p>
-  * <b>choice</b> An integer variable that takes the user's choice and uses it to switch between Instructions, Play,
-  * Highscores, and Exit.
   */
 public class Instructions extends JPanel {
   
   private BufferedImage instruct;
-  private int choice;
   private int currentSlide;
   
   
   public Instructions()
   {
-    choice=0;
     repaint();
     //repaint();
     
@@ -45,7 +40,28 @@ public class Instructions extends JPanel {
         int xCoord = e.getX();
         int yCoord = e.getY();
         System.out.println(xCoord+ "      "+yCoord);
-        currentSlide++;
+        
+        if (yCoord>=0&&yCoord<=50)
+        {
+          if (xCoord>=0&&xCoord<=150)
+          {
+            if (currentSlide==0)
+              Main.switchMenu(0);
+            else
+              currentSlide--;
+          }
+          else 
+          {
+            if (xCoord>=1050&&xCoord<=1200)
+            {
+              if (currentSlide == 20)
+                Main.switchMenu(0);
+              else
+                currentSlide++;
+            }
+          }
+        }
+        
         if (currentSlide == 2)
           AudioRecordings.alphabet[0].start();
         if (currentSlide == 3)
@@ -59,8 +75,7 @@ public class Instructions extends JPanel {
           AudioRecordings.effects[1].start();
         }
         //System.out.println(currentSlide);
-        if (currentSlide == 20)
-          Main.switchMenu(choice);
+        
         repaint();
         revalidate();
       }
@@ -88,7 +103,7 @@ public class Instructions extends JPanel {
     g.drawString("Alphabet Pop", 375, 70);
     //draw back/forward buttons
     g.setColor(Color.black);
-    g.fillRect(1035, 0, 150, 50);
+    g.fillRect(1050, 0, 150, 50);
     g.fillRect(0,0,150,50);
     g.setColor(Color.white);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));

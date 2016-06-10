@@ -124,6 +124,33 @@ public class AudioRecordings extends Thread
     gainControl.setValue(volAdjust);
   }
   
+  public static void playLevelsOneTwo(int stop, int play)
+  {
+    AudioRecordings.alphabet[stop-65].stop();
+    AudioRecordings.alphabet[play-65].setMicrosecondPosition(0);
+    AudioRecordings.alphabet[play-66].start();
+  }
+  
+  public static void playLevelThree(int rand, int stop, int play)
+  {
+    System.out.println("STOP: " + stop);
+        if (stop<89)
+    AudioRecordings.alphabetB[stop-65].stop();
+    if (stop>65)
+    AudioRecordings.alphabetA[stop-66].stop();
+    //System.out.println(AudioRecordings.alphabetA[stop-66].toString());
+    if (rand == 1)
+    {
+      AudioRecordings.alphabetB[play-65].setMicrosecondPosition(0);
+      AudioRecordings.alphabetB[play-65].start();
+    }
+    else
+    {
+      AudioRecordings.alphabetA[play-66].setMicrosecondPosition(0);
+      AudioRecordings.alphabetA[play-66].start();
+    }
+  }
+  
   public static void oneAfterAnother (String wavFile1, String wavFile2)
   {
 //    byte[] buffer = new byte[4096];

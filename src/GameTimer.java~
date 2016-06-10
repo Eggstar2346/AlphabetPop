@@ -59,6 +59,7 @@ public class GameTimer extends Thread
 
           /**
  * This method returns the value of the private timeElapsed variable.
+ * @return int representing time elapsed
  */
     public int getTimeElapsed ()
     {

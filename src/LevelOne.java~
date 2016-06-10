@@ -88,7 +88,7 @@ public class LevelOne extends Levels {
     AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
     AudioRecordings.alphabet[letters[currentLetter]-65].start();
     temp = letters[currentLetter]-65;
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg", Color.BLACK);
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg");
     startup();
   }
   

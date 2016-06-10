@@ -51,9 +51,9 @@ public class LevelThree extends Levels
    * Next, GameTimer is instantiated and the timer is started.<p>
    * In the for-loop, each element in the array, letters, is assigned a character from the chosen word.<p>
    * Then, in the next for-loop, the starting coordinates of the required bubbles (ones that are part of the word and
-   * therefore must definitely come up), their speed, and their angles are all determined randomly.<p>
+   * therefore must definitely come up), their speed, and their angles are all determined randomomly.<p>
    * In the next for-loop, the starting coordinates of extra bubbles, their speed, and their angles are all 
-   * determined randomly as well.<p>
+   * determined randomomly as well.<p>
    * The audio clip that plays the letter corresponding to the current letter is started.<p>
    * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
    * results accordingly.
@@ -79,47 +79,44 @@ public class LevelThree extends Levels
       letters[q] = word.charAt(q);
     }
 
-    Random rand = new Random();
+    Random random = new Random();
     for (int z = 0 ; z < word.length(); z ++)
     {
-      x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
-      y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
+      x = random.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
+      y = random.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
       speed = (int)(Math.random() * (8-1) + 1) + 1;
-      angleInDegree = rand.nextInt(360);
+      angleInDegree = random.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, letters[z], false);
     }
     
     for (int z = word.length(); z < 26; z++)
     {
-      x = rand.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
-      y = rand.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
+      x = random.nextInt(canvasWidth - radius * 2 - 20) + radius + 10;
+      y = random.nextInt(canvasHeight - radius * 2 - 20) + radius + 10;
       speed = (int)(Math.random() * (8 - 1) + 1) + 1;
-      angleInDegree = rand.nextInt(360);
+      angleInDegree = random.nextInt(360);
       ball[z] = new Ball(x, y, radius, speed, angleInDegree, Colors.bubbles, (char)(65+(int)(Math.random() * (25)) + 1), false);
     }
-    int random;
-    AudioRecordings.alphabetB[temp].stop();
-    AudioRecordings.alphabetA[temp].stop();
+    //int random;
+//    AudioRecordings.alphabetB[temp].stop();
+//    AudioRecordings.alphabetA[temp].stop();
     if (letters[currentLetter] == 'Z')
-      random = 2;
+    {
+      rand = 2;
+      //temp = letters[currentLetter];
+    }
     else if (letters[currentLetter] == 'A')
-      random = 1;
-    else
-      random = (int)(Math.random()*2)+1;
-    //AudioRecordings.effects[0].setMicrosecondPosition(0);
-    //AudioRecordings.effects[0].start();
-    if (random == 1)
     {
-      AudioRecordings.alphabetB[letters[currentLetter]-65].setMicrosecondPosition(0);
-      AudioRecordings.alphabetB[letters[currentLetter]-65].start();
-      temp = letters[currentLetter]-65;
+      rand = 1;
+      //temp = letters[currentLetter];
     }
     else
     {
-      AudioRecordings.alphabetA[letters[currentLetter]-66].setMicrosecondPosition(0);
-      AudioRecordings.alphabetA[letters[currentLetter]-66].start();
-      temp = letters[currentLetter]-66;
+      rand = (int)(Math.random()*2)+1;
+      //temp = letters[currentLetter];
     }
+    AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
+    temp = letters[currentLetter];
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg");
     startup();
   }
