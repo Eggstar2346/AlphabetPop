@@ -304,6 +304,24 @@ public abstract class Levels extends JPanel {
     this.setLayout(new BorderLayout());
     this.add(canvas, BorderLayout.CENTER);
     this.add(canvas2, BorderLayout.SOUTH);
+    
+    addKeyListener(new KeyAdapter() { 
+      @Override
+      public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        System.out.println("MENU");
+        if (e.getKeyCode() == 80)
+        {
+          pause();
+        }
+        else
+        {
+          if (e.getKeyCode() ==  KeyEvent.VK_F1)
+          {
+            Main.openCHM();
+          }
+        }
+      }});
 
     addMouseListener(new MouseAdapter() {
       @Override
@@ -322,6 +340,7 @@ public abstract class Levels extends JPanel {
             pause();
           }
         }
+        if (!paused){
         if (yCoord>=610 && yCoord<=670)
         {
           if (xCoord >= 1070 && xCoord <= 1180)
@@ -335,6 +354,7 @@ public abstract class Levels extends JPanel {
               AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
             }
           }
+          return;
         }
         for (int z = NUM_BUBBLES-1;z>=0;z--)
         {
@@ -464,7 +484,7 @@ public abstract class Levels extends JPanel {
             break;
           }
         }
-      }
+        }}
     });
     
     
