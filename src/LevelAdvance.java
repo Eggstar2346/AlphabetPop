@@ -30,7 +30,7 @@ private BufferedImage image;
     System.out.println("YAS");
     try 
     {
-      image = ImageIO.read(new File("LevelAdvance.jpg"));
+      image = ImageIO.read(new File(".//resources//LevelAdvance.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 

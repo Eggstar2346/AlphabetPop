@@ -86,6 +86,10 @@ public class LevelMenu extends JPanel
             {
               Main.switchMenu(3);
             }
+            else if (e.getKeyCode() == 66)
+            {
+              Main.switchMenu(0);
+            }
             else
             {
               if (e.getKeyCode() ==  KeyEvent.VK_F1)
