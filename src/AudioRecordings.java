@@ -134,11 +134,10 @@ public class AudioRecordings extends Thread
   public static void playLevelThree(int rand, int stop, int play)
   {
     System.out.println("STOP: " + stop);
-        if (stop<89)
-    AudioRecordings.alphabetB[stop-65].stop();
-    if (stop>65)
-    AudioRecordings.alphabetA[stop-66].stop();
-    //System.out.println(AudioRecordings.alphabetA[stop-66].toString());
+    if (stop>=66)
+      AudioRecordings.alphabetB[stop-66].stop();
+    if (stop>=65 && stop <= 89)
+      AudioRecordings.alphabetA[stop-65].stop();
     if (rand == 1)
     {
       AudioRecordings.alphabetB[play-65].setMicrosecondPosition(0);
@@ -150,81 +149,4 @@ public class AudioRecordings extends Thread
       AudioRecordings.alphabetA[play-66].start();
     }
   }
-  
-  public static void oneAfterAnother (String wavFile1, String wavFile2)
-  {
-//    byte[] buffer = new byte[4096];
-//    try {
-//      File file = new File ("Click the letter.wav");
-//      AudioInputStream is = AudioSystem.getAudioInputStream(file);
-//      AudioFormat format = is.getFormat();
-//      SourceDataLine line = AudioSystem.getSourceDataLine(format);
-//      line.open(format);
-//      line.start();
-//      while (is.available() > 0) 
-//      {
-//        int len = is.read(buffer);
-//        line.write(buffer, 0, len);
-//      }
-//      line.drain();
-//      line.close();
-//    } 
-//    catch (Exception e) {
-//      e.printStackTrace();
-//    }
-    
-//    public void actionPerformed (ActionEvent e)
-//    {
-//      
-//    }
-//    try {
-//      AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File(wavFile1));
-//      AudioInputStream clip2 = AudioSystem.getAudioInputStream(new File(wavFile2));
-//      
-//      AudioInputStream appendedFiles = 
-//        new AudioInputStream(
-//                             new SequenceInputStream(clip1, clip2),     
-//                             clip1.getFormat(), 
-//                             clip1.getFrameLength() + clip2.getFrameLength());
-//      
-//      AudioSystem.write(appendedFiles, 
-//                        AudioFileFormat.Type.WAVE, 
-//                        new File("D:\\wavAppended.wav"));
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-    
-    
-//    try {
-//      AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-//      AudioFormat format = audioStream.getFormat();
-//      DataLine.Info info = new DataLine.Info(Clip.class, format);
-//      Clip audioClip = (Clip) AudioSystem.getLine(info);
-//      audioClip.addLineListener(this);
-//      audioClip.open(audioStream);
-//      audioClip.start();
-//      
-//      while (!playCompleted) {
-//        // wait for the playback completes
-//        try {
-//          Thread.sleep(1000);
-//        } catch (InterruptedException ex) {
-//          ex.printStackTrace();
-//        }
-//      }
-//      
-//      audioClip.close();
-//      
-//    } catch (UnsupportedAudioFileException ex) {
-//      System.out.println("The specified audio file is not supported.");
-//      ex.printStackTrace();
-//    } catch (LineUnavailableException ex) {
-//      System.out.println("Audio line for playing back is unavailable.");
-//      ex.printStackTrace();
-//    } catch (IOException ex) {
-//      System.out.println("Error playing the audio file.");
-//      ex.printStackTrace();
-//    }
-//  }
-}
 }
