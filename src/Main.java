@@ -121,7 +121,6 @@ public class Main {
     }
     catch (IOException i)
     {
-      System.out.println("Doesn't work :/");
     }
   }
   
@@ -145,13 +144,9 @@ public class Main {
         frame = new JFrame("Alphabet Pop");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new Splashscreen2());
-        //frame.add(new MainMenu()); //new Splashscreen2());//this should be splashscreen but i dont want it to play every single time
-//        MainMenu m = new MainMenu();
-//        frame.add(m);
         frame.addKeyListener(new KeyAdapter() {
           @Override
           public void keyPressed(KeyEvent e) {
-            System.out.println(e.getKeyCode());
             if (e.getKeyCode() == KeyEvent.VK_F1)
             {
               openCHM();

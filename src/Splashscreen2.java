@@ -81,7 +81,6 @@ public class Splashscreen2 extends JPanel
     gameStart();
     AudioRecordings.volume(-12, AudioRecordings.background[4]);
     AudioRecordings.background[4].start();
-    System.out.println("bazinga");
   }
   
   /** The gameStart method runs all the bubbles at the same time.

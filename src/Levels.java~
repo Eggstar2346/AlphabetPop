@@ -45,7 +45,7 @@ import java.util.ArrayList;
  * <b>What Was Changed</b> The code now properly displays the letters.  Brackets within the LettersCanvas class had to 
  * be moved to the correct location.
  * <p>
- * <b>Author</b> Samantha Unger & Esther Yoo
+ * <b>Author</b> Samantha Unger and Esther Yoo
  * <b>Version #</b> 2
  * <b>Date</b> 06.09.16
  * <b>Time Spent</b> 5 hours
@@ -677,10 +677,12 @@ public abstract class Levels extends JPanel {
   
   /**
    * This method returns the proper speed of the bubbles.
+   * @return an int representing the speed the bubbles should travel at
    */
   public abstract int generateSpeed();
   /**
    * This method returns the level that the user is currently playing.
+   * @return an int representing which level the user is playing
    */
   public abstract int getLevel();
 }

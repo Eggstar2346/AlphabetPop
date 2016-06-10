@@ -5,7 +5,7 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/* The LevelMenu class loads the Levels image and displays it on the screen.   It allows the user to select
+/** The LevelMenu class loads the Levels image and displays it on the screen.   It allows the user to select
  * which level of the game they would like to go to and takes them there.
  * 
  * 

@@ -57,23 +57,18 @@ public class LevelMenu extends JPanel
  */
   public LevelMenu ()
   {
-    System.out.println("YAS");
     try 
     {
       menu = ImageIO.read(new File(".//resources//Levels.jpg"));
-      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO");
     } 
     repaint();
     
     addKeyListener(new KeyAdapter() { //this wont work for some reason
           @Override
           public void keyPressed(KeyEvent e) {
-            System.out.println(e.getKeyCode());
-            System.out.println("MENU");
             if (e.getKeyCode() == 49)
             {
               Main.switchMenu(1);
@@ -105,29 +100,24 @@ public class LevelMenu extends JPanel
     public void mousePressed(MouseEvent e) {
       int xCoord = e.getX();
       int yCoord = e.getY();
-      System.out.println(xCoord+ "      "+yCoord);
       if (xCoord>=217&&xCoord<=1016)
       {
         if (yCoord>=162&&yCoord<=211)
         {
-          System.out.println("Level One");
           Main.switchMenu(1);
         }
         else if (yCoord>=260&&yCoord<=309)
         {
-          System.out.println("Level Two");
           Main.switchMenu(2);
         } 
         else if (yCoord>=363&&yCoord<=412)
         {
-          System.out.println("Level Three");
           Main.switchMenu(3);
         }
         else 
         {
           if (yCoord>=462&&yCoord<=511)
           {
-            System.out.println("Back");
             Main.switchMenu(0);
           }
         }
@@ -148,6 +138,5 @@ public class LevelMenu extends JPanel
     super.paintComponent(g);
     g.setColor(Color.WHITE);
     g.drawImage(menu, 0, 0, null);
-    System.out.println("YAY");
   }
 }

@@ -40,7 +40,6 @@ public class PauseScreen extends JPanel
  */
   public PauseScreen()
   {
-    System.out.println("WHATTTTTTTTTTTTTTTTTTTTT");
     revalidate();
     repaint();
   }

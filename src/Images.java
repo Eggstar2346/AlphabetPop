@@ -49,12 +49,10 @@ public class Images
       for (int x = 0; x < instructions.length; x++)
       {
         instructions[x] = ImageIO.read(new File(".//resources//InstructionsBack" + (x+1) + ".jpg"));
-        System.out.println("WHOOOOOOOOOOOOOO");
       }
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO wayyy");
     }
   }
 }

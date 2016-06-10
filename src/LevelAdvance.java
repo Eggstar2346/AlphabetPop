@@ -49,15 +49,12 @@ private BufferedImage image;
  */
   public LevelAdvance (int level)
   {
-    System.out.println("YAS");
     try 
     {
       image = ImageIO.read(new File(".//resources//LevelAdvance.jpg"));
-      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO");
     } 
     repaint();
     
@@ -71,14 +68,12 @@ private BufferedImage image;
       {
         if (xCoord>=175&&xCoord<=575)
         {
-          System.out.println("mainmenu");
           Main.switchMenu(0);
         }
         else 
         {
           if (xCoord>=630&&xCoord<=1030)
           {
-            System.out.println("nextlvl");
             Main.switchMenu(level);
           }
         }
@@ -99,7 +94,6 @@ private BufferedImage image;
     super.paintComponent(g);
     g.setColor(Color.WHITE);
     g.drawImage(image, 0, 0, null);
-    System.out.println("YAY");
   }
   
 }

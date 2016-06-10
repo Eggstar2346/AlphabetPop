@@ -59,7 +59,6 @@ public class ContainerBox {
    * @param width int of new width
    * @param height int of new height
    * @param name String for image name
-   * @param colorBorder Color for border
    */
   public ContainerBox(int x, int y, int width, int height, String name) {
     minX = x;

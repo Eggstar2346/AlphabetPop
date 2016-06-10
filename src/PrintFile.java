@@ -99,11 +99,9 @@ public class PrintFile implements Printable {
         try 
         {
           top = ImageIO.read(new File(".//resources//printback2.jpg"));
-          System.out.println("GOOD");
         } 
         catch (IOException e) 
         {
-          System.out.println("NOOOOO");
         } 
         g.drawImage(top,110,80,null);
         g.setFont(new Font("Comic Sans", Font.PLAIN, 25));

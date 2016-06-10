@@ -107,21 +107,17 @@ public class DisplayTime extends JPanel {
    */
   public DisplayTime (int newRound1, int newRound2, int newRound3, int newLevel)
   {
-    System.out.println("YAS");
     round1=newRound1;
     round2=newRound2;
     round3=newRound3;
     level=newLevel;
     score=3600/((round1+round2+round3)/(3*level));
-    System.out.println(score);
     try 
     {
       background = ImageIO.read(new File(".//resources//bubblybackground.jpg"));
-      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO");
     } 
     setLayout(new BorderLayout());
     JPanel buttonPanel = new JPanel();
@@ -280,7 +276,6 @@ public class DisplayTime extends JPanel {
     g.drawString("You completed Round 3 in " + round3 + " seconds!", 300, 300);
     g.setFont(new Font("Comic Sans", Font.PLAIN, 65));
     g.drawString("Your SCORE is " + score + "!",270,500);
-    System.out.println("YAY");
   }
   
 }

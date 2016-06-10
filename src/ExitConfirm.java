@@ -48,15 +48,12 @@ public class ExitConfirm extends JPanel
    */
   public ExitConfirm ()
   {
-    System.out.println("YAS");
     try 
     {
       image = ImageIO.read(new File(".//resources//Exit.jpg"));
-      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO");
     } 
     repaint();
     
@@ -65,19 +62,16 @@ public class ExitConfirm extends JPanel
       public void mousePressed(MouseEvent e) {
         int xCoord = e.getX();
         int yCoord = e.getY();
-        System.out.println(xCoord+ "      "+yCoord);
         if (xCoord>=217&&xCoord<=1016)
         {
           if (yCoord>=162&&yCoord<=211)
           {
-            System.out.println("Yes");
             Main.frame.dispatchEvent(new WindowEvent(Main.frame, WindowEvent.WINDOW_CLOSING));
           }
           else 
           {
             if (yCoord>=363&&yCoord<=412)
             {
-              System.out.println("No");
               Main.switchMenu(0);
             }
           }
@@ -98,7 +92,6 @@ public class ExitConfirm extends JPanel
     super.paintComponent(g);
     g.setColor(Color.WHITE);
     g.drawImage(image, 0, 0, null);
-    System.out.println("YAY");
   }
   
 }

@@ -200,7 +200,6 @@ public abstract class Levels extends JPanel {
       
       String fileName = file;
       input = new BufferedReader (new FileReader (fileName));
-      System.out.println("OK");
       if (!input.readLine().equals("This is a Green Eggs & Sam file."))
       {
         JOptionPane.showMessageDialog (this, "This is not a .GSE file!", "Incompatible File Type", JOptionPane.ERROR_MESSAGE);
@@ -208,12 +207,9 @@ public abstract class Levels extends JPanel {
       while (true)
       {
         tempString=input.readLine();
-        System.out.println(tempString);
         if (tempString!=null)
         {
-          System.out.println("W");
           words.add(tempString);
-          System.out.println("YES");
         }
         else
         {
@@ -223,11 +219,9 @@ public abstract class Levels extends JPanel {
     }
     catch (FileNotFoundException l)
     {
-      System.out.println("BAD");
     }
     catch (IOException q)
     {
-      System.out.println("Open File IO Error");
     }
     for (int x=words.size()-1; x>0;x--)
     {
@@ -312,8 +306,6 @@ public abstract class Levels extends JPanel {
     addKeyListener(new KeyAdapter() { 
       @Override
       public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
-        System.out.println("MENU");
         if (e.getKeyCode() == 80)
         {
           pause();
@@ -336,7 +328,6 @@ public abstract class Levels extends JPanel {
         yCoord = e.getY();
         
         
-        System.out.println("XCoord: " + xCoord+ "      " + "YCoord" +yCoord);
         if (yCoord>=610 && yCoord<=670)
         {
           if (xCoord >= 1000 && xCoord <= 1060)
@@ -369,7 +360,6 @@ public abstract class Levels extends JPanel {
                 AudioRecordings.alphabet[temp-65].stop();
                 if (rand == 1)
                 {
-                  System.out.println("TEMP HERE: " + temp);
                   AudioRecordings.alphabetB[temp-65].stop();
                 }
                 else
@@ -423,13 +413,11 @@ public abstract class Levels extends JPanel {
                 if (currentWord==2)
                 {
                   AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+                  if (letters[currentLetter]>=65 && letters[currentLetter] <= 89)
+                    AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
                   if (letters[currentLetter]>=66)
-                    AudioRecordings.alphabetB[letters[currentLetter]-66].stop();
-                  if (letters[currentLetter]>=65 && letters[currentLetter]<=89)
-                    AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
-                  System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
+                    AudioRecordings.alphabetA[letters[currentLetter]-66].stop();
                   AudioRecordings.background[getLevel()].stop();
-                  System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
                   Main.frame.getContentPane().removeAll();
                   Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
                   Main.frame.repaint();
@@ -442,7 +430,6 @@ public abstract class Levels extends JPanel {
                   AudioRecordings.effects[0].start();
                   currentWord++;
                   word = words.get(currentWord).toUpperCase();
-                  System.out.println(word);
                   t.setTimeElapsed(0);
                   setBubbles();
                   
@@ -470,9 +457,6 @@ public abstract class Levels extends JPanel {
                   }
                 }
               }
-              System.out.println("This is bubble number: " + currentLetter);
-              System.out.println("Time elapsed is "+ t.getTimeElapsed());
-              
               break;
             }
           }
@@ -642,7 +626,6 @@ public abstract class Levels extends JPanel {
           ball[q].setSpeed( (int)(Math.random() * (3 - 1) + 1) + 1);
         else
           ball[q].setSpeed( (int)(Math.random() * (8 - 1) + 1) + 1);
-        System.out.println(letters[q]);
         ball[q].setLetter(letters[q]);
         ball[q].setWasClicked(false);
       }

@@ -67,7 +67,7 @@ public class Instructions extends JPanel
           {
             if (xCoord>=1050&&xCoord<=1200)
             {
-              if (currentSlide == 20)
+              if (currentSlide == 19)
                 Main.switchMenu(0);
               else
                 currentSlide++;
@@ -86,6 +86,17 @@ public class Instructions extends JPanel
         {
           AudioRecordings.effects[0].stop();
           AudioRecordings.effects[1].start();
+        }
+        if (currentSlide == 10)
+        {
+          if (xCoord>=0&&xCoord<=150)
+          {
+            currentSlide--;
+          }
+          if (xCoord>=1050&&xCoord<=1200)
+          {
+            currentSlide++;
+          }
         }
         
         repaint();

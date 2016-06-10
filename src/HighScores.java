@@ -43,15 +43,12 @@ public class HighScores extends JPanel {
   public HighScores ()
   {
     BufferedReader input;
-    System.out.println("YAS");
     try 
     {
       background = ImageIO.read(new File(".//resources//highscoresback.jpg"));
-      System.out.println("GOOD");
     } 
     catch (IOException e) 
     {
-      System.out.println("NOOOOO");
     } 
     repaint();
     try
@@ -80,19 +77,16 @@ public class HighScores extends JPanel {
       public void mouseClicked(MouseEvent e) {
         int xCoord = e.getX();
         int yCoord = e.getY();
-        System.out.println(xCoord+ "      "+yCoord);
         if (yCoord>=550&&yCoord<=619)
         {
           if (xCoord>=84&&xCoord<=275)
           {
-            System.out.println("Back");
             Main.switchMenu(0);
           }
           else 
           {
             if (xCoord>=617&&xCoord<=808)
             {
-              System.out.println("Print");
               new PrintFile(name,highScore,gameType);
             }
           }
@@ -150,7 +144,6 @@ public class HighScores extends JPanel {
       else
         g.drawString ("Hard",1000,150+x*40);
     }
-    System.out.println("YAY");
   }
     
 }
