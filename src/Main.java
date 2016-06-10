@@ -72,15 +72,21 @@ public class Main {
     }
     else if (choice==1)
     {
-      frame.add (new LevelOne(1200,630));
+      c=new LevelOne(1200,630);
+      frame.add (c);
+      c.requestFocusInWindow();
     }
     else if (choice==2)
     {
-      frame.add (new LevelTwo(1200,630));
+      c=new LevelTwo(1200,630);
+      frame.add (c);
+      c.requestFocusInWindow();
     }
     else if (choice==3)
     {
-      frame.add (new LevelThree(1200,630));
+      c=new LevelThree(1200,630);
+      frame.add (c);
+      c.requestFocusInWindow();
     }
     else if (choice==4)
     {
@@ -101,7 +107,6 @@ public class Main {
       frame.add(new HighScores());
     }
     frame.revalidate();
-    //frame.requestFocus();
   }
   
   /**

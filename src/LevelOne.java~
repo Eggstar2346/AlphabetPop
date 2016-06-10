@@ -60,7 +60,7 @@ public class LevelOne extends Levels {
    * The Levels class's instance variable, temp, is then assigned a value according to the first letter of the word
    * chosen. Then, the method that plays the audio clip that plays the letter corresponding to the temp letter is started.<p>
    * Lastly, the background image is loaded in and startup() is called, which checks whether the user's input is 
-   * correct or incorrect, and outputs the results accordingly.
+   * correct or incorrect, and outputs the results accordingly.<p>
    * 
    * @param x int that stores the screen width
    * @param y int that stores the screen height
@@ -70,7 +70,7 @@ public class LevelOne extends Levels {
     super(x, y);
     background = 1;
     letters = new char [3];
-    readWords("Level1.txt");
+    readWords(".//resources//Level1.txt");
     word = words.get(0).toUpperCase();
     
     AudioRecordings.volume(-15.0f, AudioRecordings.background[1]);
@@ -90,8 +90,8 @@ public class LevelOne extends Levels {
     
     temp = letters[currentLetter];
     AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-    temp = letters[currentLetter];
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg");
+//    temp = letters[currentLetter];
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//underwater2.jpg");
     startup();
   }
   

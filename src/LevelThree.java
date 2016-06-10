@@ -118,7 +118,7 @@ public class LevelThree extends Levels
     
     temp = letters[currentLetter];
     AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//house2.jpg");
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg");
     startup();
   }
   

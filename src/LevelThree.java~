@@ -54,9 +54,13 @@ public class LevelThree extends Levels
    * therefore must definitely come up), their speed, and their angles are all determined randomomly.<p>
    * In the next for-loop, the starting coordinates of extra bubbles, their speed, and their angles are all 
    * determined randomomly as well.<p>
-   * The audio clip that plays the letter corresponding to the current letter is started.<p>
-   * Lastly, startup() is called, which checks whether the user's input is correct or incorrect, and outputs the
-   * results accordingly.
+   * The Levels class's instance variable, temp, is then assigned a value according to the first letter of the word
+   * chosen. Whether the audio clip will say "Click the letter before..." or "Click the letter after..." is also decided
+   * as well through a random number generator. Due to a few exceptions, an if-statement handles the letters A and Z, and
+   * gives them their own appropriate values.<p>
+   * Then, the method that plays the audio clip that plays the letter corresponding to the temp letter is started.<p>
+   * Lastly, the background image is loaded in and startup() is called, which checks whether the user's input is 
+   * correct or incorrect, and outputs the results accordingly.<p>
    * 
    * @param x int that stores the screen width
    * @param y int that stores the screen height
@@ -66,7 +70,7 @@ public class LevelThree extends Levels
     super(x, y);
     background = 3;
     letters = new char [5];
-    readWords("Level3.txt");
+    readWords(".//resources//Level3.txt");
     word = words.get(0).toUpperCase();
     
     AudioRecordings.volume(-15.0f, AudioRecordings.background[3]);
@@ -111,15 +115,10 @@ public class LevelThree extends Levels
     {
       rand = (int)(Math.random()*2)+1;
     }
-    System.out.println("this is the rand: " + rand);
-    System.out.println("This is temp: " + temp);
-    System.out.println("The word is: " + word);
-    AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
-    temp = letters[currentLetter];
-    System.out.println("This is temp: " + temp);
     
-    System.out.println("This is the current letter " + letters[currentLetter]);
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "house2.jpg");
+    temp = letters[currentLetter];
+    AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//house2.jpg");
     startup();
   }
   

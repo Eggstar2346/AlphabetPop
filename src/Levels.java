@@ -145,8 +145,8 @@ public abstract class Levels extends JPanel {
   protected int canvasHeight;
   int xCoord;
   int yCoord;
-
- ContainerBox box;  
+  
+  ContainerBox box;  
   private ContainerBox box2 = new ContainerBox (0, 0, canvasWidth, canvasHeight, "lettersBack.jpg");
   
   int radius = 50;
@@ -181,7 +181,7 @@ public abstract class Levels extends JPanel {
   boolean paused = false;
   int tempTime;
   
-    /**
+  /**
    * The readWords method reads the words in from a file to an ArrayList and shuffles the order of the elements in the
    * ArrayList. A try block is used to catch in case of file problems.  A while loop is used to read in all of the
    * words.
@@ -197,7 +197,7 @@ public abstract class Levels extends JPanel {
     
     try
     {
-
+      
       String fileName = file;
       input = new BufferedReader (new FileReader (fileName));
       System.out.println("OK");
@@ -212,8 +212,8 @@ public abstract class Levels extends JPanel {
         if (tempString!=null)
         {
           System.out.println("W");
-        words.add(tempString);
-        System.out.println("YES");
+          words.add(tempString);
+          System.out.println("YES");
         }
         else
         {
@@ -248,13 +248,13 @@ public abstract class Levels extends JPanel {
    * @param height int that contains the screen height
    */
   public Levels(int width, int height) {
-
+    
     canvasWidth = width;
     canvasHeight = height;
     p = new PauseScreen();
   }
   
-      /**
+  /**
    * The pause method is called to pause and unpause the game.  It stops audio recordings and records the timer's 
    * current time so that it can be reset later.  It also inverts the value of the boolean paused variable.
    */
@@ -263,32 +263,25 @@ public abstract class Levels extends JPanel {
     paused = !paused;
     if (paused)
     {
-      System.out.println("OHHHHHHHHH NOOOOOOOOOOO");
-      AudioRecordings.alphabet[temp-65].stop();
-      if (temp-65<88)
-      {
-        System.out.println("Temp " + temp);
-        AudioRecordings.alphabetB[temp-65].stop();
-      }
-      if (temp-66>65)
-      {
-        AudioRecordings.alphabetA[temp-66].stop();
-      }
+      AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+      if (letters[currentLetter]>=65 && letters[currentLetter] <= 89)
+        AudioRecordings.alphabetB[letters[currentLetter]-65].stop();
+      if (letters[currentLetter]>=66)
+        AudioRecordings.alphabetA[letters[currentLetter]-66].stop();
       tempTime = t.getTimeElapsed();
     }
     else
     {
       t.setTimeElapsed(tempTime);
-      System.out.println("LEVEL: " + getLevel());
       if (getLevel() < 3)
       {
-        AudioRecordings.alphabet[letters[currentLetter]-65].start();
+        AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
       }
       else
       {
         if (rand == 1)
         {
-          AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
+          AudioRecordings.alphabetB[letters[currentLetter]-65].start();
         }
         else
         {
@@ -298,7 +291,7 @@ public abstract class Levels extends JPanel {
     }
   }
   
-    /**
+  /**
    * This method constructs the necessary objects to play the game and adds them to the screen and its layout.  
    * A nested MouseAdapter class is necessary so that
    * the user's click location can be taken.  A mouse listener is added to the screen to register when a user clicks on 
@@ -315,7 +308,25 @@ public abstract class Levels extends JPanel {
     this.setLayout(new BorderLayout());
     this.add(canvas, BorderLayout.CENTER);
     this.add(canvas2, BorderLayout.SOUTH);
-
+    
+    addKeyListener(new KeyAdapter() { 
+      @Override
+      public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        System.out.println("MENU");
+        if (e.getKeyCode() == 80)
+        {
+          pause();
+        }
+        else
+        {
+          if (e.getKeyCode() ==  KeyEvent.VK_F1)
+          {
+            Main.openCHM();
+          }
+        }
+      }});
+    
     addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
@@ -333,137 +344,139 @@ public abstract class Levels extends JPanel {
             pause();
           }
         }
-        if (yCoord>=610 && yCoord<=670)
-        {
-          if (xCoord >= 1070 && xCoord <= 1180)
+        if (!paused){
+          if (yCoord>=610 && yCoord<=670)
           {
-            if (getLevel() < 3)
+            if (xCoord >= 1070 && xCoord <= 1180)
             {
-              AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-            }
-            else
-            {
-              AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
-            }
-          }
-        }
-        for (int z = NUM_BUBBLES-1;z>=0;z--)
-        {
-          if (Math.sqrt(Math.pow(xCoord-ball[z].returnHorizontalCenter(),2)+Math.pow(yCoord-ball[z].returnVerticalCenter(),2))<=50 && !ball[z].getWasClicked())
-          {
-            if (ball[z].getLetter() == letters[currentLetter])
-            {
-              AudioRecordings.alphabet[temp-65].stop();
-              if (rand == 1)
+              if (getLevel() < 3)
               {
-                System.out.println("TEMP HERE: " + temp);
-                AudioRecordings.alphabetB[temp-65].stop();
+                AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
               }
               else
               {
-                if (rand == 2)
-                  AudioRecordings.alphabetA[temp-66].stop();
+                AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
               }
-              
-              ball[z].setWasClicked(true);
-              ball[z].setSpeed(0);
-              ball[z].setRadius(-100);
-              ball[z].setLocation(-100,-100);
-              currentLetter++;
-              if (currentLetter <= letters.length-1)
+            }
+            return;
+          }
+          for (int z = NUM_BUBBLES-1;z>=0;z--)
+          {
+            if (Math.sqrt(Math.pow(xCoord-ball[z].returnHorizontalCenter(),2)+Math.pow(yCoord-ball[z].returnVerticalCenter(),2))<=50 && !ball[z].getWasClicked())
+            {
+              if (ball[z].getLetter() == letters[currentLetter])
               {
-                AudioRecordings.effects[0].setMicrosecondPosition(0);
-                AudioRecordings.effects[0].start();
-                if (getLevel() < 3)
+                AudioRecordings.alphabet[temp-65].stop();
+                if (rand == 1)
                 {
-                  AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-                  temp = letters[currentLetter];
+                  System.out.println("TEMP HERE: " + temp);
+                  AudioRecordings.alphabetB[temp-65].stop();
                 }
                 else
                 {
-                  if (letters[currentLetter] == 'Z')
-                  {
-                    rand = 2;
-                  }
-                  else if (letters[currentLetter] == 'A')
-                  {
-                    rand = 1;
-                  }
-                  else
-                  {
-                    rand = (int)(Math.random()*2)+1;
-                  }
-                  AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
-                  temp = letters[currentLetter];
+                  if (rand == 2)
+                    AudioRecordings.alphabetA[temp-66].stop();
                 }
-              }
-            }
-            else
-            {
-              AudioRecordings.effects[1].setMicrosecondPosition(0);
-              AudioRecordings.effects[1].start();
-            }
-            if (currentLetter > letters.length-1)
-            {
-              currentLetter = 0;
-              roundTimes[currentWord]=t.getTimeElapsed();
-              if (currentWord==2)
-              {
-                AudioRecordings.alphabet[letters[currentLetter]-65].stop();
-                if (letters[currentLetter]>=66)
-                  AudioRecordings.alphabetB[letters[currentLetter]-66].stop();
-                if (letters[currentLetter]>=65 && letters[currentLetter]<=89)
-                  AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
-                System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
-                AudioRecordings.background[getLevel()].stop();
-                System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
-                Main.frame.getContentPane().removeAll();
-                Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
-                Main.frame.repaint();
-                Main.frame.revalidate();
-                return;
-              }
-              else
-              {              
-                AudioRecordings.effects[0].setMicrosecondPosition(0);
-                AudioRecordings.effects[0].start();
-                currentWord++;
-                word = words.get(currentWord).toUpperCase();
-                System.out.println(word);
-                t.setTimeElapsed(0);
-                setBubbles();
                 
-                if (getLevel() < 3)
+                ball[z].setWasClicked(true);
+                ball[z].setSpeed(0);
+                ball[z].setRadius(-100);
+                ball[z].setLocation(-100,-100);
+                currentLetter++;
+                if (currentLetter <= letters.length-1)
                 {
-                  AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-                  temp = letters[currentLetter];
-                }
-                else
-                {
-                  if (letters[currentLetter] == 'Z')
+                  AudioRecordings.effects[0].setMicrosecondPosition(0);
+                  AudioRecordings.effects[0].start();
+                  if (getLevel() < 3)
                   {
-                    rand = 2;
-                  }
-                  else if (letters[currentLetter] == 'A')
-                  {
-                    rand = 1;
+                    AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
+                    temp = letters[currentLetter];
                   }
                   else
                   {
-                    rand = (int)(Math.random()*2)+1;
+                    if (letters[currentLetter] == 'Z')
+                    {
+                      rand = 2;
+                    }
+                    else if (letters[currentLetter] == 'A')
+                    {
+                      rand = 1;
+                    }
+                    else
+                    {
+                      rand = (int)(Math.random()*2)+1;
+                    }
+                    AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
+                    temp = letters[currentLetter];
                   }
-                  AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
-                  temp = letters[currentLetter];
                 }
               }
+              else
+              {
+                AudioRecordings.effects[1].setMicrosecondPosition(0);
+                AudioRecordings.effects[1].start();
+              }
+              if (currentLetter > letters.length-1)
+              {
+                currentLetter = 0;
+                roundTimes[currentWord]=t.getTimeElapsed();
+                if (currentWord==2)
+                {
+                  AudioRecordings.alphabet[letters[currentLetter]-65].stop();
+                  if (letters[currentLetter]>=66)
+                    AudioRecordings.alphabetB[letters[currentLetter]-66].stop();
+                  if (letters[currentLetter]>=65 && letters[currentLetter]<=89)
+                    AudioRecordings.alphabetA[letters[currentLetter]-65].stop();
+                  System.out.println("Current Word: " + currentWord + "Level: " + getLevel());
+                  AudioRecordings.background[getLevel()].stop();
+                  System.out.println(roundTimes[0]+"  "+roundTimes[1]+"   "+roundTimes[2]);
+                  Main.frame.getContentPane().removeAll();
+                  Main.frame.add(new DisplayTime(roundTimes[0], roundTimes[1], roundTimes[2], getLevel()));
+                  Main.frame.repaint();
+                  Main.frame.revalidate();
+                  return;
+                }
+                else
+                {              
+                  AudioRecordings.effects[0].setMicrosecondPosition(0);
+                  AudioRecordings.effects[0].start();
+                  currentWord++;
+                  word = words.get(currentWord).toUpperCase();
+                  System.out.println(word);
+                  t.setTimeElapsed(0);
+                  setBubbles();
+                  
+                  if (getLevel() < 3)
+                  {
+                    AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
+                    temp = letters[currentLetter];
+                  }
+                  else
+                  {
+                    if (letters[currentLetter] == 'Z')
+                    {
+                      rand = 2;
+                    }
+                    else if (letters[currentLetter] == 'A')
+                    {
+                      rand = 1;
+                    }
+                    else
+                    {
+                      rand = (int)(Math.random()*2)+1;
+                    }
+                    AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
+                    temp = letters[currentLetter];
+                  }
+                }
+              }
+              System.out.println("This is bubble number: " + currentLetter);
+              System.out.println("Time elapsed is "+ t.getTimeElapsed());
+              
+              break;
             }
-            System.out.println("This is bubble number: " + currentLetter);
-            System.out.println("Time elapsed is "+ t.getTimeElapsed());
-            
-            break;
           }
-        }
-      }
+        }}
     });
     
     
@@ -486,7 +499,7 @@ public abstract class Levels extends JPanel {
     gameStart();
   }
   
-      /**
+  /**
    * This method starts the bubble movement.
    */
   public void gameStart() {
@@ -522,12 +535,12 @@ public abstract class Levels extends JPanel {
   
   /** This inner class is a custom drawing panel for the bouncing ball. It overrides the paintComponent() method and 
     * uses for loops to draw each bubble.
-   */
+    */
   class DrawCanvas extends JPanel {
-      /**
-   * This method paints components on the screen.  It uses a for loop to draw each bubble.
-   * @param g Graphics passed in to allow painting on the frame.
-   */
+    /**
+     * This method paints components on the screen.  It uses a for loop to draw each bubble.
+     * @param g Graphics passed in to allow painting on the frame.
+     */
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
@@ -556,51 +569,51 @@ public abstract class Levels extends JPanel {
     }
   }
   
-    /** This inner class is a custom drawing panel for the letters. It overrides the paintComponent() method and 
+  /** This inner class is a custom drawing panel for the letters. It overrides the paintComponent() method and 
     * uses for loops to draw each bubble.
-   */
+    */
   class DrawLetters extends JPanel {
-          /**
-   * This method paints components on the screen. 
-   * @param g Graphics passed in to allow painting on the frame.
-   */
+    /**
+     * This method paints components on the screen. 
+     * @param g Graphics passed in to allow painting on the frame.
+     */
     @Override
     public void paintComponent(Graphics g) {
       super.paintComponent(g);    // Paint background
       box2.draw (g);
-        g.setColor(Colors.boxes);
-        for (int x = 0; x < letters.length; x++)
-        {
-          g.fillRect((x*110) + 300, 0, 100,100);
-        }
-        g.setFont(new Font("Courier New", Font.PLAIN, 15));
-        g.setColor(Color.red);
-        g.fillRect(1000, 20, 60, 60);
-        g.setColor(Color.white);
-        g.fillRect(1010, 30, 15, 40);
-        g.fillRect(1035, 30, 15, 40);
-        g.setColor(Color.black);
-        g.fillRect(1070, 20, 120, 60);
-        g.setColor(Color.white);
-        g.drawString("Listen again!", 1075, 60);
-        g.setFont(new Font("Courier New", Font.PLAIN, 40));
-        g.setColor(Colors.letters);
-        for (int x = -1; x < currentLetter; x++)
-        {
-          if (x != -1)
-            g.drawString("" + letters[x], (x*100) + 350, 50);
-        }
-        // Draw the box and the ball
-        g.setColor(Color.black);
-        g.setFont(new Font("Comic Sans", Font.PLAIN, 50));
-        if (paused)
-          g.drawString("Time: " + tempTime, 70, 70);
-        else
-          g.drawString("Time: " + t.getTimeElapsed(), 70, 70);
-        BufferedImage back = null;
+      g.setColor(Colors.boxes);
+      for (int x = 0; x < letters.length; x++)
+      {
+        g.fillRect((x*110) + 300, 0, 100,100);
+      }
+      g.setFont(new Font("Courier New", Font.PLAIN, 15));
+      g.setColor(Color.red);
+      g.fillRect(1000, 20, 60, 60);
+      g.setColor(Color.white);
+      g.fillRect(1010, 30, 15, 40);
+      g.fillRect(1035, 30, 15, 40);
+      g.setColor(Color.black);
+      g.fillRect(1070, 20, 120, 60);
+      g.setColor(Color.white);
+      g.drawString("Listen again!", 1075, 60);
+      g.setFont(new Font("Courier New", Font.PLAIN, 40));
+      g.setColor(Colors.letters);
+      for (int x = -1; x < currentLetter; x++)
+      {
+        if (x != -1)
+          g.drawString("" + letters[x], (x*100) + 350, 50);
+      }
+      // Draw the box and the ball
+      g.setColor(Color.black);
+      g.setFont(new Font("Comic Sans", Font.PLAIN, 50));
+      if (paused)
+        g.drawString("Time: " + tempTime, 70, 70);
+      else
+        g.drawString("Time: " + t.getTimeElapsed(), 70, 70);
+      BufferedImage back = null;
     }
     
-        /** This method is overriden to get the preferred size of the component. 
+    /** This method is overriden to get the preferred size of the component. 
       * @return Dimension that indicates the preferred size
       */
     @Override
@@ -609,8 +622,8 @@ public abstract class Levels extends JPanel {
     }
   }
   
-
-      /**
+  
+  /**
    * The setBubbles method resets the array of bubbles and draws them about the screen.
    */
   public void setBubbles()
@@ -661,13 +674,13 @@ public abstract class Levels extends JPanel {
       }
     }
   }
-   
-      /**
+  
+  /**
    * This method returns the proper speed of the bubbles.
    */
-   public abstract int generateSpeed();
-       /**
+  public abstract int generateSpeed();
+  /**
    * This method returns the level that the user is currently playing.
    */
-   public abstract int getLevel();
+  public abstract int getLevel();
 }

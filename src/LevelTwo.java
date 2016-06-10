@@ -97,7 +97,7 @@ public class LevelTwo extends Levels
     }
     temp = letters[currentLetter];
     AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//grass2.jpg");
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass.jpg");
     startup();
   }
   

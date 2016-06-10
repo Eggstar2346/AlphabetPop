@@ -2,10 +2,35 @@ import java.io.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
-/** The AudioRecordings class contains all the recordings we will use for our game.
+/** <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Esther Yoo
+  * <b>Version #</b> 1
+  * <b>Date</b> 06.01.16
+  * <b>Time Spent</b> 2 hours
   * 
-  * @author Samantha Unger, Esther Yoo
-  * @version 1 05.27.16
+  * @author Esther Yoo
+  * @version 1 06.05.16
+  * 
+  * The AudioRecordings class loads all the audio recordings we will use for our game and puts them in static arrays, 
+  * making them easily accessible.
+  * 
+  * 
+  * 
+  * <p>
+  * <b>Instance variables: </b>
+  * <p>
+  * <b>background</b> A static Clip array that stores references to all the background music.
+  * <p>
+  * <b>alphabet</b> A static Clip array that stores references to all the the clips that go "Click the letter [...]!".
+  * <p>
+  * <b>alphabetB</b> A static Clip array that stores references to all the the clips that go 
+  * "Click the letter that comes before [...]!".
+  * <p>
+  * <b>alphabetA</b> A static Clip array that stores references to all the the clips that go 
+  * "Click the letter that comes after [...]!".
+  * <p>
+  * <b>effects</b> A static Clip array that stores all the sound effects (ex. bubble popping) used in the game.
   */
 
 public class AudioRecordings extends Thread
@@ -18,14 +43,8 @@ public class AudioRecordings extends Thread
   Clip clip;
   
    /**
-   * This constructor loads all of the audio clips into the correct arrays.
-   */
-  public AudioRecordings(Clip clip)
-  {
-    loadAudio();
-    this.clip = clip;
-  }
-  
+   * This constructor calls the method that loads all of the audio clips into the correct arrays.
+   */ 
   public AudioRecordings ()
   {
     loadAudio();
@@ -45,7 +64,18 @@ public class AudioRecordings extends Thread
   {
     audioRecordings();
   }
-    
+  
+  /**
+   * This method loads all rhe audio into their appropriate arrays.
+   * 
+   * Firstly, the entire method is inside a try-catch statement (opening Clips may throw lots of errors!).
+   * Next, the audio clips are read in one by one using for-loops.
+   * The first for-loop loads the background music files/
+   * The second for-loop loads the regular "Click the letter [...]" files.
+   * The third for-loop loads the audio clips that begin "Click the letter that comes before [...]".
+   * The fourth for-loop loads the audio clips that begin "Click the letter that comes after [...]".
+   * The fifth for-loop loads the effects.
+   */
   public void loadAudio()
   {
     try
@@ -90,18 +120,6 @@ public class AudioRecordings extends Thread
         AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
         effects[x].open(effectsClipStream);
       }
-//      effects[3] = AudioSystem.getClip();
-//      File effectsClip = new File(("Click the Letter.wav"));
-//      AudioInputStream effectsClipStream = AudioSystem.getAudioInputStream(effectsClip);
-//      effects[3].open(effectsClipStream);
-//      effects[4] = AudioSystem.getClip();
-//      File effectsClip2 = new File(("Before.wav"));
-//      AudioInputStream effectsClipStream2 = AudioSystem.getAudioInputStream(effectsClip2);
-//      effects[4].open(effectsClipStream2);
-//      effects[5] = AudioSystem.getClip();
-//      File effectsClip3 = new File(("After.wav"));
-//      AudioInputStream effectsClipStream3 = AudioSystem.getAudioInputStream(effectsClip3);
-//      effects[5].open(effectsClipStream3);
     }
     catch (UnsupportedAudioFileException q) {
       q.printStackTrace();
@@ -124,6 +142,13 @@ public class AudioRecordings extends Thread
     gainControl.setValue(volAdjust);
   }
   
+  /**
+   * This static method stops the specified alphabet clip, then sets MicrosecondPosition to 0 and plays the audio of the
+   * next specified alphabet clip.
+   * 
+   * @param stop int that stores the index of alphabet clip it is supposed to stop.
+   * @param play int that stores the index of alphabet clip it is supposed to play.
+   */
   public static void playLevelsOneTwo(int stop, int play)
   {
     AudioRecordings.alphabet[stop-65].stop();
@@ -131,6 +156,15 @@ public class AudioRecordings extends Thread
     AudioRecordings.alphabet[play-65].start();
   }
   
+  /**
+   * This static method stops the specified alphabet clip, then sets MicrosecondPosition to 0 and plays the audio of the
+   * next specified alphabet clip, which is decided depending on the value of the passed in rand variable.
+   * 
+   * @param rand int that stores whether the clip being played is "Click the letter that comes before [...]" or
+   * "Click the letter that comes after [...]".
+   * @param stop int that stores the index of alphabetB/alphabetA clip it is supposed to stop.
+   * @param play int that stores the index of alphabetB/alphabetA clip it is supposed to play.
+   */
   public static void playLevelThree(int rand, int stop, int play)
   {
     System.out.println("STOP: " + stop);

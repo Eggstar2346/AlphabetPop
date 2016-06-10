@@ -90,8 +90,7 @@ public class LevelOne extends Levels {
     
     temp = letters[currentLetter];
     AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-//    temp = letters[currentLetter];
-    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, ".//resources//underwater2.jpg");
+    box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "underwater2.jpg");
     startup();
   }
   
