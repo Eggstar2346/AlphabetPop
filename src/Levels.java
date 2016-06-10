@@ -434,8 +434,7 @@ public abstract class Levels extends JPanel {
               }
               else
               {
-                currentLetter = currentLetter + 2;
-                
+                              
                 AudioRecordings.effects[0].setMicrosecondPosition(0);
                 AudioRecordings.effects[0].start();
                 AudioRecordings.effects[2].start();
@@ -605,9 +604,10 @@ public abstract class Levels extends JPanel {
         g.drawString("Listen again!", 1075, 60);
         g.setFont(new Font("Courier New", Font.PLAIN, 40));
         g.setColor(Colors.letters);
-        for (int x = 0; x < currentLetter; x++)
+        for (int x = -1; x < currentLetter; x++)
         {
-          g.drawString("" + letters[x-1], (x*100) + 350, 50);
+          if (x != -1)
+            g.drawString("" + letters[x], (x*100) + 350, 50);
         }
         // Draw the box and the ball
         g.setColor(Color.black);
