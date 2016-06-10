@@ -71,22 +71,32 @@ public class MainMenu extends JPanel
     
     requestFocus();
     
-    addKeyListener(new KeyAdapter() { //this wont work for some reason
+    addKeyListener(new KeyAdapter() { 
           @Override
-          public void keyTyped(KeyEvent e) {
-            System.out.println(e.getKeyChar());
+          public void keyPressed(KeyEvent e) {
+            System.out.println(e.getKeyCode());
             System.out.println("MENU");
-            if (e.getKeyChar() == 80)
+            if (e.getKeyCode() == 80)
             {
-              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
-              try
+              Main.switchMenu(4);
+            }
+            else if (e.getKeyCode() == 73)
+            {
+              Main.switchMenu(6);
+            }
+            else if (e.getKeyCode() == 72)
+            {
+              Main.switchMenu(7);
+            }
+            else if (e.getKeyCode() == 69)
+            {
+              Main.switchMenu(5);
+            }
+            else
+            {
+              if (e.getKeyCode() ==  KeyEvent.VK_F1)
               {
-                Runtime.getRuntime ( ).exec (progpath);
-              }
-              catch (IOException easasads)
-              {
-                System.out.println("Doesn't work :/");
-                //messageDialog ("Couldn't find Help File");
+                Main.openCHM();
               }
             }
           }

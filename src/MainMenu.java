@@ -60,7 +60,7 @@ public class MainMenu extends JPanel
     System.out.println("YAS");
     try 
     {
-      menu = ImageIO.read(new File("MainMenu.jpg"));
+      menu = ImageIO.read(new File("MainMenu2.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 
@@ -72,70 +72,74 @@ public class MainMenu extends JPanel
     requestFocus();
     
     addKeyListener(new KeyAdapter() { 
-          @Override
-          public void keyPressed(KeyEvent e) {
-            System.out.println(e.getKeyCode());
-            System.out.println("MENU");
-            if (e.getKeyCode() == 80)
-            {
-              Main.switchMenu(4);
-            }
-            else if (e.getKeyCode() == 73)
-            {
-              Main.switchMenu(6);
-            }
-            else if (e.getKeyCode() == 72)
-            {
-              Main.switchMenu(7);
-            }
-            else if (e.getKeyCode() == 69)
-            {
-              Main.switchMenu(5);
-            }
-            else
-            {
-              if (e.getKeyCode() ==  KeyEvent.VK_F1)
-              {
-                Main.openCHM();
-              }
-            }
-          }
-        });
-    
-    addMouseListener(new MouseAdapter() {
-    @Override
-    public void mousePressed(MouseEvent e) {
-      int xCoord = e.getX();
-      int yCoord = e.getY();
-      System.out.println(xCoord+ "      "+yCoord);
-      if (xCoord>=217&&xCoord<=1016)
-      {
-        if (yCoord>=162&&yCoord<=211)
+      @Override
+      public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        System.out.println("MENU");
+        if (e.getKeyCode() == 80)
         {
-          System.out.println("Instructions");
+          Main.switchMenu(4);
+        }
+        else if (e.getKeyCode() == 73)
+        {
           Main.switchMenu(6);
         }
-        else if (yCoord>=260&&yCoord<=309)
+        else if (e.getKeyCode() == 72)
         {
-          System.out.println("Play");
-          Main.switchMenu(4);
-        } 
-        else if (yCoord>=363&&yCoord<=412)
-        {
-          System.out.println("High Scores");
           Main.switchMenu(7);
         }
-        else 
+        else if (e.getKeyCode() == 69)
         {
-          if (yCoord>=462&&yCoord<=511)
+          Main.switchMenu(5);
+        }
+        else
+        {
+          if (e.getKeyCode() ==  KeyEvent.VK_F1)
           {
-            System.out.println("Exit");
-            Main.switchMenu(5);
+            Main.openCHM();
           }
         }
       }
-    }
-});
+    });
+    
+    addMouseListener(new MouseAdapter() {
+      @Override
+      public void mousePressed(MouseEvent e) {
+        int xCoord = e.getX();
+        int yCoord = e.getY();
+        System.out.println(xCoord+ "      "+yCoord);
+        if (xCoord>=217&&xCoord<=1016)
+        {
+          if (yCoord>=162&&yCoord<=211)
+          {
+            System.out.println("Instructions");
+            Main.switchMenu(6);
+          }
+          else if (yCoord>=260&&yCoord<=309)
+          {
+            System.out.println("Play");
+            Main.switchMenu(4);
+          } 
+          else if (yCoord>=363&&yCoord<=412)
+          {
+            System.out.println("High Scores");
+            Main.switchMenu(7);
+          }
+          else if (yCoord>=554&&yCoord<=608&&xCoord>=959&&xCoord<=1015)
+          {
+            Main.openCHM();
+          }
+          else 
+          {
+            if (yCoord>=462&&yCoord<=511)
+            {
+              System.out.println("Exit");
+              Main.switchMenu(5);
+            }
+          }
+        }
+      }
+    });
   }
   
   
