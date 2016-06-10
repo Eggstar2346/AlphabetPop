@@ -248,46 +248,8 @@ public abstract class Levels extends JPanel {
     canvasWidth = width;
     canvasHeight = height;
     p = new PauseScreen();
-  }
-  
-  private void pause()
-  {
-    paused = !paused;
-    if (paused)
-    {
-      System.out.println("OHHHHHHHHH NOOOOOOOOOOO");
-      AudioRecordings.alphabet[temp-65].stop();
-      if (temp-65<88)
-      {
-        System.out.println("Temp " + temp);
-        AudioRecordings.alphabetB[temp-65].stop();
-      }
-      if (temp-66>65)
-      {
-        AudioRecordings.alphabetA[temp-66].stop();
-      }
-      tempTime = t.getTimeElapsed();
-    }
-    else
-    {
-      t.setTimeElapsed(tempTime);
-      System.out.println("LEVEL: " + getLevel());
-      if (getLevel() < 3)
-      {
-        AudioRecordings.alphabet[letters[currentLetter]-65].start();
-      }
-      else
-      {
-        if (rand == 1)
-        {
-          AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-        }
-        else
-        {
-          AudioRecordings.alphabetA[letters[currentLetter]-66].start();
-        }
-      }
-    }
+    //loadAudio();
+
   }
   
     /**
@@ -319,7 +281,42 @@ public abstract class Levels extends JPanel {
         {
           if (xCoord >= 1000 && xCoord <= 1060)
           {
-            pause();
+            
+            paused = !paused;
+            if (paused)
+            {
+              System.out.println("OHHHHHHHHH NOOOOOOOOOOO");
+              AudioRecordings.alphabet[temp-65].stop();
+              if (temp-65<88)
+              {
+                System.out.println("Temp " + temp);
+                AudioRecordings.alphabetB[temp-65].stop();
+              }
+              if (temp-66>65)
+              {
+                AudioRecordings.alphabetA[temp-66].stop();
+              }
+            }
+            else
+            {
+              t.setTimeElapsed(tempTime);
+              System.out.println("LEVEL: " + getLevel());
+              if (getLevel() < 3)
+              {
+                AudioRecordings.alphabet[letters[currentLetter]-65].start();
+              }
+              else
+              {
+                if (rand == 1)
+                {
+                  AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
+                }
+                else
+                {
+                  AudioRecordings.alphabetA[letters[currentLetter]-66].start();
+                }
+              }
+            }
           }
         }
         if (yCoord>=610 && yCoord<=670)

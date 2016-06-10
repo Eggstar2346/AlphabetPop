@@ -67,21 +67,15 @@ public class Main {
     }
     else if (choice==1)
     {
-      c=new LevelOne(1200,630);
-      frame.add (c);
-      c.requestFocusInWindow();
+      frame.add (new LevelOne(1200,630));
     }
     else if (choice==2)
     {
-      c=new LevelTwo(1200,630);
-      frame.add (c);
-      c.requestFocusInWindow();
+      frame.add (new LevelTwo(1200,630));
     }
     else if (choice==3)
     {
-      c=new LevelThree(1200,630);
-      frame.add (c);
-      c.requestFocusInWindow();
+      frame.add (new LevelThree(1200,630));
     }
     else if (choice==4)
     {
