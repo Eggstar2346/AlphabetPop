@@ -194,6 +194,7 @@ public class DisplayTime extends JPanel {
               Main.frame.add(new LevelAdvance(level+1));
               Main.frame.repaint();
               Main.frame.revalidate();
+              return;
             }
         }
         if (userName.length () < 1)

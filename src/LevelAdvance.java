@@ -47,14 +47,14 @@ private BufferedImage image;
       System.out.println(xCoord+ "      "+yCoord);
       if (yCoord>=277&&yCoord<=472)
       {
-        if (yCoord>=175&&yCoord<=575)
+        if (xCoord>=175&&xCoord<=575)
         {
           System.out.println("mainmenu");
           Main.switchMenu(0);
         }
         else 
         {
-          if (yCoord>=630&&yCoord<=1030)
+          if (xCoord>=630&&xCoord<=1030)
           {
             System.out.println("nextlvl");
             Main.switchMenu(level);

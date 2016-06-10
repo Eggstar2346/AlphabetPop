@@ -1,7 +1,13 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.image.*;
 /**
  * Auto Generated Java Class.
  */
-public class LevelAdvance {
+public class LevelAdvance extends JPanel{
   
 private BufferedImage image;
   
@@ -19,7 +25,7 @@ private BufferedImage image;
  * <p>
  * <b>yCoord </b> This int is used to know what the y-coordinate is of the location the user clicked.
  */
-  public LevelAdvance ()
+  public LevelAdvance (int level)
   {
     System.out.println("YAS");
     try 
@@ -39,19 +45,19 @@ private BufferedImage image;
       int xCoord = e.getX();
       int yCoord = e.getY();
       System.out.println(xCoord+ "      "+yCoord);
-      if (xCoord>=217&&xCoord<=1016)
+      if (yCoord>=277&&yCoord<=472)
       {
-        if (yCoord>=162&&yCoord<=211)
+        if (yCoord>=175&&yCoord<=575)
         {
-          System.out.println("Yes");
-          Main.frame.dispatchEvent(new WindowEvent(Main.frame, WindowEvent.WINDOW_CLOSING));
+          System.out.println("mainmenu");
+          Main.switchMenu(0);
         }
         else 
         {
-          if (yCoord>=363&&yCoord<=412)
+          if (yCoord>=630&&yCoord<=1030)
           {
-            System.out.println("No");
-            Main.switchMenu(0);
+            System.out.println("nextlvl");
+            Main.switchMenu(level);
           }
         }
       }
