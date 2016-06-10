@@ -32,7 +32,12 @@ import javax.swing.JPanel;
  * <b>Date</b> 06.08.16
  * <b>Time Spent</b> 1 hour
  * <b>What Was Changed</b> The CHM file was added and a key listener was programmed.
- * 
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 2.2
+ * <b>Date</b> 06.09.16
+ * <b>Time Spent</b> 1 hour
+ * <b>What Was Changed</b> The openCHM() method was added and focus was reset differently within the switchMenu() method.
  * 
  * 
  * <p>
@@ -42,7 +47,7 @@ import javax.swing.JPanel;
  * 
  * 
  * @author Samantha Unger, Esther Yoo
- * @version 2 06.02.16
+ * @version 2.2 06.09.16
  */
 public class Main {
   static JFrame frame;
@@ -99,9 +104,12 @@ public class Main {
     //frame.requestFocus();
   }
   
+  /**
+   * This method uses opens the CHM file, using a try block.  A string is used to store the program path.
+   */
   public static void openCHM()
   {
-    String progpath = new String ("C:.//resources//hh.exe AlphabetPopHelp.chm");
+    String progpath = new String ("hh.exe AlphabetPopHelp.chm");
     try
     {
       Runtime.getRuntime ( ).exec (progpath);
@@ -109,12 +117,13 @@ public class Main {
     catch (IOException i)
     {
       System.out.println("Doesn't work :/");
-      //messageDialog ("Couldn't find Help File");
     }
   }
   
     /**
-   * This main is used to run the program.  A nested thread is found within it
+   * This main is used to run the program.  A nested thread is found within it and is invoked. The Splashscreen is 
+   * added to the panel and a key listener is added to check to see if the user has hit F1 and would like to visit
+   * the CHM file.
    * 
    * @param args  String array that allows command line parameters to be used when executing the program
    */
@@ -140,16 +149,6 @@ public class Main {
             if (e.getKeyCode() == KeyEvent.VK_F1)
             {
               openCHM();
-//              String progpath = new String ("hh.exe AlphabetPopHelp.chm");
-//              try
-//              {
-//                Runtime.getRuntime ( ).exec (progpath);
-//              }
-//              catch (IOException i)
-//              {
-//                System.out.println("Doesn't work :/");
-//                //messageDialog ("Couldn't find Help File");
-//              }
             }
           }
         });
