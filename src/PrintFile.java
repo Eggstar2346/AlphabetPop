@@ -1,5 +1,35 @@
 
-/*
+/*This class is used to print the file.  When constructed, it produces a dialog box that allows you to print to your
+ * printer correctly.
+ * <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Oracle and its affiliates, Samantha Unger
+  * <b>Version #</b> 1
+  * <b>Date</b> 05.27.16
+  * <b>Time Spent</b> 2.5 hours
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1.1
+  * <b>Date</b> 06.08.16
+  * <b>Time Spent</b> 2 hours
+  * <b>What Was Changed</b> Formatting of printed image was improved to make it more effective and compelling.
+  * 
+  * 
+  * 
+  * @author Oracle and its affiliates, Samantha Unger
+  * @version 1.1 05.27.16
+  * 
+  * 
+  * <p>
+  * <b>Instance variables: </b>
+  * <p>
+  * <b>names</b> This String array is used to store the names to be printed.
+  * <p>
+  * <b>scores</b> This String array is used to store the scores to be printed.
+  * <p>
+  * <b>levels</b> This String array is used to store the levels to be printed.
+ * 
+ * 
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,20 +75,25 @@ public class PrintFile implements Printable {
  private String[]scores;
  private String[]levels;
   
+         /**
+* This is the method that prints the file.  It constructs a BufferedImage and translates X and Y values to prevent
+* clipping from outside the imageable area.  Then, a try block is used while reading in a heading.  Then, the heading
+* and scores are drawn. 
+* 
+* @param g Graphics is passed in to allow drawing.
+* @param pf PageFormat is passed in to represent the format of the page.
+* @param page int is passed in to represent the page.
+*/ 
     public int print(Graphics g, PageFormat pf, int page) throws
                                                         PrinterException {
-      BufferedImage top = new BufferedImage(5,5,BufferedImage.TYPE_BYTE_GRAY); //idk what i did here, hope its okay
-        if (page > 0) { /* We have only one page, and 'page' is zero-based */
+      BufferedImage top = new BufferedImage(5,5,BufferedImage.TYPE_BYTE_GRAY); 
+        if (page > 0) { 
             return NO_SUCH_PAGE;
         }
- 
-        /* User (0,0) is typically outside the imageable area, so we must
-         * translate by the X and Y values in the PageFormat to avoid clipping
-         */
+
         Graphics2D g2d = (Graphics2D)g;
         g2d.translate(pf.getImageableX(), pf.getImageableY());
  
-        /* Now we perform our rendering */
         
         try 
         {
@@ -86,12 +121,18 @@ public class PrintFile implements Printable {
           else
             g.drawString ("Hard",400,380+x*20);
         }
-        //g.drawString("Wow, we did something!", 100, 100);
- 
-        /* tell the caller that this page is part of the printed document */
         return PAGE_EXISTS;
     }
  
+             /**
+* This is the method that prints the file.  It constructs a BufferedImage and translates X and Y values to prevent
+* clipping from outside the imageable area.  Then, a try block is used while reading in a heading.  Then, the heading
+* and scores are drawn. 
+* 
+* @param newNames This String array is passed in as the new names associated with high scores.
+* @param newScores This String array is passed in as the new high scores.
+* @param newLevels This String array is passed in as the new levels associated with high scores.
+*/ 
     public PrintFile (String[]newNames, String[]newScores, String[]newLevels) {
       names=newNames;
       scores=newScores;
@@ -104,22 +145,8 @@ public class PrintFile implements Printable {
                   job.print();
              } catch (PrinterException ex) {
                JOptionPane.showMessageDialog(new JFrame(),"The scores cannot be printed.","Printing Error!",JOptionPane.ERROR_MESSAGE);
-              /* The job did not successfully complete */
              }
          }
     }
  
-//    public static void main(String args[]) {
-//  
-//        UIManager.put("swing.boldMetal", Boolean.FALSE);
-//        JFrame f = new JFrame("Hello World Printer");
-//        f.addWindowListener(new WindowAdapter() {
-//           public void windowClosing(WindowEvent e) {System.exit(0);}
-//        });
-//        JButton printButton = new JButton("Print Hello World");
-//        printButton.addActionListener(new PrintFile());
-//        f.add("Center", printButton);
-//        f.pack();
-//        f.setVisible(true);
-//    }
 }

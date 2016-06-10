@@ -62,29 +62,29 @@ public class PrintFile implements Printable {
         
         try 
         {
-          top = ImageIO.read(new File("printback.jpg"));
+          top = ImageIO.read(new File("printback2.jpg"));
           System.out.println("GOOD");
         } 
         catch (IOException e) 
         {
           System.out.println("NOOOOO");
         } 
-        g.drawImage(top,100,100,null);
+        g.drawImage(top,110,80,null);
         g.setFont(new Font("Comic Sans", Font.PLAIN, 25));
-        g.drawString("Name", 90, 150);
-        g.drawString("Score", 250, 150);
-        g.drawString("Level", 330, 150);
+        g.drawString("Name", 125, 350);
+        g.drawString("Score", 270, 350);
+        g.drawString("Level", 400, 350);
         g.setFont(new Font("Comic Sans", Font.PLAIN, 12));
         for (int x = 0 ; x < names.length ; x++)
         {
-          g.drawString (names[x],90,180+x*20);
-          g.drawString (scores[x],250,180+x*20);
+          g.drawString (names[x],125,380+x*20);
+          g.drawString (scores[x],270,380+x*20);
           if (levels[x].equals("1"))
-            g.drawString ("Easy",330,180+x*20);
+            g.drawString ("Easy",400,380+x*20);
           else if (levels[x].equals("2"))
-            g.drawString ("Medium",330,180+x*20);
+            g.drawString ("Medium",400,380+x*20);
           else
-            g.drawString ("Hard",330,180+x*20);
+            g.drawString ("Hard",400,380+x*20);
         }
         //g.drawString("Wow, we did something!", 100, 100);
  
