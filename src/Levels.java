@@ -394,7 +394,7 @@ public abstract class Levels extends JPanel {
             }
             if (currentLetter > letters.length-1)
             {
-
+              currentLetter = 0;
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
@@ -427,7 +427,7 @@ public abstract class Levels extends JPanel {
                 catch (InterruptedException q)
                 {
                 }
-                currentLetter = 0;
+
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 System.out.println(word);
