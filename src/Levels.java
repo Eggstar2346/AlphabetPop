@@ -306,7 +306,7 @@ public abstract class Levels extends JPanel {
                   AudioRecordings.alphabetA[letters[currentLetter]-66].start();
                 }
               }
-            t.start();
+            //t.start();
             }
             //getLayout().removeLayoutComponent (canvas);
             //Main.frame.remove(this);
