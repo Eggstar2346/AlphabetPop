@@ -144,7 +144,8 @@ public class Main {
       public void run() {
         frame = new JFrame("Alphabet Pop");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new MainMenu()); //new Splashscreen2());//this should be splashscreen but i dont want it to play every single time
+        frame.add(new Splashscreen2());
+        //frame.add(new MainMenu()); //new Splashscreen2());//this should be splashscreen but i dont want it to play every single time
 //        MainMenu m = new MainMenu();
 //        frame.add(m);
         frame.addKeyListener(new KeyAdapter() {
@@ -160,6 +161,7 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
         frame.setSize(1217,730);
+        frame.setResizable(false);
       }
     });
   }
