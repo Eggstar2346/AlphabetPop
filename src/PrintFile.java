@@ -1,5 +1,13 @@
-
-/*This class is used to print the file.  When constructed, it produces a dialog box that allows you to print to your
+ 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.print.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
+/**
+ * This class is used to print the file.  When constructed, it produces a dialog box that allows you to print to your
  * printer correctly.
  * <b> Version Information: </b>
   * <p>
@@ -28,7 +36,7 @@
   * <b>scores</b> This String array is used to store the scores to be printed.
   * <p>
   * <b>levels</b> This String array is used to store the levels to be printed.
- * 
+ * <p>
  * 
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  *
@@ -60,14 +68,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
  
- 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.print.*;
-import javax.imageio.*;
-import java.awt.image.*;
-import java.io.*;
+
  
 public class PrintFile implements Printable {
  

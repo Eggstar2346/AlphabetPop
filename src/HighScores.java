@@ -5,9 +5,30 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/**
- * Auto Generated Java Class.
- */
+/** <b> Version Information: </b>
+  * <p>
+  * <b>Author</b> Samantha Unger
+  * <b>Version #</b> 1
+  * <b>Date</b> 06.01.16
+  * <b>Time Spent</b> 2 hours
+  * 
+  * @author Samantha Unger
+  * @version 1 06.08.16
+  * 
+  * The HighScores class is used to display the high scores on the screen.  At the bottom, the user has an option to
+  * print or go back to the main menu.
+  * 
+  * <p>
+  * <b>Instance variables: </b>
+  * <p>
+  * <b>background</b> This BufferedImage is used as the background.
+  * <p>
+  * <b>name</b> This array of Strings stores the names associated with the high scores.
+  * <p>
+  * <b>highScore</b> This array of Strings stores the high scores.
+  * <p>
+  * <b>gameType</b> This array of Strings stores the type of game associated with the high scores.
+  */
 public class HighScores extends JPanel {
   
   private BufferedImage background;
@@ -15,6 +36,10 @@ public class HighScores extends JPanel {
   private String[]highScore;
   private String[]gameType;
   
+            /**
+ * This method is the constructor for the class.  It uses a try block while reading in the background for high scores.
+ * It also has a mouse listener inside the class.
+ */   
   public HighScores ()
   {
     BufferedReader input;
@@ -75,7 +100,11 @@ public class HighScores extends JPanel {
       }
     });
   }
-  
+              /**
+ * This static method uses a try catch to read in a file and check for the header.  It returns false if the file is
+ * not valid and true if it is.
+ * @return true if the file is valid and false if the file is not
+ */   
   public static boolean checkScoreFile()
   {
     BufferedReader input;
@@ -93,6 +122,14 @@ public class HighScores extends JPanel {
     return false;
   }
   
+    /**
+   * This is the method that paints components on the frame.
+   * 
+   * First, the super's paintComponent method is called.
+   * Then, the background image is drawn onto the panel.
+   * 
+   * @param g Graphics passed in to allow painting on the frame.
+   */ 
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);

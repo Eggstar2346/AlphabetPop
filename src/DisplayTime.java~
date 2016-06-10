@@ -267,7 +267,12 @@ public class DisplayTime extends JPanel {
     super.paintComponent(g);
     g.drawImage(background, 0, 0, null);
     g.setFont(new Font("Comic Sans", Font.PLAIN, 48));
-    g.drawString("You completed the first level!", 270, 90);
+    if (level==1)
+      g.drawString("You completed the first level!", 270, 90);
+    else if (level==2)
+      g.drawString("You completed the second level!", 270, 90);
+    else
+      g.drawString("You completed the final level!", 270, 90);
     g.drawString("This is a total of " + (round1+round2+round3) + " seconds!", 270, 400);
     g.setFont(new Font("Comic Sans", Font.PLAIN, 30));
     g.drawString("You completed Round 1 in " + round1 + " seconds!", 300, 200);

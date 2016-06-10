@@ -5,7 +5,7 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/* The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
+/** The MainMenu class loads the MainMenu image and displays it on the screen.   It allows the user to select
  * which page in the game they would like to go to and takes them there.
  * 
  * 

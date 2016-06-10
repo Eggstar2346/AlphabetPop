@@ -119,7 +119,7 @@ public class AudioRecordings extends Thread
    * This method changes the volume of a given clip.
    * 
    * @param volAdjust float that stores the amount to adjust the volume by
-   * @param clipNum int that stores the index of the clip to have its volume altered
+   * @param clip int that stores the index of the clip to have its volume altered
    */
   public static void volume(float volAdjust, Clip clip)
   {

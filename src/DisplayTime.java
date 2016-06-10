@@ -21,7 +21,7 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-/* The DisplayTime class displays a message that shows how long the user spent on the level.
+/** The DisplayTime class displays a message that shows how long the user spent on the level.
  * 
  * 
  * <p>
@@ -51,7 +51,7 @@ import java.util.ArrayList;
  * <p>
  * <b>round1</b> This int is used to store the number of seconds it took the user to finish round 1.
  * <p>
- * <b>round2/b> This int is used to store the number of seconds it took the user to finish round 2. 
+ * <b>round2</b> This int is used to store the number of seconds it took the user to finish round 2. 
  * <p>
  * <b>round3</b> This int is used to store the number of seconds it takes the user to finish round 3.
  * <p>

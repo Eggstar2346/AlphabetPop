@@ -5,7 +5,7 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
-/* The ExitConfirm class loads the Exit image and displays it on the screen.   It allows the user to select
+/** The ExitConfirm class loads the Exit image and displays it on the screen.   It allows the user to select
  * whether they would really like to exit or not.
  *
  * 

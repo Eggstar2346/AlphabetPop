@@ -10,10 +10,16 @@ import java.awt.image.*;
   * <b>Author</b> Samantha Unger
   * <b>Version #</b> 1
   * <b>Date</b> 06.01.16
+  * <b>Time Spent</b> 1 hour
+  * 
+  * <b>Author</b> Esther Yoo
+  * <b>Version #</b> 2
+  * <b>Date</b> 06.05.16
   * <b>Time Spent</b> 1 hour  
   * 
   * @author Samantha Unger
-  * @version 1.1 06.1.16
+  * @author Esther Yoo
+  * @version 2 06.05.16
   * 
   * The Instructions class is a JPanel that goes into a Powerpoint-resembling system
   * where users can navigate through the different "slides" to learn how to play the game.
@@ -21,25 +27,32 @@ import java.awt.image.*;
   * <p>
   * <b>Instance variables: </b>
   * <p>
-  * <b>instruct</b> A BufferedImage variable that refers to the background image used for the instructions.
+  * <b>currentSlide</b> An integer variable used to keep track of which slide the user is on.
   */
-public class Instructions extends JPanel {
-  
-  private BufferedImage instruct;
+public class Instructions extends JPanel 
+{
   private int currentSlide;
   
-  
+  /**
+   * The class constructor contains all the setup required for the Instructions.
+   * 
+   * First, the background image (initially at slide 0) is drawn to the background. <p>
+   * Then, a mouseListener is added. If the mouse click was within certain coordinates (as determined by if-statements),
+   * the slides will move forward. If the mouse click was at a certain different set of coordinates,
+   * the slides will move backward.<p>
+   * Users may go back by pressing "Backward" at the first slide, or "Forward" at the last slide.<p>
+   * Lastly, certain sound effects were added to Instructions for further enhancement and enjoyability.
+   * These are specified in an if-statement and are located at the end of the code. <p>
+   */
   public Instructions()
   {
     repaint();
-    //repaint();
     
     addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
         int xCoord = e.getX();
         int yCoord = e.getY();
-        System.out.println(xCoord+ "      "+yCoord);
         
         if (yCoord>=0&&yCoord<=50)
         {
@@ -74,7 +87,6 @@ public class Instructions extends JPanel {
           AudioRecordings.effects[0].stop();
           AudioRecordings.effects[1].start();
         }
-        //System.out.println(currentSlide);
         
         repaint();
         revalidate();
@@ -95,13 +107,10 @@ public class Instructions extends JPanel {
   public void paintComponent (Graphics g)
   {
     super.paintComponent(g);
-    //draw instructions background
     g.drawImage(Images.instructions[currentSlide], 0, 0, null);
-    //draw title
     g.setColor(Colors.letters);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
     g.drawString("Alphabet Pop", 375, 70);
-    //draw back/forward buttons
     g.setColor(Color.black);
     g.fillRect(1050, 0, 150, 50);
     g.fillRect(0,0,150,50);

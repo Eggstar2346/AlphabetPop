@@ -42,7 +42,7 @@ public class Instructions extends JPanel
    * the slides will move backward.<p>
    * Users may go back by pressing "Backward" at the first slide, or "Forward" at the last slide.<p>
    * Lastly, certain sound effects were added to Instructions for further enhancement and enjoyability.
-   * These are specified in an if-statement and are located at the end of the code. <p>
+   * These are specified in an if-statement and are located at the end of the code.
    */
   public Instructions()
   {
@@ -99,7 +99,7 @@ public class Instructions extends JPanel
    * This is the method that paints components on the frame.
    * 
    * First, the super's paintComponent method is called (partial overriding).<p>
-   * Then, the background image is draw onto the panel.<p>
+   * Then, the background image is drawn onto the panel.<p>
    * 
    * @param g Graphics passed in to allow painting on the frame.
    */ 
@@ -110,7 +110,7 @@ public class Instructions extends JPanel
     g.drawImage(Images.instructions[currentSlide], 0, 0, null);
     g.setColor(Colors.letters);
     g.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
-    g.drawString("Alphabet Pop", 375, 70);
+    g.drawString("Alphabet Pop!", 375, 70);
     g.setColor(Color.black);
     g.fillRect(1050, 0, 150, 50);
     g.fillRect(0,0,150,50);

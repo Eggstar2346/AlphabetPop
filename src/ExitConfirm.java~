@@ -51,7 +51,7 @@ public class ExitConfirm extends JPanel
     System.out.println("YAS");
     try 
     {
-      image = ImageIO.read(new File("Exit.jpg"));
+      image = ImageIO.read(new File(".//resources//Exit.jpg"));
       System.out.println("GOOD");
     } 
     catch (IOException e) 

@@ -4,9 +4,29 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
-/**
- * Auto Generated Java Class.
+/** The LevelAdvance class loads the level advance image and displays it on the screen.   It allows the user to select
+ * whether they would like to advance or go to the menu.
+ *
+ * 
+ * <p>
+ * <b> Version Information: </b>
+ * <p>
+ * <b>Author</b> Samantha Unger
+ * <b>Version #</b> 1
+ * <b>Date</b> 06.08.16
+ * <b>Time Spent</b> 20 minutes
+ * 
+ * 
+ * <p>
+ * <b> Instance Variables: </b>
+ * <p>
+ * <b>image</b> This creates an instance of a BufferedImage that is used to display the message asking the user if they
+ * would like to exit.
+ * 
+ * @author Samantha Unger
+ * @version 1 06.08.16
  */
+
 public class LevelAdvance extends JPanel{
   
 private BufferedImage image;
@@ -24,6 +44,8 @@ private BufferedImage image;
  * <b>xCoord </b> This int is used to know what the x-coordinate is of the location the user clicked.
  * <p>
  * <b>yCoord </b> This int is used to know what the y-coordinate is of the location the user clicked.
+ * 
+ * @param level int that represents the level
  */
   public LevelAdvance (int level)
   {

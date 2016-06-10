@@ -50,21 +50,6 @@ public class AudioRecordings extends Thread
     loadAudio();
   }
   
-  public void setMicrosecondPosition (int time)
-  {
-    clip.setMicrosecondPosition(time);
-  }
-  
-  public void audioRecordings ()
-  {
-    clip.start();
-  }
-  
-  public void run()
-  {
-    audioRecordings();
-  }
-  
   /**
    * This method loads all rhe audio into their appropriate arrays.
    * 
@@ -167,7 +152,6 @@ public class AudioRecordings extends Thread
    */
   public static void playLevelThree(int rand, int stop, int play)
   {
-    System.out.println("STOP: " + stop);
     if (stop>=66)
       AudioRecordings.alphabetB[stop-66].stop();
     if (stop>=65 && stop <= 89)
