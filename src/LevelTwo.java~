@@ -96,10 +96,11 @@ public class LevelTwo extends Levels
     }
     box = new ContainerBox(0, 0, canvasWidth, canvasHeight, "grass.jpg");
     startup();
-    AudioRecordings.alphabet[temp].stop();
-    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
-    AudioRecordings.alphabet[letters[currentLetter]-65].start();
-    temp = letters[currentLetter]-65;
+//    AudioRecordings.alphabet[temp].stop();
+//    AudioRecordings.alphabet[letters[currentLetter]-65].setMicrosecondPosition(0);
+//    AudioRecordings.alphabet[letters[currentLetter]-65].start();
+    AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
+    temp = letters[currentLetter];
   }
   
   public int generateSpeed()

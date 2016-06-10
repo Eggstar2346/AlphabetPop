@@ -345,9 +345,10 @@ public abstract class Levels extends JPanel {
                 System.out.println("TEMP HERE: " + temp);
                 AudioRecordings.alphabetB[temp-65].stop();
               }
-              if (rand == 2)
+              else
               {
-                AudioRecordings.alphabetA[temp-66].stop();
+                if (rand == 2)
+                  AudioRecordings.alphabetA[temp-66].stop();
               }
               
               ball[z].setWasClicked(true);
@@ -390,7 +391,7 @@ public abstract class Levels extends JPanel {
             }
             if (currentLetter > letters.length-1)
             {
-              currentLetter = 0;
+
               roundTimes[currentWord]=t.getTimeElapsed();
               if (currentWord==2)
               {
@@ -410,16 +411,29 @@ public abstract class Levels extends JPanel {
               }
               else
               {
+                              
+                AudioRecordings.effects[0].setMicrosecondPosition(0);
+                AudioRecordings.effects[0].start();
+                AudioRecordings.effects[2].start();
+                revalidate();
+                repaint();
+                try
+                {
+                  Thread.sleep(4000);
+                }
+                catch (InterruptedException q)
+                {
+                }
+                currentLetter = 0;
                 currentWord++;
                 word = words.get(currentWord).toUpperCase();
                 System.out.println(word);
                 t.setTimeElapsed(0);
                 setBubbles();
+                
                 if (getLevel() < 3)
                 {
                   AudioRecordings.playLevelsOneTwo(temp, letters[currentLetter]);
-                  AudioRecordings.effects[0].setMicrosecondPosition(0);
-                  AudioRecordings.effects[0].start();
                   temp = letters[currentLetter];
                 }
                 else
@@ -427,17 +441,14 @@ public abstract class Levels extends JPanel {
                   if (letters[currentLetter] == 'Z')
                   {
                     rand = 2;
-                    //temp = letters[currentLetter];
                   }
                   else if (letters[currentLetter] == 'A')
                   {
                     rand = 1;
-                    //temp = letters[currentLetter];
                   }
                   else
                   {
                     rand = (int)(Math.random()*2)+1;
-                    //temp = letters[currentLetter];
                   }
                   AudioRecordings.playLevelThree(rand, temp, letters[currentLetter]);
                   temp = letters[currentLetter];
