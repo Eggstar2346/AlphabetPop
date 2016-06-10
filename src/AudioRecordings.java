@@ -128,7 +128,7 @@ public class AudioRecordings extends Thread
   {
     AudioRecordings.alphabet[stop-65].stop();
     AudioRecordings.alphabet[play-65].setMicrosecondPosition(0);
-    AudioRecordings.alphabet[play-66].start();
+    AudioRecordings.alphabet[play-65].start();
   }
   
   public static void playLevelThree(int rand, int stop, int play)
